@@ -1,0 +1,33 @@
+key,key:technician,key:aircraft,maintenanceMoment,status,nextInspection,estimatedCost,notes
+#maintenanceRecord
+maintenanceRecord-01,technician-01,aircraft-01,2016/07/09 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,Both wings fixed
+#maintenanceMoment-variations
+maintenanceRecord-02,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,Both wings fixed
+maintenanceRecord-03,technician-01,aircraft-01,2000/01/01 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,Both wings fixed
+maintenanceRecord-04,technician-01,aircraft-01,2025/01/01 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,Both wings fixed
+#status-variations
+maintenanceRecord-05,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,Both wings fixed
+maintenanceRecord-06,technician-01,aircraft-01,2012/07/02 0:00,PENDING,2025/08/29 0:00,EUR 500000,Both wings fixed
+maintenanceRecord-07,technician-01,aircraft-01,2012/07/02 0:00,COMPLETED,2025/08/29 0:00,EUR 500000,Both wings fixed
+#nextInspection-variations
+maintenanceRecord-08,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/01/01 0:01,EUR 500000,Both wings fixed
+maintenanceRecord-09,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2134/02/14 0:00,EUR 500000,Both wings fixed
+maintenanceRecord-10,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2200/12/31 23:59,EUR 500000,Both wings fixed
+#estimatedCost-variations
+maintenanceRecord-11,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,Both wings fixed
+maintenanceRecord-12,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 0,Both wings fixed
+maintenanceRecord-13,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 1000000,Both wings fixed
+#notes-variations
+maintenanceRecord-14,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*"
+maintenanceRecord-15,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,""
+maintenanceRecord-16,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*"
+maintenanceRecord-17,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,โลเร็ม อิปซัม
+maintenanceRecord-18,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,لوريم إيبسوم
+maintenanceRecord-19,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,โ洛伦·伊普森
+maintenanceRecord-20,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,<marquee>Hacked</marquee>
+maintenanceRecord-21,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,<script>alert(‘Hacked!’);</script>
+maintenanceRecord-22,technician-01,aircraft-01,2012/07/02 0:00,IN_PROGRESS,2025/08/29 0:00,EUR 500000,'' or 'A' = 'A
+
+
+
+

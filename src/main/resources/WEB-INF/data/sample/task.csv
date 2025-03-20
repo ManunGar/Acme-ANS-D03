@@ -1,0 +1,26 @@
+key,key:technician,type,description,priority,estimatedDuration
+#task
+task-01,technician-01,REPAIR,The wings of the plane are broken,8,120
+#type-variations
+task-02,technician-01,MAINTENANCE,The wings of the plane are broken,8,120
+task-03,technician-01,INSPECTION,The wings of the plane are broken,8,120
+task-04,technician-01,REPAIR,The wings of the plane are broken,8,120
+task-05,technician-01,SYSTEM_CHECK,The wings of the plane are broken,8,120
+#description-variations
+task-06,technician-01,REPAIR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",8,120
+task-07,technician-01,REPAIR,L,8,120
+task-08,technician-01,REPAIR,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",8,120
+task-09,technician-01,REPAIR,โลเร็ม อิปซัม,8,120
+task-10,technician-01,REPAIR,لوريم إيبسوم,8,120
+task-11,technician-01,REPAIR,โ洛伦·伊普森,8,120
+task-12,technician-01,REPAIR,<marquee>Hacked</marquee>,8,120
+task-13,technician-01,REPAIR,<script>alert(‘Hacked!’);</script>,8,120
+task-14,technician-01,REPAIR,'' or 'A' = 'A,8,120
+#priority-variations
+task-15,technician-01,REPAIR,The wings of the plane are broken,5,120
+task-16,technician-01,REPAIR,The wings of the plane are broken,0,120
+task-17,technician-01,REPAIR,The wings of the plane are broken,10,120
+#estimatedDuration-variations
+task-18,technician-01,REPAIR,The wings of the plane are broken,8,500
+task-19,technician-01,REPAIR,The wings of the plane are broken,8,0
+task-20,technician-01,REPAIR,The wings of the plane are broken,8,1000
