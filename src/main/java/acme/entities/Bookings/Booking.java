@@ -2,6 +2,7 @@
 package acme.entities.Bookings;
 
 import java.beans.Transient;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -21,6 +22,7 @@ import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
 import acme.entities.Flight.Flight;
 import acme.entities.Flight.FlightRepository;
+import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -76,9 +78,12 @@ public class Booking extends AbstractEntity {
 	@Transient
 	public Money getPrice() {
 		Money result;
-		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
-		result = repository.findCostByFlight(this.flight.getId());
-
+		FlightRepository flightRepository = SpringHelper.getBean(FlightRepository.class);
+		BookingRepository bookingRepository = SpringHelper.getBean(BookingRepository.class);
+		result = flightRepository.findCostByFlight(this.flight.getId());
+		Collection<Passenger> pg = bookingRepository.findPassengersByBooking(this.getId());
+		Double amount = result.getAmount() * pg.size();
+		result.setAmount(amount);
 		return result;
 	}
 
