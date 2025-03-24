@@ -20,7 +20,6 @@ import acme.client.components.validation.ValidString;
 import acme.constraints.ValidLegs;
 import acme.entities.Aircrafts.Aircraft;
 import acme.entities.Airports.Airport;
-import acme.entities.Flight.Flight;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,14 +32,9 @@ public class Legs extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Flight				flight;
-
-	@Mandatory
 	@ValidString(pattern = "^[A-Z]{3}\\d{4}$")
 	@Column(unique = true)
-	private String				IATAcode;
+	private String				flightNumber;
 
 	@Mandatory
 	@ValidMoment(past = false)
