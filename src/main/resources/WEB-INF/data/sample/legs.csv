@@ -1,18 +1,18 @@
-key,key:flight,IATAcode,departure,arrival,status,key:departureAirport,key:arrivalAirport,key:aircraft
+key,draftMode,key:flight,flightNumber,departure,arrival,status,key:departureAirport,key:arrivalAirport,key:aircraft
 #base entity
-leg-00,flight-00,BBB1111,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-00,true,flight-12,BBB1111,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
 #IATAcode
-leg-01,flight-01,BBB1112,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
-leg-02,flight-02,BBB1113,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
-leg-03,flight-03,BBB1114,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
-leg-04,flight-04,BBB1115,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-01,true,flight-13,BBB1112,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-02,true,flight-14,BBB1113,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-03,true,flight-15,BBB1114,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-04,true,flight-16,BBB1115,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
 #departure
-leg-05,flight-05,BBB1116,2012/07/02 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
-leg-06,flight-06,BBB1117,2000/01/01 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
-leg-07,flight-07,BBB1118,2000/01/01 00:01,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
-leg-08,flight-08,BBB1119,2024/12/31 23:59,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
-leg-09,flight-10,BBB1110,2025/01/01 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-05,true,flight-04,BBB1116,2012/07/02 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-06,true,flight-17,BBB1117,2000/01/01 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-07,true,flight-18,BBB1118,2000/01/01 00:01,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-08,true,flight-19,BBB1119,2024/12/31 23:59,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+leg-09,true,flight-20,BBB1110,2025/01/01 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
 #status
-leg-20,flight-11,BBB1130,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
-leg-21,flight-12,BBB1131,2025/03/13 00:00,2025/03/14 00:00,CANCELLED,airport-01,airport-01,aircraft-00
-leg-22,flight-13,BBB1132,2025/03/13 00:00,2025/03/14 00:00,LANDED,airport-01,airport-01,aircraft-00
+leg-20,true,flight-21,BBB1130,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
+leg-21,true,flight-22,BBB1131,2025/03/13 00:00,2025/03/14 00:00,CANCELLED,airport-01,airport-01,aircraft-00
+leg-22,true,flight-23,BBB1132,2025/03/13 00:00,2025/03/14 00:00,LANDED,airport-01,airport-01,aircraft-00
