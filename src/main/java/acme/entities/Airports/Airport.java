@@ -68,4 +68,8 @@ public class Airport extends AbstractEntity {
 	@Automapped
 	private String				contactPhoneNumber;
 
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
+
 }
