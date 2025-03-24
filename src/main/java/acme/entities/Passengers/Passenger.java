@@ -50,6 +50,10 @@ public class Passenger extends AbstractEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				dateOfBirth;
 
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
+
 	@Optional
 	@ValidShortText
 	@Automapped

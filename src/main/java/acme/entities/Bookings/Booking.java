@@ -1,6 +1,8 @@
 
 package acme.entities.Bookings;
 
+import java.beans.Transient;
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,9 +18,11 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
-import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
+import acme.client.helpers.SpringHelper;
 import acme.entities.Flight.Flight;
+import acme.entities.Flight.FlightRepository;
+import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 import lombok.Getter;
 import lombok.Setter;
@@ -62,13 +66,25 @@ public class Booking extends AbstractEntity {
 	private TravelClass			travelClass;
 
 	@Mandatory
-	@ValidMoney(min = 0.00, max = 1000000)
 	@Automapped
-	private Money				price;
+	private boolean				draftMode;
 
 	@Optional
 	@ValidString(pattern = "^\\d{4}$")
 	@Automapped
 	private String				lastNibble;
+
+
+	@Transient
+	public Money getPrice() {
+		Money result;
+		FlightRepository flightRepository = SpringHelper.getBean(FlightRepository.class);
+		BookingRepository bookingRepository = SpringHelper.getBean(BookingRepository.class);
+		result = flightRepository.findCostByFlight(this.flight.getId());
+		Collection<Passenger> pg = bookingRepository.findPassengersByBooking(this.getId());
+		Double amount = result.getAmount() * pg.size();
+		result.setAmount(amount);
+		return result;
+	}
 
 }
