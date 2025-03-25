@@ -33,3 +33,5 @@ acme.validation.Customer.identifier.message = El identificador deberá correspon
 
 acme.validation.Customer.identifier.name.message = El identificador no coincide con las iniciales del Cliente
 
+acme.validation.text.identifier = El identificador no es correcto
+
