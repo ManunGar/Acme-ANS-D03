@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.booking;
+package acme.features.authenticatedcustomer;
 
 import javax.annotation.PostConstruct;
 
@@ -15,7 +15,16 @@ public class AuthenticatedBookingController extends AbstractGuiController<Authen
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedBookingListService listService;
+	private AuthenticatedBookingListService		listService;
+
+	@Autowired
+	private AuthenticatedBookingShowService		showService;
+
+	@Autowired
+	private AuthenticatedBookingUpdateService	updateService;
+
+	@Autowired
+	private AuthenticatedBookingCreateService	createService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -23,6 +32,9 @@ public class AuthenticatedBookingController extends AbstractGuiController<Authen
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
+		super.addBasicCommand("show", this.showService);
+		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("create", this.createService);
 	}
 
 }
