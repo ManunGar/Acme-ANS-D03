@@ -50,9 +50,9 @@ public class AuthenticatedBookingPublishedService extends AbstractGuiService<Aut
 	public void validate(final Booking booking) {
 		boolean confirmation;
 		if (booking.isDraftMode() == true && booking.getLastNibble() == null)
-			confirmation = true;
-		else
 			confirmation = false;
+		else
+			confirmation = true;
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message.lastNibble");
 	}
 
