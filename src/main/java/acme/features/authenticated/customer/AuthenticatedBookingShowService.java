@@ -1,8 +1,7 @@
 
-package acme.features.authenticatedcustomer;
+package acme.features.authenticated.customer;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,7 +15,7 @@ import acme.entities.Bookings.TravelClass;
 import acme.entities.Passengers.Passenger;
 
 @GuiService
-public class AuthenticatedBookingCreateService extends AbstractGuiService<Authenticated, Booking> {
+public class AuthenticatedBookingShowService extends AbstractGuiService<Authenticated, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -32,32 +31,12 @@ public class AuthenticatedBookingCreateService extends AbstractGuiService<Authen
 
 	@Override
 	public void load() {
+		int id;
 		Booking booking;
 
-		booking = new Booking();
-		booking.setLocatorCode("");
-		booking.setPurchaseMoment(new Date());
-		booking.setTravelClass(TravelClass.ECONOMY);
-		;
-		booking.setLastNibble("");
-
+		id = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(id);
 		super.getBuffer().addData(booking);
-	}
-
-	@Override
-	public void bind(final Booking booking) {
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "passengers", "travelClass");
-	}
-
-	@Override
-	public void validate(final Booking booking) {
-		;
-	}
-
-	@Override
-	public void perform(final Booking booking) {
-
-		this.repository.save(booking);
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 
-package acme.features.authenticatedcustomer;
+package acme.features.authenticated.customer;
 
 import java.util.Collection;
 

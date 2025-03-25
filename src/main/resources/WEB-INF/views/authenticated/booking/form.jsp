@@ -11,12 +11,14 @@
 		<acme:input-textarea code="authenticated.booking.list.label.price" path="price"/>
 		<acme:input-textarea code="authenticated.booking.list.label.lastNibble" path="lastNibble"/>
 		<acme:input-textarea code="authenticated.booking.list.label.passenger" path="passengers" />
+		<acme:input-textarea code="authenticated.booking.list.label.draftMode" path="draftMode" />
 	<jstl:choose>
-			<jstl:when test="${(_command == 'update' || _command == 'show') && draftMode == false}">
-				<acme:submit code="administrator.airport.form.button.update" action="/authenticated/booking/update"/>
+			<jstl:when test="${(_command == 'update' || _command == 'show' || _command == 'publish') && draftMode == false}">
+				<acme:submit code="authenticated.booking.form.button.update" action="/authenticated/booking/update"/>
+				<acme:submit code="authenticated.booking.form.button.publish" action="/authenticated/booking/publish"/>
 			</jstl:when>
 			<jstl:when test="${_command == 'create'}">
-				<acme:submit code="administrator.airport.form.button.create" action="/authenticated/booking/create"/>
+				<acme:submit code="authenticated.booking.form.button.create" action="/authenticated/booking/create"/>
 			</jstl:when>		
 	</jstl:choose>		
 </acme:form>

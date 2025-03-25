@@ -1,5 +1,5 @@
 
-package acme.features.authenticatedcustomer;
+package acme.features.authenticated.customer;
 
 import java.util.Collection;
 
@@ -15,28 +15,47 @@ import acme.entities.Bookings.TravelClass;
 import acme.entities.Passengers.Passenger;
 
 @GuiService
-public class AuthenticatedBookingShowService extends AbstractGuiService<Authenticated, Booking> {
+public class AuthenticatedBookingUpdateService extends AbstractGuiService<Authenticated, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private AuthenticatedBookingRepository repository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractGuiService interfaced ------------------------------------------
 
 
 	@Override
 	public void authorise() {
+
 		super.getResponse().setAuthorised(true);
 	}
 
 	@Override
 	public void load() {
-		int id;
 		Booking booking;
+		int id;
 
 		id = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(id);
+
 		super.getBuffer().addData(booking);
+	}
+
+	@Override
+	public void bind(final Booking booking) {
+
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "passengers", "travelClass");
+	}
+
+	@Override
+	public void validate(final Booking booking) {
+		;
+	}
+
+	@Override
+	public void perform(final Booking booking) {
+		System.out.println(booking.isDraftMode());
+		this.repository.save(booking);
 	}
 
 	@Override
@@ -47,11 +66,10 @@ public class AuthenticatedBookingShowService extends AbstractGuiService<Authenti
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Collection<Passenger> passengersNumber = this.repository.findPassengersByBooking(booking.getId());
 		Collection<String> passengers = passengersNumber.stream().map(x -> x.getFullName()).toList();
-		System.out.println(booking.isDraftMode());
+
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "draftMode");
 		dataset.put("travelClass", choices);
 		dataset.put("passengers", passengers);
-
 		super.getResponse().addData(dataset);
 	}
 }
