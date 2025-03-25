@@ -39,13 +39,11 @@ public class LegsValidator extends AbstractValidator<ValidLegs, Legs> {
 			super.state(context, false, "*", "acme.validation.NotNull.message");
 		else {
 			Airline airline = this.airlineRepository.findAirlineById(leg.getAircraft().getAirline().getId());
-			if (!airline.getIATAcode().equals(leg.getIATAcode().substring(0, 3)))
-				super.state(context, false, "legs", "acme.validation.legs.message");
-			else if (leg.getArrival().before(leg.getDeparture()))
+			if (leg.getArrival().before(leg.getDeparture()))
 				super.state(context, false, "legs", "acme.validation.legs.message");
 			else {
 				boolean correctLeg = true;
-				List<Legs> legs = this.repository.findAllByFlightId(leg.getFlight().getId());
+				List<Legs> legs = this.repository.findAllByAircraftId(leg.getAircraft().getId());
 				legs.add(leg);
 				legs = LegsValidator.sortLegsByDeparture(legs);
 				for (int i = 0; i < legs.size() - 1 && correctLeg && legs.size() < 2; i++) {

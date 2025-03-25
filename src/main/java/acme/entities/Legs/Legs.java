@@ -33,14 +33,13 @@ public class Legs extends AbstractEntity {
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@Valid
-	@ManyToOne(optional = false)
-	private Flight				flight;
+	@Automapped
+	private Boolean				draftMode;
 
 	@Mandatory
 	@ValidString(pattern = "^[A-Z]{3}\\d{4}$")
 	@Column(unique = true)
-	private String				IATAcode;
+	private String				flightNumber;
 
 	@Mandatory
 	@ValidMoment(past = false)
@@ -71,6 +70,11 @@ public class Legs extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Aircraft			aircraft;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Flight				flight;
 
 
 	@Transient

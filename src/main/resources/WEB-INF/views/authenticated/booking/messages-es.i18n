@@ -1,0 +1,21 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+authenticated.booking.list.title = Listado de Reservas
+authenticated.booking.form.title = Detalles de la Reserva
+
+authenticated.booking.list.label.locatorCode = Código de localización
+authenticated.booking.list.label.purchaseMoment = Momento de compra
+authenticated.booking.list.label.travelClass = Tipo de viaje
+authenticated.booking.list.label.lastNibble = Ultima tarjeta
+authenticated.booking.list.label.price = Precio
+authenticated.booking.list.label.passenger = Pasajeros
+
+authenticated.booking.create = Crear una reserva
