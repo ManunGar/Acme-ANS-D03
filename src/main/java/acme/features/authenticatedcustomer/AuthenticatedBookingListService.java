@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.booking;
+package acme.features.authenticatedcustomer;
 
 import java.util.Collection;
 
@@ -10,7 +10,6 @@ import acme.client.components.principals.Authenticated;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.Bookings.Booking;
-import acme.entities.Passengers.Passenger;
 
 @GuiService
 public class AuthenticatedBookingListService extends AbstractGuiService<Authenticated, Booking> {
@@ -38,15 +37,8 @@ public class AuthenticatedBookingListService extends AbstractGuiService<Authenti
 	@Override
 	public void unbind(final Booking booking) {
 		Dataset dataset;
-		String price = "";
 
-		Collection<Passenger> namesPassengers = this.repository.findPassengersByBooking(booking.getId());
-		price += booking.getPrice().getAmount().toString() + " ";
-		price += booking.getPrice().getCurrency();
-
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "draftMode", "lastNibble");
-		dataset.put("price", price);
-		dataset.put("passengers", namesPassengers);
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass");
 
 		super.getResponse().addData(dataset);
 	}
