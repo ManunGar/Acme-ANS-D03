@@ -17,7 +17,12 @@ authenticated.booking.list.label.travelClass = Travel Class
 authenticated.booking.list.label.lastNibble = Last Nibble
 authenticated.booking.list.label.price = Price
 authenticated.booking.list.label.passenger = Passengers
+authenticated.booking.list.label.draftMode = draftMode
 
-authenticated.booking.create = Create a booking
+authenticated.booking.form.button.create = Create booking
+authenticated.booking.form.button.update = Update booking
+authenticated.booking.form.button.publish = Publish booking
+
+acme.validation.confirmation.message.lastNibble = The lastNibble must be filled if the booking is published
 
 

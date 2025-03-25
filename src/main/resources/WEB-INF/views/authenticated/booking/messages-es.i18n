@@ -17,5 +17,10 @@ authenticated.booking.list.label.travelClass = Tipo de viaje
 authenticated.booking.list.label.lastNibble = Ultima tarjeta
 authenticated.booking.list.label.price = Precio
 authenticated.booking.list.label.passenger = Pasajeros
+authenticated.booking.list.label.draftMode = Estado de publicación
 
-authenticated.booking.create = Crear una reserva
+authenticated.booking.form.button.create = Crear reserva
+authenticated.booking.form.button.update = Actualizar reserva
+authenticated.booking.form.button.publish = Publicar reserva
+
+acme.validation.confirmation.message.lastNibble = Los últimos digitos de la tarjeta de crédito deberán ser rellenados si la reserva es publicada
