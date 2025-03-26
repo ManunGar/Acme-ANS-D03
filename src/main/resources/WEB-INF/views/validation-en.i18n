@@ -35,3 +35,5 @@ acme.validation.Customer.identifier.name.message = The identifier does not match
 
 acme.validation.text.identifier = The identifier is not correct
 
+acme.validation.assistanceAgent.employeeCode.message = The employeeCode must be unique
+
