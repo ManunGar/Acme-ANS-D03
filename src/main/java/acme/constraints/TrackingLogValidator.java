@@ -68,7 +68,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 				super.state(context, maximumNumberOfTrackingLogsCompleted, "numberOfTrackingLogsCompleted", "acme.validation.trackingLog.numberOfTrackingLogsCompleted.message");
 			}
 
-			//Validation of attribute draftMode is logical with claim
+			//Validation of attribute draftMode is logical with its claim
 			{
 				boolean draftModeLogical;
 
