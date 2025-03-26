@@ -41,6 +41,7 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 			boolean uniqueEmployeeCode = true;
 			List<AssistanceAgent> assistanceAgents = this.repository.findAllAssistanceAgent();
+			assistanceAgents.removeIf(a -> a.getId() == assistanceAgent.getId());
 			String employeeCode1 = assistanceAgent.getEmployeeCode();
 			for (AssistanceAgent a : assistanceAgents)
 				if (a.getEmployeeCode().equals(employeeCode1))
