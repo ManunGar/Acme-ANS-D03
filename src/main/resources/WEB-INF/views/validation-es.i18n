@@ -23,6 +23,8 @@ acme.validation.NotNull.message = La entidad no puede ser null
 
 acme.validation.claim.indicator.message = El indicador de Claim y su TrackingLog deben coincidir
 
+acme.validation.claim.leg.message = La Leg asociada a la Claim debe ser en el pasado
+
 acme.validation.trackinLog.resolutionMandatory.message = La resolucion de la TrackingLog debe estar escrita cuando su resolutionPercentage sea 100.00
 
 acme.validation.legs.message = El trayecto no tiene un formato u orden correcto 
