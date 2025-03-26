@@ -27,6 +27,12 @@ acme.validation.claim.leg.message = The Leg associated to the Claim must be in t
 
 acme.validation.trackinLog.resolutionMandatory.message = The resolution of the TrackingLog must be written after resolutionPercentage reaches 100.00
 
+acme.validation.trackingLog.acceptedPending.message = The attribute accepted must be logical with the attributePercentage
+
+acme.validation.trackingLog.numberOfTrackingLogsCompleted.message = A Claim can only have 2 TrackingLog associated with resolutionPercentage = 100.00
+
+acme.validation.trackingLog.draftModeLogical.message = The attribute draftMode of a TrackingLog can only be true if its Claims attribute draftMode is true
+
 acme.validation.legs.message = The leg is not formatted or in the correct order
 
 acme.validation.Manager.identifier.name.message = The manager identification is not correct

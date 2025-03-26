@@ -8,9 +8,11 @@ import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
 import acme.realms.AssistanceAgent.AssistanceAgent;
 import acme.realms.AssistanceAgent.AssistanceAgentRepository;
 
+@Validator
 public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceAgent, AssistanceAgent> {
 
 	// Internal state ---------------------------------------------------------
