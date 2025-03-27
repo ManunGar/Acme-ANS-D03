@@ -26,7 +26,7 @@
 			<acme:menu-suboption code="master.menu.anonymous.favourite-student5" action="https://www.mitele.es/directo/"/>
 		</acme:menu-option>
 		
-		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')" action="/authenticated/booking/list">
+		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')" action="/customer/booking/list">
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">

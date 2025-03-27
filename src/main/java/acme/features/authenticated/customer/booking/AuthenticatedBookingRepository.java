@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.customer;
+package acme.features.authenticated.customer.booking;
 
 import java.util.Collection;
 
@@ -30,4 +30,10 @@ public interface AuthenticatedBookingRepository extends AbstractRepository {
 
 	@Query("select bk.passenger from BookingRecord bk where bk.booking.id = :bookingId")
 	Collection<Passenger> findPassengersByBooking(@Param("bookingId") Integer bookingId);
+
+	@Query("select bk from Booking bk where bk.customer.userAccount.id = :customerId")
+	Collection<Booking> findBookingByCustomer(@Param("customerId") Integer customerId);
+
+	@Query("select c from Customer c where c.id = :customerId")
+	Customer findCustomerById(@Param("customerId") Integer customerId);
 }
