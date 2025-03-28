@@ -15,15 +15,15 @@ public interface LegRepository extends AbstractRepository {
 	List<Legs> findAllByAircraftId(@Param("aircraftId") Integer aircraftId);
 
 	@Query("select l.departure from Legs l where l.flight.id = :flightId order by l.departure")
-	Date findDepartureByFlightId(@Param("flightId") Integer flightId);
+	List<Date> findDepartureByFlightId(@Param("flightId") Integer flightId);
 
 	@Query("select l.arrival from Legs l where l.flight.id = :flightId order by l.departure desc")
-	Date findArrivalByFlightId(@Param("flightId") Integer flightId);
+	List<Date> findArrivalByFlightId(@Param("flightId") Integer flightId);
 
 	@Query("select l.departureAirport.city from Legs l where l.flight.id = :flightId order by l.departure")
 	List<String> findOriginCityByFlightId(@Param("flightId") Integer flightId);
 
-	@Query("select l.arrivalAirport.city from Legs l where l.flight.id = :flightId order by l.departure")
+	@Query("select l.arrivalAirport.city from Legs l where l.flight.id = :flightId order by l.departure desc")
 	List<String> findDestinationCityByFlightId(@Param("flightId") Integer flightId);
 
 	@Query("select count(l) from Legs l where l.flight.id = :flightId")

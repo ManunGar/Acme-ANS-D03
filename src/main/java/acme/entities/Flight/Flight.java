@@ -3,6 +3,7 @@ package acme.entities.Flight;
 
 import java.beans.Transient;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -61,38 +62,43 @@ public class Flight extends AbstractEntity {
 
 
 	@Transient
-	public Date getDeparture() {
-		Date result;
+	public String getDeparture() {
+		String result;
+		List<Date> departures;
 		LegRepository repository = SpringHelper.getBean(LegRepository.class);
-		result = repository.findDepartureByFlightId(this.getId());
+		departures = repository.findDepartureByFlightId(this.getId());
 
+		result = !departures.isEmpty() ? departures.get(0).toString() : "None";
 		return result;
 	}
 
 	@Transient
-	public Date getArrival() {
-		Date result;
+	public String getArrival() {
+		String result;
+		List<Date> arrivals;
 		LegRepository repository = SpringHelper.getBean(LegRepository.class);
-		result = repository.findArrivalByFlightId(this.getId());
-
+		arrivals = repository.findArrivalByFlightId(this.getId());
+		result = !arrivals.isEmpty() ? arrivals.get(0).toString() : "None";
 		return result;
 	}
 
 	@Transient
 	public String getOrigin() {
 		String result;
+		List<String> origins;
 		LegRepository repository = SpringHelper.getBean(LegRepository.class);
-		result = repository.findOriginCityByFlightId(this.getId()).get(0);
-
+		origins = repository.findOriginCityByFlightId(this.getId());
+		result = !origins.isEmpty() ? origins.get(0).toString() : "None";
 		return result;
 	}
 
 	@Transient
 	public String getDestination() {
 		String result;
+		List<String> destinations;
 		LegRepository repository = SpringHelper.getBean(LegRepository.class);
-		result = repository.findDestinationCityByFlightId(this.getId()).get(-1);
-
+		destinations = repository.findDestinationCityByFlightId(this.getId());
+		result = !destinations.isEmpty() ? destinations.get(0).toString() : "None";
 		return result;
 	}
 
