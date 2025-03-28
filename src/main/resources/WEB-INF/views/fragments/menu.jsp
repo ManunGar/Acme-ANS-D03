@@ -26,13 +26,14 @@
 			<acme:menu-suboption code="master.menu.anonymous.favourite-student5" action="https://www.mitele.es/directo/"/>
 		</acme:menu-option>
 		
-		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')" action="/authenticated/booking/list">
+		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')" action="/customer/booking/list">
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.list-airport" action="/administrator/airport/list"/>
+			<acme:menu-suboption code="master.menu.administrator.list-airlines" action="/administrator/airline/list"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-initial" action="/administrator/system/populate-initial"/>
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			

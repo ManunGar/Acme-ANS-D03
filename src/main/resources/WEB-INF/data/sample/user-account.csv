@@ -5,9 +5,54 @@ user-account-consumer-03,true,"UserIdentity{name: 'Manolo', surname: '之乎路�
 user-account-provider-01,true,"UserIdentity{name: 'Laurel', surname: 'Provider', email: 'laurel@acme.com'}",provider1,provider1
 user-account-provider-02,true,"UserIdentity{name: 'Martina', surname: 'коза თხა', email: 'martina@acme.com'}",provider2,provider2
 user-account-provider-03,true,"UserIdentity{name: 'Antonia', surname: 'אבטיח Æløzå', email: 'antonia@acme.com'}",provider3,provider3
+user-account-assistanceAgent-00,true,"UserIdentity{name: 'Pedro', surname: 'Martínez', email: 'Pedro@acme.com'}",agent0,agent0
 user-account-assistanceAgent-01,true,"UserIdentity{name: 'Juan Antonio', surname: 'Ruiz', email: 'JuanAntonio@acme.com'}",agent1,agent1
 user-account-assistanceAgent-02,true,"UserIdentity{name: 'Juan', surname: 'Lopez', email: 'Juan@acme.com'}",agent2,agent2
 user-account-assistanceAgent-03,true,"UserIdentity{name: 'Antonio', surname: 'Rodriguez', email: 'Antonio@acme.com'}",agent3,agent3
+user-account-assistanceAgent-04,true,"UserIdentity{name: 'Nombre4', surname: 'Apellido4', email: 'user4@acme.com'}",agent4,agent4
+user-account-assistanceAgent-05,true,"UserIdentity{name: 'Nombre5', surname: 'Apellido5', email: 'user5@acme.com'}",agent5,agent5
+user-account-assistanceAgent-06,true,"UserIdentity{name: 'Nombre6', surname: 'Apellido6', email: 'user6@acme.com'}",agent6,agent6
+user-account-assistanceAgent-07,true,"UserIdentity{name: 'Nombre7', surname: 'Apellido7', email: 'user7@acme.com'}",agent7,agent7
+user-account-assistanceAgent-08,true,"UserIdentity{name: 'Nombre8', surname: 'Apellido8', email: 'user8@acme.com'}",agent8,agent8
+user-account-assistanceAgent-09,true,"UserIdentity{name: 'Nombre9', surname: 'Apellido9', email: 'user9@acme.com'}",agent9,agent9
+user-account-assistanceAgent-10,true,"UserIdentity{name: 'Nombre10', surname: 'Apellido10', email: 'user10@acme.com'}",agent10,agent10
+user-account-assistanceAgent-11,true,"UserIdentity{name: 'Nombre11', surname: 'Apellido11', email: 'user11@acme.com'}",agent11,agent11
+user-account-assistanceAgent-12,true,"UserIdentity{name: 'Nombre12', surname: 'Apellido12', email: 'user12@acme.com'}",agent12,agent12
+user-account-assistanceAgent-13,true,"UserIdentity{name: 'Nombre13', surname: 'Apellido13', email: 'user13@acme.com'}",agent13,agent13
+user-account-assistanceAgent-14,true,"UserIdentity{name: 'Nombre14', surname: 'Apellido14', email: 'user14@acme.com'}",agent14,agent14
+user-account-assistanceAgent-15,true,"UserIdentity{name: 'Nombre15', surname: 'Apellido15', email: 'user15@acme.com'}",agent15,agent15
+user-account-assistanceAgent-16,true,"UserIdentity{name: 'Nombre16', surname: 'Apellido16', email: 'user16@acme.com'}",agent16,agent16
+user-account-assistanceAgent-17,true,"UserIdentity{name: 'Nombre17', surname: 'Apellido17', email: 'user17@acme.com'}",agent17,agent17
+user-account-assistanceAgent-18,true,"UserIdentity{name: 'Nombre18', surname: 'Apellido18', email: 'user18@acme.com'}",agent18,agent18
+user-account-assistanceAgent-19,true,"UserIdentity{name: 'Nombre19', surname: 'Apellido19', email: 'user19@acme.com'}",agent19,agent19
+user-account-assistanceAgent-20,true,"UserIdentity{name: 'Nombre20', surname: 'Apellido20', email: 'user20@acme.com'}",agent20,agent20
+user-account-assistanceAgent-21,true,"UserIdentity{name: 'Nombre21', surname: 'Apellido21', email: 'user21@acme.com'}",agent21,agent21
+user-account-assistanceAgent-22,true,"UserIdentity{name: 'Nombre22', surname: 'Apellido22', email: 'user22@acme.com'}",agent22,agent22
+user-account-assistanceAgent-23,true,"UserIdentity{name: 'Nombre23', surname: 'Apellido23', email: 'user23@acme.com'}",agent23,agent23
+user-account-assistanceAgent-24,true,"UserIdentity{name: 'Nombre24', surname: 'Apellido24', email: 'user24@acme.com'}",agent24,agent24
+user-account-assistanceAgent-25,true,"UserIdentity{name: 'Nombre25', surname: 'Apellido25', email: 'user25@acme.com'}",agent25,agent25
+user-account-assistanceAgent-26,true,"UserIdentity{name: 'Nombre26', surname: 'Apellido26', email: 'user26@acme.com'}",agent26,agent26
+user-account-assistanceAgent-27,true,"UserIdentity{name: 'Nombre27', surname: 'Apellido27', email: 'user27@acme.com'}",agent27,agent27
+user-account-assistanceAgent-28,true,"UserIdentity{name: 'Nombre28', surname: 'Apellido28', email: 'user28@acme.com'}",agent28,agent28
+user-account-assistanceAgent-29,true,"UserIdentity{name: 'Nombre29', surname: 'Apellido29', email: 'user29@acme.com'}",agent29,agent29
+user-account-assistanceAgent-30,true,"UserIdentity{name: 'Nombre30', surname: 'Apellido30', email: 'user30@acme.com'}",agent30,agent30
+user-account-assistanceAgent-31,true,"UserIdentity{name: 'Nombre31', surname: 'Apellido31', email: 'user31@acme.com'}",agent31,agent31
+user-account-assistanceAgent-32,true,"UserIdentity{name: 'Nombre32', surname: 'Apellido32', email: 'user32@acme.com'}",agent32,agent32
+user-account-assistanceAgent-33,true,"UserIdentity{name: 'Nombre33', surname: 'Apellido33', email: 'user33@acme.com'}",agent33,agent33
+user-account-assistanceAgent-34,true,"UserIdentity{name: 'Nombre34', surname: 'Apellido34', email: 'user34@acme.com'}",agent34,agent34
+user-account-assistanceAgent-35,true,"UserIdentity{name: 'Nombre35', surname: 'Apellido35', email: 'user35@acme.com'}",agent35,agent35
+user-account-assistanceAgent-36,true,"UserIdentity{name: 'Nombre36', surname: 'Apellido36', email: 'user36@acme.com'}",agent36,agent36
+user-account-assistanceAgent-37,true,"UserIdentity{name: 'Nombre37', surname: 'Apellido37', email: 'user37@acme.com'}",agent37,agent37
+user-account-assistanceAgent-38,true,"UserIdentity{name: 'Nombre38', surname: 'Apellido38', email: 'user38@acme.com'}",agent38,agent38
+user-account-assistanceAgent-39,true,"UserIdentity{name: 'Nombre39', surname: 'Apellido39', email: 'user39@acme.com'}",agent39,agent39
+user-account-assistanceAgent-40,true,"UserIdentity{name: 'Nombre40', surname: 'Apellido40', email: 'user40@acme.com'}",agent40,agent40
+user-account-assistanceAgent-41,true,"UserIdentity{name: 'Nombre41', surname: 'Apellido41', email: 'user41@acme.com'}",agent41,agent41
+user-account-assistanceAgent-42,true,"UserIdentity{name: 'Nombre42', surname: 'Apellido42', email: 'user42@acme.com'}",agent42,agent42
+user-account-assistanceAgent-43,true,"UserIdentity{name: 'Nombre43', surname: 'Apellido43', email: 'user43@acme.com'}",agent43,agent43
+user-account-assistanceAgent-44,true,"UserIdentity{name: 'Nombre44', surname: 'Apellido44', email: 'user44@acme.com'}",agent44,agent44
+user-account-assistanceAgent-45,true,"UserIdentity{name: 'Nombre45', surname: 'Apellido45', email: 'user45@acme.com'}",agent45,agent45
+user-account-assistanceAgent-46,true,"UserIdentity{name: 'Nombre46', surname: 'Apellido46', email: 'user46@acme.com'}",agent46,agent46
+
 "user-account-manager-01",true,"UserIdentity{name: 'Thomas', surname: 'Jones', email: 'thomas.jones@acme.com' }","manager1","manager1"
 "user-account-manager-02",true,"UserIdentity{name: 'Tyler', surname: 'Mays', email: 'tyler.mays@acme.com' }","manager2","manager2"
 "user-account-manager-03",true,"UserIdentity{name: 'Samuel', surname: 'Brown', email: 'samuel.brown@acme.com' }","manager3","manager3"

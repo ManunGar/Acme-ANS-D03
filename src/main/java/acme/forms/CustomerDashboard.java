@@ -2,9 +2,9 @@
 package acme.forms;
 
 import java.util.List;
+import java.util.Map;
 
 import acme.client.components.basis.AbstractForm;
-import acme.client.components.datatypes.Money;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,14 +15,13 @@ public class CustomerDashboard extends AbstractForm {
 	private static final long	serialVersionUID	= 1L;
 
 	List<String>				lastFiveDestinations;
-	Money						moneySpentInBookingsLastYear;
-	Integer						numberOfBookingsEconomy;
-	Integer						numberOfBookingsBusiness;
-	Money						countOfBookingsLastFiveYears;
-	Money						averageCostOfBookingsLastFiveYears;
-	Money						minimumCostOfBookingsLastFiveYears;
-	Money						maximumCostOfBookingsLastFiveYears;
-	Money						standardDeviationCostOfBookingsLastFiveYears;
+	Map<String, Double>			moneySpentInBookingsLastYear;
+	Map<String, Double>			numberOfBookingsByTravelClass;
+	Map<String, Double>			countOfBookingsLastFiveYears;
+	Map<String, Double>			averageCostOfBookingsLastFiveYears;
+	Map<String, Double>			minimumCostOfBookingsLastFiveYears;
+	Map<String, Double>			maximumCostOfBookingsLastFiveYears;
+	Map<String, Double>			standardDeviationCostOfBookingsLastFiveYears;
 	Integer						countOfPassengersInBookings;
 	Double						averagePassengersInBookings;
 	Integer						minimumPassengersInBookings;

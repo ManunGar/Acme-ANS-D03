@@ -1,7 +1,7 @@
 key,draftMode,key:flight,flightNumber,departure,arrival,status,key:departureAirport,key:arrivalAirport,key:aircraft
 #base entity
-leg-00,true,flight-12,BBB1111,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
-#IATAcode
+leg-00,true,flight-12,BBB1111,2015/03/13 00:00,2015/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
+#IATAcode,"","","","",""
 leg-01,true,flight-13,BBB1112,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
 leg-02,true,flight-14,BBB1113,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
 leg-03,true,flight-15,BBB1114,2025/03/13 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
@@ -30,3 +30,4 @@ leg-19,true,flight-10,BBB1129,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-
 leg-23,true,flight-11,BBB1133,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
 leg-24,true,flight-24,BBB1134,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
 leg-25,true,flight-25,BBB1135,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
+
