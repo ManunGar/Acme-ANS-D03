@@ -12,11 +12,11 @@ import acme.entities.Bookings.Booking;
 import acme.realms.Customer;
 
 @GuiService
-public class AuthenticatedBookingListService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingListService extends AbstractGuiService<Customer, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedBookingRepository repository;
+	private CustomerBookingRepository repository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -30,7 +30,7 @@ public class AuthenticatedBookingListService extends AbstractGuiService<Customer
 
 		customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
 		bookings = this.repository.findBookingByCustomer(customerId);
-		status = bookings.stream().allMatch(b -> b.getCustomer().getUserAccount().getId() == customerId);
+		status = bookings.stream().allMatch(b -> b.getCustomer().getUserAccount().getId() == customerId) && super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
 
 		super.getResponse().setAuthorised(status);
 	}

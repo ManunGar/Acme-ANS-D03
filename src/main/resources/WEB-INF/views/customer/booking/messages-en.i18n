@@ -24,8 +24,11 @@ authenticated.booking.form.button.create = Create booking
 authenticated.booking.form.button.update = Update booking
 authenticated.booking.form.button.publish = Publish booking
 authenticated.booking.form.button.passenger = List of passengers
+authenticated.booking-record.form.button.create = Create a booking record
+authenticated.booking.form.button.delete = Delete booking
 
 acme.validation.confirmation.message.lastNibble = The lastNibble must be filled if the booking is published
 acme.validation.confirmation.message.update = A booking can not be updated if it is published
+acme.validation.confirmation.message.booking.locator-code = There is already another booking with this locator code
 
 

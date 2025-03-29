@@ -24,6 +24,9 @@ authenticated.booking.form.button.create = Crear reserva
 authenticated.booking.form.button.update = Actualizar reserva
 authenticated.booking.form.button.publish = Publicar reserva
 authenticated.booking.form.button.passenger = Lista de pasajeros
+authenticated.booking-record.form.button.create = Crear un registro de reserva
+authenticated.booking.form.button.delete = Eliminar reserva
 
 acme.validation.confirmation.message.lastNibble = Los últimos digitos de la tarjeta de crédito deberán ser rellenados si la reserva es publicada
 acme.validation.confirmation.message.update = Una reserva no puede ser actualizada si está publicada
+acme.validation.confirmation.message.booking.locator-code = Ya existe otra reserva con este código de localizador

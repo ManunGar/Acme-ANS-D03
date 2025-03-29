@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
+import acme.entities.Bookings.BookingRecord;
 import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 
@@ -21,5 +22,8 @@ public interface CustomerPassengerRepository extends AbstractRepository {
 	Customer findCustomerById(@Param("customerId") Integer customerId);
 
 	@Query("select p from Passenger p where p.customer.userAccount.id = :customerId")
-	Collection<Passenger> findBookingByCustomer(@Param("customerId") Integer customerId);
+	Collection<Passenger> findPassengerByCustomer(@Param("customerId") Integer customerId);
+
+	@Query("select br from BookingRecord br where br.passenger.id = :passengerId")
+	Collection<BookingRecord> findBookingRecordByPassenger(@Param("passengerId") int passengerId);
 }

@@ -17,22 +17,28 @@ import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class AuthenticatedBookingUpdateService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingPublishService extends AbstractGuiService<Customer, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedBookingRepository	repository;
+	private CustomerBookingRepository	repository;
 
 	@Autowired
-	private FlightRepository				flightRepository;
+	private FlightRepository			flightRepository;
 
-	// AbstractGuiService interfaced ------------------------------------------
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
+		int id;
+		Booking booking;
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
 
-		super.getResponse().setAuthorised(true);
+		id = super.getRequest().getData("id", int.class);
+		booking = this.repository.findBookingById(id);
+		boolean status = booking.getCustomer().getUserAccount().getId() == customerId && super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
@@ -48,19 +54,24 @@ public class AuthenticatedBookingUpdateService extends AbstractGuiService<Custom
 
 	@Override
 	public void bind(final Booking booking) {
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "passengers", "travelClass");
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "travelClass", "flight", "draftMode");
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		if (booking.isDraftMode() == false)
-			super.state(false, "draftMode", "acme.validation.confirmation.message.update");
-
+		if (booking.getLastNibble() == null || booking.getLastNibble().isBlank() || booking.getLastNibble().isEmpty()) {
+			String lastNibbleStored = this.repository.findBookingById(booking.getId()).getLastNibble();
+			if (lastNibbleStored == null || lastNibbleStored.isBlank() || lastNibbleStored.isEmpty())
+				super.state(false, "lastNibble", "acme.validation.confirmation.message.lastNibble");
+		}
 	}
 
 	@Override
 	public void perform(final Booking booking) {
+		if (booking.getLastNibble() == null || booking.getLastNibble().isBlank() || booking.getLastNibble().isEmpty())
+			booking.setLastNibble(this.repository.findBookingById(booking.getId()).getLastNibble());
+		booking.setDraftMode(false);
 		this.repository.save(booking);
 	}
 
