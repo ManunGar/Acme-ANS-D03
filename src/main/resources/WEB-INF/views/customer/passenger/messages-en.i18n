@@ -23,6 +23,7 @@ customer.passenger.list.label.specialNeeds = Special needs
 customer.passenger.form.button.create = Create a passenger
 customer.passenger.form.button.update = Update passenger
 customer.passenger.form.button.publish = Publish passenger
+customer.passenger.form.button.delete = Delete passenger
 
 
 

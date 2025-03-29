@@ -17,16 +17,16 @@ import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class AuthenticatedBookingShowService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingUpdateService extends AbstractGuiService<Customer, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedBookingRepository	repository;
+	private CustomerBookingRepository	repository;
 
 	@Autowired
-	private FlightRepository				flightRepository;
+	private FlightRepository			flightRepository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractGuiService interfaced ------------------------------------------
 
 
 	@Override
@@ -37,18 +37,37 @@ public class AuthenticatedBookingShowService extends AbstractGuiService<Customer
 
 		id = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(id);
-		boolean status = booking.getCustomer().getUserAccount().getId() == customerId;
+		boolean status = booking.getCustomer().getUserAccount().getId() == customerId && super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int id;
 		Booking booking;
+		int id;
 
 		id = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(id);
+
 		super.getBuffer().addData(booking);
+	}
+
+	@Override
+	public void bind(final Booking booking) {
+
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "travelClass", "flight", "draftMode");
+	}
+
+	@Override
+	public void validate(final Booking booking) {
+		if (booking.isDraftMode() == false)
+			super.state(false, "draftMode", "acme.validation.confirmation.message.update");
+
+	}
+
+	@Override
+	public void perform(final Booking booking) {
+		this.repository.save(booking);
 	}
 
 	@Override
@@ -68,7 +87,6 @@ public class AuthenticatedBookingShowService extends AbstractGuiService<Customer
 		dataset.put("passengers", passengers);
 		dataset.put("flight", flightChoices.getSelected().getKey());
 		dataset.put("flights", flightChoices);
-		dataset.put("bookingId", booking.getId());
 
 		super.getResponse().addData(dataset);
 	}
