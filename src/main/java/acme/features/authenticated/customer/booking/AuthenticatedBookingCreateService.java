@@ -3,7 +3,6 @@ package acme.features.authenticated.customer.booking;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,26 +41,15 @@ public class AuthenticatedBookingCreateService extends AbstractGuiService<Custom
 	@Override
 	public void load() {
 		Booking booking;
-
 		AbstractRealm principal = super.getRequest().getPrincipal().getActiveRealm();
 		int customerId = principal.getId();
 		Customer customer = this.repository.findCustomerById(customerId);
 		Date today = MomentHelper.getCurrentMoment();
 
-		String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		Random random = new Random();
-		int longitud = 6 + random.nextInt(3);
-		StringBuilder sb = new StringBuilder(longitud);
-		for (int i = 0; i < longitud; i++) {
-			char c = chars.charAt(random.nextInt(chars.length()));
-			sb.append(c);
-		}
-
 		booking = new Booking();
 		booking.setCustomer(customer);
 		booking.setPurchaseMoment(today);
 		booking.setDraftMode(true);
-		booking.setLocatorCode(sb.toString());
 
 		super.getBuffer().addData(booking);
 	}

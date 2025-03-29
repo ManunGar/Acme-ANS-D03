@@ -68,6 +68,7 @@ public class AuthenticatedBookingShowService extends AbstractGuiService<Customer
 		dataset.put("passengers", passengers);
 		dataset.put("flight", flightChoices.getSelected().getKey());
 		dataset.put("flights", flightChoices);
+		dataset.put("bookingId", booking.getId());
 
 		super.getResponse().addData(dataset);
 	}
