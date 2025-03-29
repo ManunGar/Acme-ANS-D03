@@ -23,6 +23,7 @@ authenticated.booking.list.label.flight = flight
 authenticated.booking.form.button.create = Create booking
 authenticated.booking.form.button.update = Update booking
 authenticated.booking.form.button.publish = Publish booking
+authenticated.booking.form.button.passenger = List of passengers
 
 acme.validation.confirmation.message.lastNibble = The lastNibble must be filled if the booking is published
 acme.validation.confirmation.message.update = A booking can not be updated if it is published

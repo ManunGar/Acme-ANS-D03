@@ -17,7 +17,7 @@ import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class AuthenticatedBookingPublishedService extends AbstractGuiService<Customer, Booking> {
+public class AuthenticatedBookingPublishService extends AbstractGuiService<Customer, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
