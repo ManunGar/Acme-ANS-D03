@@ -26,5 +26,8 @@ administrator.airport.form.label.confirmation.update = Are you sure you want to 
 administrator.airport.form.button.create = Create airport
 administrator.airport.form.button.update = Update airport
 
+acme.validation.confirmation.message.aiport.IATAcode = There is already another airport with that IATA code
+
+
 
 

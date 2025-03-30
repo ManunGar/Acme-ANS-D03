@@ -1,5 +1,5 @@
 
-package acme.features.administrator;
+package acme.features.administrator.airport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,35 +12,40 @@ import acme.entities.Airports.Airport;
 import acme.entities.Airports.OperationalScope;
 
 @GuiService
-public class AdministratorAirportUpdateService extends AbstractGuiService<Administrator, Airport> {
+public class AdministratorAirportCreateService extends AbstractGuiService<Administrator, Airport> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private AdministratorAirportRepository repository;
 
-	// AbstractGuiService interfaced ------------------------------------------
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean isAdministrator = super.getRequest().getPrincipal().hasRealmOfType(Administrator.class);
+		super.getResponse().setAuthorised(isAdministrator);
 	}
 
 	@Override
 	public void load() {
 		Airport airport;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-		airport = this.repository.findAirportById(id);
+		airport = new Airport();
+		airport.setName("");
+		airport.setIATAcode("");
+		airport.setOperationalScope(null);
+		airport.setCity("");
+		airport.setCountry("");
+		airport.setWebsite("");
+		airport.setContactPhoneNumber("");
 
 		super.getBuffer().addData(airport);
 	}
 
 	@Override
 	public void bind(final Airport airport) {
-
-		super.bindObject(airport, "name", "IATAcode", "operationalScope", "city", "country", "website", "email", "contactPhoneNumber");
+		super.bindObject(airport, "name", "IATAcode", "city", "country", "website", "email", "contactPhoneNumber");
 	}
 
 	@Override
@@ -49,22 +54,31 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+
+		Airport a = this.repository.findAirportByIataCode(airport.getIATAcode());
+		if (a != null)
+			super.state(false, "IATAcode", "acme.validation.confirmation.message.aiport.IATAcode");
 	}
 
 	@Override
 	public void perform(final Airport airport) {
+
 		this.repository.save(airport);
 	}
 
 	@Override
 	public void unbind(final Airport airport) {
-		Dataset dataset;
 		SelectChoices choices;
+		Dataset dataset;
+
 		choices = SelectChoices.from(OperationalScope.class, airport.getOperationalScope());
 
 		dataset = super.unbindObject(airport, "name", "IATAcode", "city", "country", "website", "email", "contactPhoneNumber");
 		dataset.put("operationalScopes", choices);
+		dataset.put("confirmation", false);
+		dataset.put("readonly", false);
 
 		super.getResponse().addData(dataset);
 	}
+
 }

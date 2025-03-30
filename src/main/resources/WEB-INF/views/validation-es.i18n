@@ -45,3 +45,7 @@ acme.validation.text.identifier = El identificador no es correcto
 
 acme.validation.assistanceAgent.employeeCode.message = El employeeCode debe ser unico
 
+acme.validation.text.IATAcode = El código IATA no es correcto
+
+acme.validation.text.message.phone = El teléfono debe tener entre 6-15 números
+
