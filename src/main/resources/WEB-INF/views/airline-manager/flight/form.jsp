@@ -23,4 +23,7 @@
 				<acme:submit code="manager.flight.form.button.create" action="/airline-manager/flight/create"/>
 			</jstl:when>		
 	</jstl:choose>		
+	<jstl:if test="${(_command == 'update' || _command == 'show' || _command == 'publish')}">
+			<acme:button code="manager.flight.form.button.legs" action="/airline-manager/legs/list?flightId=${flightId}"/>
+	</jstl:if>
 </acme:form>
