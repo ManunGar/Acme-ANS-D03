@@ -19,7 +19,7 @@
 		<acme:button code="assistanceAgent.Claim.form.button.trackingLogs" action="/assistanceAgent/tracking-log/list?masterId=${id}"/>
 	</jstl:if>
 	<jstl:choose>	 
-		<jstl:when test="${_command == 'show' && draftMode == true}">
+		<jstl:when test="${_command != 'create' && draftMode == true}">
 			<acme:submit code="assistanceAgent.Claim.form.button.update" action="/assistance-agent/claim/update"/>
 			<acme:submit code="assistanceAgent.Claim.form.button.publish" action="/assistance-agent/claim/publish"/>
 			<acme:submit code="assistanceAgent.Claim.form.button.delete" action="/assistance-agent/claim/delete"/>

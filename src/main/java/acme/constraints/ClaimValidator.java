@@ -30,8 +30,7 @@ public class ClaimValidator extends AbstractValidator<ValidClaim, Claim> {
 
 		if (claim == null)
 			super.state(context, false, "*", "acme.validation.NotNull.message");
-		else //Validation that Leg associated is in the past
-		{
+		else if (claim.getLeg() != null) {
 			boolean correctLeg;
 			Legs leg = claim.getLeg();
 			correctLeg = MomentHelper.compare(MomentHelper.getCurrentMoment(), leg.getArrival()) > 0 ? true : false;

@@ -32,5 +32,5 @@ assistanceAgent.claim.form.button.create = Create Claim
 
 
 acme.validation.confirmation.message.lastNibble = The lastNibble must be filled if the booking is published
-
+acme.validation.confirmation.message.claim.leg = You must associate an existing Leg to the Claim
 
