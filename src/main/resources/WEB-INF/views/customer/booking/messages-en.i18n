@@ -9,7 +9,7 @@
 # they accept any liabilities with respect to them.
 
 customer.booking.list.title = List of bookings
-customer.booking.form.title = List of bookings
+customer.booking.form.title = Details of the booking
 
 authenticated.booking.list.label.locatorCode = locator Code
 authenticated.booking.list.label.purchaseMoment = Purchase Moment

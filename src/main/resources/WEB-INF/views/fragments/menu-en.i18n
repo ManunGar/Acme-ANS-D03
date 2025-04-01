@@ -46,6 +46,7 @@ master.menu.manager.list-flight = List flights
 # master.menu.customer ##########################################################
 
 master.menu.customer = Bookings
+master.menu.passenger = Passengers
 
 # master.menu.user-account ####################################################
 

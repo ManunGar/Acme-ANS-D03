@@ -28,6 +28,9 @@
 		
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')" action="/customer/booking/list">
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.passenger" access="hasRealm('Customer')" action="/customer/passenger/list-menu">
+		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>
