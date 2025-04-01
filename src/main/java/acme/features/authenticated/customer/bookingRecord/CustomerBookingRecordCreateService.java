@@ -25,7 +25,7 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 	private CustomerBookingRecordRepository	repository;
 
 	@Autowired
-	private CustomerBookingRepository	bookingRepository;
+	private CustomerBookingRepository		bookingRepository;
 
 	@Autowired
 	private CustomerPassengerRepository		passengerRepository;
@@ -90,7 +90,7 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 		Collection<Booking> bookings = this.bookingRepository.findBookingByCustomer(customerId);
 		Collection<Passenger> passengers = this.passengerRepository.findPassengerByCustomer(customerId);
 		bookingChoices = SelectChoices.from(bookings, "locatorCode", bookingRecord.getBooking());
-		passengerChoices = SelectChoices.from(passengers, "fullName", bookingRecord.getPassenger());
+		passengerChoices = SelectChoices.from(passengers, "id", bookingRecord.getPassenger());
 
 		dataset = super.unbindObject(bookingRecord);
 		dataset.put("booking", bookingChoices.getSelected().getKey());

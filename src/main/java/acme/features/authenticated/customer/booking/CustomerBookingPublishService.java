@@ -82,7 +82,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		SelectChoices flightChoices;
 
 		Collection<Flight> flights = this.flightRepository.findAllFlight();
-		flightChoices = SelectChoices.from(flights, "description", booking.getFlight());
+		flightChoices = SelectChoices.from(flights, "id", booking.getFlight());
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Collection<Passenger> passengersNumber = this.repository.findPassengersByBooking(booking.getId());
 		Collection<String> passengers = passengersNumber.stream().map(x -> x.getFullName()).toList();
