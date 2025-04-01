@@ -12,5 +12,8 @@ import acme.entities.Bookings.BookingRecord;
 public interface CustomerBookingRecordRepository extends AbstractRepository {
 
 	@Query("SELECT br FROM BookingRecord br WHERE br.booking.id = :bookingId AND br.passenger.id = :passengerId")
-	BookingRecord findBookingRecordById(@Param("bookingId") Integer bookingId, @Param("passengerId") Integer passengerId);
+	BookingRecord findBookingRecordBybookingIdpassengerId(@Param("bookingId") Integer bookingId, @Param("passengerId") Integer passengerId);
+
+	@Query("SELECT br FROM BookingRecord br WHERE br.id = :bookingRecordId")
+	BookingRecord findBookingRecordById(@Param("bookingRecordId") Integer bookingRecordId);
 }

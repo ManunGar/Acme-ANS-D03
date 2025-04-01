@@ -29,5 +29,5 @@ leg-18,true,flight-09,BBB1128,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-
 leg-19,true,flight-10,BBB1129,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
 leg-23,true,flight-11,BBB1133,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
 leg-24,true,flight-24,BBB1134,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
-leg-25,true,flight-25,BBB1135,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
+leg-25,false,flight-25,BBB1135,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
 
