@@ -1,4 +1,4 @@
-key,name,pictureUrl,averageDwellTime,promotionCode,discount
+key,name,picture,averageDwellTime,promotionCode,discount
 #service
 service-01,Servicio de prueba,"https://i.imgur.com/8YcXhS0.png",18.55,PEUC-25,EUR 210
 #name-variations
