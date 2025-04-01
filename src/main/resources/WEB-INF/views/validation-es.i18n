@@ -23,7 +23,15 @@ acme.validation.NotNull.message = La entidad no puede ser null
 
 acme.validation.claim.indicator.message = El indicador de Claim y su TrackingLog deben coincidir
 
+acme.validation.claim.leg.message = La Leg asociada a la Claim debe ser en el pasado
+
 acme.validation.trackinLog.resolutionMandatory.message = La resolucion de la TrackingLog debe estar escrita cuando su resolutionPercentage sea 100.00
+
+acme.validation.trackingLog.acceptedPending.message = El atributo accepted debe ser consecuente con el atributo resolutionPercentage
+
+acme.validation.trackingLog.numberOfTrackingLogsCompleted.message = Una claim solo puede tener 2 trackingLogs con resolutionPercentage = 100.00
+
+acme.validation.trackingLog.draftModeLogical.message = El atributo draftMode de un trackingLog solo puede ser true si el atributo draftMode de su claim asociada es true tambien
 
 acme.validation.legs.message = El trayecto no tiene un formato u orden correcto 
 
@@ -34,4 +42,10 @@ acme.validation.Customer.identifier.message = El identificador deberá correspon
 acme.validation.Customer.identifier.name.message = El identificador no coincide con las iniciales del Cliente
 
 acme.validation.text.identifier = El identificador no es correcto
+
+acme.validation.assistanceAgent.employeeCode.message = El employeeCode debe ser unico
+
+acme.validation.text.IATAcode = El código IATA no es correcto
+
+acme.validation.text.message.phone = El teléfono debe tener entre 6-15 números
 

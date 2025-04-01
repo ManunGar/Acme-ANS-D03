@@ -24,7 +24,7 @@ public @interface ValidPhoneNumber {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{acme.validation.text.message}";
+	String message() default "{acme.validation.text.message.phone}";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
