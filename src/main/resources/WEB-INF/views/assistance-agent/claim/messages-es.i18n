@@ -9,15 +9,25 @@
 # they accept any liabilities with respect to them.
 
 assistance-agent.claim.list.title = Lista de quejas
-assistance-agent.claim.form.title = Lista de quejas
+assistance-agent.claim.form.title = Detalles de una queja
 
 assistanceAgent.claim.list.label.registrationMoment = Momento de registro
 assistanceAgent.claim.list.label.passengerEmail = Correo Electronico del pasajero
 assistanceAgent.claim.list.label.claimTypes = Tipo de queja
 assistanceAgent.claim.list.label.accepted = Estado
 
-assistanceAgent.claim.list.button.list.resolved = Mostrar quejas resueltas
-assistanceAgent.claim.list.button.list.notResolved = Mostrar quejas pendientes
-assistanceAgent.claim.list.button.list.listAll = Mostrar todas las quejas
+assistanceAgent.claim.button.create = Crear una queja
+
+assistanceAgent.Claim.form.label.registrationMoment = Momento de registro
+assistanceAgent.Claim.form.label.passengerEmail = Correo Electronico del pasajero
+assistanceAgent.Claim.form.label.description = Descripcion de la queja
+assistanceAgent.Claim.form.label.claimTypes = Tipo de queja
+assistanceAgent.Claim.form.label.accepted = Estado
+assistanceAgent.Claim.form.label.leg = Trayecto al que esta asociada la queja
+assistanceAgent.Claim.form.button.trackingLogs = Ver tracking logs de esta queja
+assistanceAgent.Claim.form.button.update = Actualizar queja
+assistanceAgent.Claim.form.button.publish = Publicar queja
+assistanceAgent.Claim.form.button.delete = Eliminar queja
+assistanceAgent.Claim.form.button.create = Crear queja
 
 acme.validation.confirmation.message.lastNibble = Los últimos digitos de la tarjeta de crédito deberán ser rellenados si la reserva es publicada

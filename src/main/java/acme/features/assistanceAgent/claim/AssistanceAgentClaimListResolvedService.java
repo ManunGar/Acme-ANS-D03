@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.Claims.AcceptedIndicator;
 import acme.entities.Claims.Claim;
 import acme.realms.AssistanceAgent.AssistanceAgent;
 
@@ -29,7 +30,8 @@ public class AssistanceAgentClaimListResolvedService extends AbstractGuiService<
 		int assistanceAgentId;
 
 		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		claims = this.repository.findClaimsByAssistanceAgentIdResolved(assistanceAgentId);
+		claims = this.repository.findClaimsByAssistanceAgentId(assistanceAgentId);
+		claims = claims.stream().filter(x -> !x.accepted().equals(AcceptedIndicator.PENDING)).toList();
 
 		super.getBuffer().addData(claims);
 	}
@@ -38,7 +40,8 @@ public class AssistanceAgentClaimListResolvedService extends AbstractGuiService<
 	public void unbind(final Claim claim) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "claimTypes", "accepted");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "claimType");
+		dataset.put("accepted", claim.accepted());
 
 		super.getResponse().addData(dataset);
 	}
