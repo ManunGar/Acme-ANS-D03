@@ -52,7 +52,7 @@ public class AdministratorAirportUpdateService extends AbstractGuiService<Admini
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
 
 		Airport a = this.repository.findAirportByIataCode(airport.getIATAcode());
-		if (a != null)
+		if (a != null && a.getId() != airport.getId())
 			super.state(false, "IATAcode", "acme.validation.confirmation.message.aiport.IATAcode");
 	}
 
