@@ -13,7 +13,7 @@ leg-07,true,flight-18,BBB1118,2000/01/01 00:01,2025/03/14 00:00,DELAYED,airport-
 leg-08,true,flight-19,BBB1119,2024/12/31 23:59,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
 leg-09,true,flight-20,BBB1110,2025/01/01 00:00,2025/03/14 00:00,DELAYED,airport-01,airport-01,aircraft-00
 #status
-leg-20,true,flight-21,BBB1130,2025/03/13 00:00,2025/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
+leg-20,true,flight-21,BBB1130,2015/03/13 00:00,2015/03/14 00:00,ON_TYME,airport-01,airport-01,aircraft-00
 leg-21,true,flight-22,BBB1131,2025/03/13 00:00,2025/03/14 00:00,CANCELLED,airport-01,airport-01,aircraft-00
 leg-22,true,flight-23,BBB1132,2025/03/13 00:00,2025/03/14 00:00,LANDED,airport-01,airport-01,aircraft-00
 #others

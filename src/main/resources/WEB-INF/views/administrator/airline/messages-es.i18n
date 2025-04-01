@@ -9,7 +9,7 @@
 # they accept any liabilities with respect to them.
 
 
-administrator.ariline.list.title = Listado de aerolineas
+administrator.airline.list.title = Listado de aerolineas
 administrator.airline.form.title = Detalles de aerolineas
 
 administrator.airline.list.label.name = Nombre

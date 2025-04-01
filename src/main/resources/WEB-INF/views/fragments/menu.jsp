@@ -31,6 +31,10 @@
 		
 		<acme:menu-option code="master.menu.passenger" access="hasRealm('Customer')" action="/customer/passenger/list-menu">
 		</acme:menu-option>
+		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgent')">
+			<acme:button code="assistanceAgent.claim.list.button.list.resolved" action="/assistance-agent/claim/listResolved"/>
+			<acme:button code="assistanceAgent.claim.list.button.list.notResolved" action="/assistance-agent/claim/listNotResolved"/>
+		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.list-user-accounts" action="/administrator/user-account/list"/>

@@ -72,7 +72,7 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 			{
 				boolean draftModeLogical;
 
-				draftModeLogical = !trackingLog.isDraftMode() || trackingLog.getClaim().isDraftMode();
+				draftModeLogical = trackingLog.isDraftMode() || !trackingLog.getClaim().isDraftMode();
 
 				super.state(context, draftModeLogical, "draftMode", "acme.validation.trackingLog.draftModeLogical.message");
 
