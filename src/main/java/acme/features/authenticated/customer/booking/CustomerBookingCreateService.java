@@ -26,7 +26,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	private CustomerBookingRepository	repository;
 
 	@Autowired
-	private FlightRepository				flightRepository;
+	private FlightRepository			flightRepository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -85,7 +85,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		SelectChoices flightChoices;
 
 		Collection<Flight> flights = this.flightRepository.findAllFlight();
-		flightChoices = SelectChoices.from(flights, "description", booking.getFlight());
+		flightChoices = SelectChoices.from(flights, "id", booking.getFlight());
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "price", "draftMode");
