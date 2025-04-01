@@ -47,6 +47,7 @@ master.menu.manager.list-flight = Listado de vuelos
 # master.menu.customer ##########################################################
 
 master.menu.customer = Reservas
+master.menu.passenger = Pasajeros
 
 # master.menu.user-account ####################################################
 
