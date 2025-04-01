@@ -63,7 +63,8 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 
 	@Override
 	public void validate(final Claim claim) {
-		;
+		if (this.repository.findLegById(super.getRequest().getData("leg", int.class)) == null)
+			super.state(false, "leg", "acme.validation.confirmation.message.claim.leg");
 	}
 
 	@Override
