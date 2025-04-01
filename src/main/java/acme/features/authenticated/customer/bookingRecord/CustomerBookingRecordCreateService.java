@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
-import acme.client.helpers.PrincipalHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.Bookings.Booking;
@@ -70,9 +69,21 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 
 	@Override
 	public void validate(final BookingRecord bookingRecord) {
-		BookingRecord br = this.repository.findBookingRecordById(bookingRecord.getBooking().getId(), bookingRecord.getPassenger().getId());
-		if (br != null)
-			super.state(false, "*", "acme.validation.confirmation.message.booking-record.create");
+
+		if (bookingRecord.getBooking() == null && bookingRecord.getPassenger() == null) {
+			super.state(false, "booking", "acme.validation.confirmation.message.booking-record.create.booking");
+			super.state(false, "passenger", "acme.validation.confirmation.message.booking-record.create.passenger");
+
+		} else if (bookingRecord.getPassenger() == null)
+			super.state(false, "passenger", "acme.validation.confirmation.message.booking-record.create.passenger");
+		else if (bookingRecord.getBooking() == null)
+			super.state(false, "booking", "acme.validation.confirmation.message.booking-record.create.booking");
+		else {
+			BookingRecord br = this.repository.findBookingRecordBybookingIdpassengerId(bookingRecord.getBooking().getId(), bookingRecord.getPassenger().getId());
+			if (br != null)
+				super.state(false, "*", "acme.validation.confirmation.message.booking-record.create");
+		}
+
 	}
 
 	@Override
@@ -90,7 +101,7 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 		Collection<Booking> bookings = this.bookingRepository.findBookingByCustomer(customerId);
 		Collection<Passenger> passengers = this.passengerRepository.findPassengerByCustomer(customerId);
 		bookingChoices = SelectChoices.from(bookings, "locatorCode", bookingRecord.getBooking());
-		passengerChoices = SelectChoices.from(passengers, "id", bookingRecord.getPassenger());
+		passengerChoices = SelectChoices.from(passengers, "fullName", bookingRecord.getPassenger());
 
 		dataset = super.unbindObject(bookingRecord);
 		dataset.put("booking", bookingChoices.getSelected().getKey());
@@ -99,11 +110,5 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 		dataset.put("passengers", passengerChoices);
 
 		super.getResponse().addData(dataset);
-	}
-
-	@Override
-	public void onSuccess() {
-		if (super.getRequest().getMethod().equals("POST"))
-			PrincipalHelper.handleUpdate();
 	}
 }

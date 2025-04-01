@@ -71,8 +71,13 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	public void perform(final Booking booking) {
 		if (booking.getLastNibble() == null || booking.getLastNibble().isBlank() || booking.getLastNibble().isEmpty())
 			booking.setLastNibble(this.repository.findBookingById(booking.getId()).getLastNibble());
-		booking.setDraftMode(false);
-		this.repository.save(booking);
+		Booking b = this.repository.findBookingById(booking.getId());
+		b.setFlight(booking.getFlight());
+		b.setLocatorCode(booking.getLocatorCode());
+		b.setTravelClass(booking.getTravelClass());
+		b.setLastNibble(booking.getLastNibble());
+		b.setDraftMode(false);
+		this.repository.save(b);
 	}
 
 	@Override
@@ -81,8 +86,8 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		SelectChoices choices;
 		SelectChoices flightChoices;
 
-		Collection<Flight> flights = this.flightRepository.findAllFlight();
-		flightChoices = SelectChoices.from(flights, "id", booking.getFlight());
+		Collection<Flight> flights = this.flightRepository.findAllFlight().stream().filter(f -> f.getDraftMode() == false).toList();
+		flightChoices = SelectChoices.from(flights, "Destination", booking.getFlight());
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Collection<Passenger> passengersNumber = this.repository.findPassengersByBooking(booking.getId());
 		Collection<String> passengers = passengersNumber.stream().map(x -> x.getFullName()).toList();

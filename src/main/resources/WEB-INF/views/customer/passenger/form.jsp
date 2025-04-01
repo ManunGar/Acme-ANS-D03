@@ -16,7 +16,6 @@
 		<jstl:when test="${(_command == 'update' || _command == 'show' || _command == 'publish') && draftMode == true}">
 				<acme:submit code="customer.passenger.form.button.update" action="/customer/passenger/update"/>
 				<acme:submit code="customer.passenger.form.button.publish" action="/customer/passenger/publish"/>
-				<acme:submit code="customer.passenger.form.button.delete" action="/customer/passenger/delete"/>
 	
 			</jstl:when>
 			
