@@ -88,8 +88,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		SelectChoices flightChoices;
 
 		Date today = MomentHelper.getCurrentMoment();
-		Collection<Flight> flights = this.flightRepository.findAllFlight().stream()
-			.filter(f -> f.getDraftMode() == false && (this.flightRepository.findDepartureByFlightId(f.getId()).get(0).after(today) || this.flightRepository.findDepartureByFlightId(f.getId()).get(0).equals(today))).toList();
+		Collection<Flight> flights = this.flightRepository.findAllFlight().stream().filter(f -> f.getDraftMode() == false && this.flightRepository.findDepartureByFlightId(f.getId()).get(0).after(today)).toList();
 		flightChoices = SelectChoices.from(flights, "Destination", booking.getFlight());
 		choices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 		Collection<Passenger> passengersNumber = this.repository.findPassengersByBooking(booking.getId());
