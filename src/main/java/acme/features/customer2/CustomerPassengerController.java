@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.customer.booking;
+package acme.features.customer2;
 
 import javax.annotation.PostConstruct;
 
@@ -7,27 +7,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.Bookings.Booking;
+import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 
 @GuiController
-public class CustomerBookingController extends AbstractGuiController<Customer, Booking> {
+public class CustomerPassengerController extends AbstractGuiController<Customer, Passenger> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomerBookingListService		listService;
+	private CustomerPassengerListService		listService;
 
 	@Autowired
-	private CustomerBookingShowService		showService;
+	private CustomerPassengerShowService		showService;
 
 	@Autowired
-	private CustomerBookingUpdateService	updateService;
+	private CustomerPassengerCreateService		createService;
 
 	@Autowired
-	private CustomerBookingCreateService	createService;
+	private CustomerPassengerUpdateService		updateService;
 
 	@Autowired
-	private CustomerBookingPublishService	publishService;
+	private CustomerPassengerPublishService		publishService;
+
+	@Autowired
+	private CustomerPassengerListMenuService	listMenuService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -36,9 +39,9 @@ public class CustomerBookingController extends AbstractGuiController<Customer, B
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
-		super.addBasicCommand("update", this.updateService);
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("update", this.updateService);
 		super.addCustomCommand("publish", "update", this.publishService);
+		super.addCustomCommand("list-menu", "list", this.listMenuService);
 	}
-
 }

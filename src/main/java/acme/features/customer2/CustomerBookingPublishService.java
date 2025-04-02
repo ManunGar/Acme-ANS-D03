@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.customer.booking;
+package acme.features.customer2;
 
 import java.util.Collection;
 
@@ -15,7 +15,6 @@ import acme.entities.Bookings.TravelClass;
 import acme.entities.Flight.Flight;
 import acme.entities.Flight.FlightRepository;
 import acme.entities.Passengers.Passenger;
-import acme.features.authenticated.customer.bookingRecord.CustomerBookingRecordRepository;
 import acme.realms.Customer;
 
 @GuiService

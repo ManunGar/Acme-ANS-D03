@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.customer.passenger;
+package acme.features.customer2;
 
 import javax.annotation.PostConstruct;
 
@@ -7,30 +7,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
-import acme.entities.Passengers.Passenger;
+import acme.entities.Bookings.Booking;
 import acme.realms.Customer;
 
 @GuiController
-public class CustomerPassengerController extends AbstractGuiController<Customer, Passenger> {
+public class CustomerBookingController extends AbstractGuiController<Customer, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomerPassengerListService		listService;
+	private CustomerBookingListService		listService;
 
 	@Autowired
-	private CustomerPassengerShowService		showService;
+	private CustomerBookingShowService		showService;
 
 	@Autowired
-	private CustomerPassengerCreateService		createService;
+	private CustomerBookingUpdateService	updateService;
 
 	@Autowired
-	private CustomerPassengerUpdateService		updateService;
+	private CustomerBookingCreateService	createService;
 
 	@Autowired
-	private CustomerPassengerPublishService		publishService;
-
-	@Autowired
-	private CustomerPassengerListMenuService	listMenuService;
+	private CustomerBookingPublishService	publishService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -39,9 +36,9 @@ public class CustomerPassengerController extends AbstractGuiController<Customer,
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
-		super.addBasicCommand("create", this.createService);
 		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("create", this.createService);
 		super.addCustomCommand("publish", "update", this.publishService);
-		super.addCustomCommand("list-menu", "list", this.listMenuService);
 	}
+
 }
