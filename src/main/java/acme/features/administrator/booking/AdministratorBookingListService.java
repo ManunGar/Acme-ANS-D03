@@ -10,7 +10,7 @@ import acme.client.components.principals.Administrator;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.Bookings.Booking;
-import acme.features.authenticated.customer.booking.CustomerBookingRepository;
+import acme.features.customer.booking.CustomerBookingRepository;
 
 @GuiService
 public class AdministratorBookingListService extends AbstractGuiService<Administrator, Booking> {

@@ -15,7 +15,7 @@ import acme.entities.Bookings.TravelClass;
 import acme.entities.Flight.Flight;
 import acme.entities.Flight.FlightRepository;
 import acme.entities.Passengers.Passenger;
-import acme.features.authenticated.customer.booking.CustomerBookingRepository;
+import acme.features.customer.booking.CustomerBookingRepository;
 
 @GuiService
 public class AdministratorBookingShowService extends AbstractGuiService<Administrator, Booking> {
