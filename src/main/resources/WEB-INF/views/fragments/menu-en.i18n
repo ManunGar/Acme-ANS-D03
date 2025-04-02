@@ -20,7 +20,7 @@ master.menu.anonymous.favourite-student5 = 29519141K: Ruiz Martín, Alejandro
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
-master.menu.booking = Bookings
+master.menu.booking = Bookings published
 master.menu.administrator.list-user-accounts = List user accounts
 master.menu.administrator.list-airport = List airports
 master.menu.administrator.list-airlines = List airlines
@@ -64,3 +64,4 @@ master.menu.user-account.become-provider = Become a provider
 master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
+master.menu.user-account.become-customer = Become a customer

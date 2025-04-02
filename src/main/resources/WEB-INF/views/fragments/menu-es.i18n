@@ -32,7 +32,7 @@ master.menu.administrator.shut-system-down = Parar el sistema
 # master.menu.assistanceAgent ########################################################
 
 master.menu.assistanceAgent = Quejas
-master.menu.booking = Bookings = Reservas
+master.menu.booking = Bookings = Reservas publicadas
 assistanceAgent.claim.list.button.list.resolved = Listar quejas resueltas
 assistanceAgent.claim.list.button.list.notResolved = Listar quejas pendientes
 
@@ -65,3 +65,4 @@ master.menu.user-account.become-provider = Hacerse proveedor
 master.menu.user-account.provider-profile = Perfil de proveedor
 master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.consumer-profile = Perfil de consumidor
+master.menu.user-account.become-customer = Hacerse comprador
