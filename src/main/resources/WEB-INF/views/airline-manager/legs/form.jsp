@@ -6,8 +6,8 @@
 <acme:form>
 		<acme:input-select code="manager.legs.list.label.flight" path="flight" choices="${flights}" readonly="true"/>
 		<acme:input-textarea code="manager.legs.list.label.flightNumber" path="flightNumber" readonly="true"/>
-		<acme:input-textarea code="manager.legs.list.label.departure" path="departure" />
-		<acme:input-textarea code="manager.legs.list.label.arrival" path="arrival"/>
+		<acme:input-moment code="manager.legs.list.label.departure" path="departure" />
+		<acme:input-moment code="manager.legs.list.label.arrival" path="arrival"/>
 		<acme:input-select code="manager.legs.list.label.status" path="status" choices="${status}"/>
 		<acme:input-select code="manager.legs.list.label.departure-airport" path="departureAirport" choices="${departureAirports}"/>
 		<acme:input-select code="manager.legs.list.label.arrival-airport" path="arrivalAirport" choices="${arrivalAirports}"/>
