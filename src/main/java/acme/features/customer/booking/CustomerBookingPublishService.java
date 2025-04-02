@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.customer.booking;
+package acme.features.customer.booking;
 
 import java.util.Collection;
 
@@ -10,10 +10,12 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.Bookings.Booking;
+import acme.entities.Bookings.BookingRecord;
 import acme.entities.Bookings.TravelClass;
 import acme.entities.Flight.Flight;
 import acme.entities.Flight.FlightRepository;
 import acme.entities.Passengers.Passenger;
+import acme.features.customer.bookingRecord.CustomerBookingRecordRepository;
 import acme.realms.Customer;
 
 @GuiService
@@ -21,10 +23,13 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomerBookingRepository	repository;
+	private CustomerBookingRepository		repository;
 
 	@Autowired
-	private FlightRepository			flightRepository;
+	private CustomerBookingRecordRepository	bookingRecordRepository;
+
+	@Autowired
+	private FlightRepository				flightRepository;
 
 	// AbstractGuiService interface -------------------------------------------
 
@@ -65,6 +70,11 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 			if (lastNibbleStored == null || lastNibbleStored.isBlank() || lastNibbleStored.isEmpty())
 				super.state(false, "lastNibble", "acme.validation.confirmation.message.lastNibble");
 		}
+
+		Collection<BookingRecord> br = this.bookingRecordRepository.findBookingRecordByBookingId(booking.getId());
+		if (br.isEmpty())
+			super.state(false, "passengers", "acme.validation.confirmation.message.passenger");
+
 	}
 
 	@Override

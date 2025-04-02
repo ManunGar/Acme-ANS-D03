@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.customer.bookingRecord;
+package acme.features.customer.bookingRecord;
 
 import java.util.Collection;
 
@@ -12,8 +12,8 @@ import acme.client.services.GuiService;
 import acme.entities.Bookings.Booking;
 import acme.entities.Bookings.BookingRecord;
 import acme.entities.Passengers.Passenger;
-import acme.features.authenticated.customer.booking.CustomerBookingRepository;
-import acme.features.authenticated.customer.passenger.CustomerPassengerRepository;
+import acme.features.customer.booking.CustomerBookingRepository;
+import acme.features.customer.passenger.CustomerPassengerRepository;
 import acme.realms.Customer;
 
 @GuiService
@@ -99,7 +99,7 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 
 		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
 		Collection<Booking> bookings = this.bookingRepository.findBookingByCustomer(customerId);
-		Collection<Passenger> passengers = this.passengerRepository.findPassengerByCustomer(customerId);
+		Collection<Passenger> passengers = this.passengerRepository.findPassengerByCustomer(customerId).stream().filter(p -> p.isDraftMode() == false).toList();
 		bookingChoices = SelectChoices.from(bookings, "locatorCode", bookingRecord.getBooking());
 		passengerChoices = SelectChoices.from(passengers, "fullName", bookingRecord.getPassenger());
 
