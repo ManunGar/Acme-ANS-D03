@@ -1,5 +1,5 @@
 
-package acme.features.customer2.passenger.copy;
+package acme.features.customer.passenger;
 
 import java.util.Collection;
 

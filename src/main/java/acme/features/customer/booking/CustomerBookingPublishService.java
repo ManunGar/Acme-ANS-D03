@@ -1,5 +1,5 @@
 
-package acme.features.customer2.booking.copy;
+package acme.features.customer.booking;
 
 import java.util.Collection;
 
@@ -10,23 +10,28 @@ import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.Bookings.Booking;
+import acme.entities.Bookings.BookingRecord;
 import acme.entities.Bookings.TravelClass;
 import acme.entities.Flight.Flight;
 import acme.entities.Flight.FlightRepository;
 import acme.entities.Passengers.Passenger;
+import acme.features.customer.bookingRecord.CustomerBookingRecordRepository;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerBookingUpdateService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingPublishService extends AbstractGuiService<Customer, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private CustomerBookingRepository	repository;
+	private CustomerBookingRepository		repository;
 
 	@Autowired
-	private FlightRepository			flightRepository;
+	private CustomerBookingRecordRepository	bookingRecordRepository;
 
-	// AbstractGuiService interfaced ------------------------------------------
+	@Autowired
+	private FlightRepository				flightRepository;
+
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
@@ -54,27 +59,34 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void bind(final Booking booking) {
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "passengers", "travelClass");
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "travelClass", "flight", "draftMode");
 	}
 
 	@Override
 	public void validate(final Booking booking) {
-		if (booking.isDraftMode() == false)
-			super.state(false, "draftMode", "acme.validation.confirmation.message.update");
-		Booking b = this.repository.findBookingByLocatorCode(booking.getLocatorCode());
-		if (b != null && b.getId() != booking.getId())
-			super.state(false, "locatorCode", "acme.validation.confirmation.message.booking.locator-code");
+		if (booking.getLastNibble() == null || booking.getLastNibble().isBlank() || booking.getLastNibble().isEmpty()) {
+			String lastNibbleStored = this.repository.findBookingById(booking.getId()).getLastNibble();
+			if (lastNibbleStored == null || lastNibbleStored.isBlank() || lastNibbleStored.isEmpty())
+				super.state(false, "lastNibble", "acme.validation.confirmation.message.lastNibble");
+		}
+
+		Collection<BookingRecord> br = this.bookingRecordRepository.findBookingRecordByBookingId(booking.getId());
+		if (br.isEmpty())
+			super.state(false, "passengers", "acme.validation.confirmation.message.passenger");
 
 	}
 
 	@Override
 	public void perform(final Booking booking) {
+		if (booking.getLastNibble() == null || booking.getLastNibble().isBlank() || booking.getLastNibble().isEmpty())
+			booking.setLastNibble(this.repository.findBookingById(booking.getId()).getLastNibble());
 		Booking b = this.repository.findBookingById(booking.getId());
 		b.setFlight(booking.getFlight());
 		b.setLocatorCode(booking.getLocatorCode());
 		b.setTravelClass(booking.getTravelClass());
 		b.setLastNibble(booking.getLastNibble());
+		b.setDraftMode(false);
 		this.repository.save(b);
 	}
 
