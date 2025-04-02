@@ -48,3 +48,5 @@ acme.validation.assistanceAgent.employeeCode.message = The employeeCode must be 
 acme.validation.text.IATAcode = The IATAcode is not correct
 
 acme.validation.text.message.phone = The phone must have between 6-15 numbers
+
+acme.validation.confirmation.message.passenger = The booking must have at least one passenger to be published

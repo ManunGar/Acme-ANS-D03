@@ -50,4 +50,3 @@ aircraft-36,McDonnell Douglas DC-10,DC10-036,760,32000,ACTIVE,洛伦·伊普森,
 aircraft-37,Airbus A330,A330-037,770,23000,MAINTENANCE,<marquee>Hacked</marquee>,airline-37
 aircraft-38,Boeing 767,B767-038,780,24000,ACTIVE,<script>alert(‘Hacked!’);</script>,airline-38
 aircraft-39,Bombardier CRJ900,CRJ9-039,790,25000,MAINTENANCE,'' or 'A' = 'A,airline-39
-# airline - no singular values

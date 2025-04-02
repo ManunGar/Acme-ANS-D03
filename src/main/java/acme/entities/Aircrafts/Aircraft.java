@@ -11,7 +11,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidNumber;
-import acme.constraints.ValidLongText;
+import acme.client.components.validation.ValidString;
 import acme.constraints.ValidShortText;
 import acme.entities.Airlines.Airline;
 import lombok.Getter;
@@ -52,10 +52,9 @@ public class Aircraft extends AbstractEntity {
 	private AircraftStatus		status;
 
 	@Optional
-	@ValidLongText
+	@ValidString(min = 0)
 	@Automapped
 	private String				details;
-
 	// Relationships
 
 	@Mandatory
