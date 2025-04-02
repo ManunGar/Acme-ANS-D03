@@ -9,6 +9,7 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
+import acme.client.services.GuiService;
 import acme.entities.FlightAssignments.Duty;
 import acme.entities.FlightAssignments.FlightAssignment;
 import acme.entities.FlightAssignments.Status;
@@ -16,6 +17,7 @@ import acme.entities.Legs.Legs;
 import acme.realms.AvailabilityStatus;
 import acme.realms.FlightCrewMember;
 
+@GuiService
 public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
 
 	// Internal state

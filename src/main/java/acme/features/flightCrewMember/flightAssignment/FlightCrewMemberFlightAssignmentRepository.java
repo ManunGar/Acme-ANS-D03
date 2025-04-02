@@ -31,7 +31,7 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("select l from Legs l")
 	List<Legs> findAllLegs();
 
-	@Query("select fcm from FlightCrewMember fcm WHERE fcm.status = :availabilityStatus")
+	@Query("select fcm from FlightCrewMember fcm WHERE fcm.availabilityStatus = :availabilityStatus")
 	List<FlightCrewMember> findFlightCrewMembersByAvailabilityStatus(AvailabilityStatus availabilityStatus);
 
 	@Query("select fa from FlightAssignment fa WHERE fa.flightCrewMember.id = :flightCrewMemberId")
