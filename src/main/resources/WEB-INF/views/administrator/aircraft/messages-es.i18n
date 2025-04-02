@@ -11,6 +11,7 @@
 administrator.aircraft.list.title = Listado de aviones
 administrator.aircraft.form.title = Detalles de aviones
 
+administrator.aircraft.list.label.airline = Avión
 administrator.aircraft.list.label.model = Modelo
 administrator.aircraft.list.label.registrationNumber = Numero de registro
 administrator.aircraft.list.label.aircraftStatus = Estado
@@ -25,6 +26,6 @@ administrator.aircraft.form.label.confirmation.update = ¿Estás seguro de que q
 administrator.aircraft.form.label.confirmation.delete = ¿Estás seguro de que quieres eliminar el avión anterior?
 administrator.aircraft.form.button.create = Crear avión
 administrator.aircraft.form.button.update = Actualizar avión
-administrator.aircraft.form.button.delete = Eliminar avión
+administrator.aircraft.form.button.disable = Deshabilitar avión
 
 acme.validation.confirmation.message.aiport.registrationNumber = Ya existe otro aeropuerto con ese número de registro

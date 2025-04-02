@@ -15,8 +15,7 @@ import acme.entities.Aircrafts.AircraftStatus;
 import acme.entities.Airlines.Airline;
 
 @GuiService
-public class AdministratorAircraftShowService extends AbstractGuiService<Administrator, Aircraft> {
-
+public class AdministratorAircraftEnableService extends AbstractGuiService<Administrator, Aircraft> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -33,12 +32,50 @@ public class AdministratorAircraftShowService extends AbstractGuiService<Adminis
 
 	@Override
 	public void load() {
-		int id;
 		Aircraft aircraft;
+		int id;
 
 		id = super.getRequest().getData("id", int.class);
 		aircraft = this.repository.findAircraftById(id);
+
 		super.getBuffer().addData(aircraft);
+	}
+
+	@Override
+	public void bind(final Aircraft aircraft) {
+
+		super.bindObject(aircraft, "airline", "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
+	}
+
+	@Override
+	public void validate(final Aircraft aircraft) {
+		boolean confirmation;
+
+		confirmation = super.getRequest().getData("confirmation", boolean.class);
+		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+
+	}
+
+	@Override
+	public void perform(final Aircraft aircraft) {
+
+		Aircraft a = this.repository.findAircraftById(aircraft.getId());
+
+		System.out.println("Current status: " + a.getStatus());
+
+		if (a.getStatus() == AircraftStatus.MAINTENANCE) {
+			a.setStatus(AircraftStatus.ACTIVE);
+			System.out.println("Status changed to: " + a.getStatus());
+		}
+
+		a.setModel(aircraft.getModel());
+		a.setRegistrationNumber(aircraft.getRegistrationNumber());
+		a.setCapacity(aircraft.getCapacity());
+		a.setCargoWeight(aircraft.getCargoWeight());
+		a.setDetails(aircraft.getDetails());
+		a.setAirline(aircraft.getAirline());
+
+		this.repository.save(a);
 	}
 
 	@Override
@@ -51,10 +88,9 @@ public class AdministratorAircraftShowService extends AbstractGuiService<Adminis
 		airlineChoices = SelectChoices.from(airlines, "id", aircraft.getAirline());
 		choices = SelectChoices.from(AircraftStatus.class, aircraft.getStatus());
 
-		dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
+		dataset = super.unbindObject(aircraft, "airline", "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
 		dataset.put("aircraftStatus", choices);
 		dataset.put("confirmation", false);
-		dataset.put("readonly", false);
 		dataset.put("airlines", airlineChoices);
 		dataset.put("airline", airlineChoices.getSelected().getKey());
 

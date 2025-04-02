@@ -1,6 +1,8 @@
 
 package acme.features.administrator.aircraft;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
@@ -10,6 +12,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.Aircrafts.Aircraft;
 import acme.entities.Aircrafts.AircraftStatus;
+import acme.entities.Airlines.Airline;
 
 @GuiService
 public class AdministratorAircraftCreateService extends AbstractGuiService<Administrator, Aircraft> {
@@ -45,7 +48,14 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 
 	@Override
 	public void bind(final Aircraft aircraft) {
+		int airlineId;
+		Airline airline;
+
+		airlineId = super.getRequest().getData("airline", int.class);
+		airline = this.repository.findAirlineById(airlineId);
+
 		super.bindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
+		aircraft.setAirline(airline);
 	}
 
 	@Override
@@ -63,20 +73,33 @@ public class AdministratorAircraftCreateService extends AbstractGuiService<Admin
 	@Override
 	public void perform(final Aircraft aircraft) {
 
-		this.repository.save(aircraft);
+		Aircraft a = this.repository.findAircraftById(aircraft.getId());
+		a.setModel(aircraft.getModel());
+		a.setRegistrationNumber(aircraft.getRegistrationNumber());
+		a.setCapacity(aircraft.getCapacity());
+		a.setCargoWeight(aircraft.getCargoWeight());
+		a.setStatus(aircraft.getStatus());
+		a.setDetails(aircraft.getDetails());
+		a.setAirline(aircraft.getAirline());
+		this.repository.save(a);
 	}
 
 	@Override
 	public void unbind(final Aircraft aircraft) {
 		SelectChoices choices;
+		SelectChoices airlineChoices;
 		Dataset dataset;
 
+		Collection<Airline> airlines = this.repository.findAllAirline();
+		airlineChoices = SelectChoices.from(airlines, "id", aircraft.getAirline());
 		choices = SelectChoices.from(AircraftStatus.class, aircraft.getStatus());
 
 		dataset = super.unbindObject(aircraft, "model", "registrationNumber", "capacity", "cargoWeight", "status", "details");
 		dataset.put("aircraftStatus", choices);
 		dataset.put("confirmation", false);
 		dataset.put("readonly", false);
+		dataset.put("airlines", airlineChoices);
+		dataset.put("airline", airlineChoices.getSelected().getKey());
 
 		super.getResponse().addData(dataset);
 	}

@@ -11,6 +11,7 @@
 administrator.aircraft.list.title = List of aircrafts
 administrator.aircraft.form.title = Aircrafts form
 
+administrator.aircraft.list.label.airline = Airline
 administrator.aircraft.list.label.model = Model
 administrator.aircraft.list.label.registrationNumber = Registration number
 administrator.aircraft.list.label.aircraftStatus = Status
@@ -22,10 +23,10 @@ administrator.aircraft.list.button.create = Create a new aircraft
 administrator.aircraft.list.button.delete = Delete an existing aircraft
 administrator.aircraft.form.label.confirmation.create = Are you sure you want to create the above aircraft?
 administrator.aircraft.form.label.confirmation.update = Are you sure you want to update the above aircraft?
-administrator.aircraft.form.label.confirmation.delete = Are you sure you want to delete the above aircraft?
 administrator.aircraft.form.button.create = Create aircraft
 administrator.aircraft.form.button.update = Update aircraft
-administrator.aircraft.form.button.delete = Delete aircraft
+administrator.aircraft.form.button.disable = Disable aircraft
+administrator.aircraft.form.button.enable = Enable aircraft
 
 acme.validation.confirmation.message.aircraft.registrationNumber = There is already another aircraft with that registration number
 

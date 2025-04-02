@@ -11,4 +11,3 @@
 </acme:list>
 
 <acme:button code="administrator.aircraft.list.button.create" action="/administrator/aircraft/create"/>
-<acme:button code="administrator.aircraft.list.button.delete" action="/administrator/aircraft/delete"/>

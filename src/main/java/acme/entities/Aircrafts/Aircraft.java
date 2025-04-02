@@ -52,10 +52,9 @@ public class Aircraft extends AbstractEntity {
 	private AircraftStatus		status;
 
 	@Optional
-	@ValidString
+	@ValidString(min = 0)
 	@Automapped
 	private String				details;
-
 	// Relationships
 
 	@Mandatory

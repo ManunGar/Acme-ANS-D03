@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.Aircrafts.Aircraft;
+import acme.entities.Airlines.Airline;
 
 @Repository
 public interface AdministratorAircraftRepository extends AbstractRepository {
@@ -21,4 +22,10 @@ public interface AdministratorAircraftRepository extends AbstractRepository {
 
 	@Query("SELECT a FROM Aircraft a WHERE a.registrationNumber = :registrationNumber")
 	Aircraft findAircraftByRegistrationNumber(@Param("registrationNumber") String registrationNumber);
+
+	@Query("SELECT a FROM Airline a ")
+	Collection<Airline> findAllAirline();
+
+	@Query("SELECT a FROM Airline a WHERE a.id = :id")
+	Airline findAirlineById(@Param("id") int id);
 }
