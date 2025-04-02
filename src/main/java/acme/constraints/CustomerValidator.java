@@ -22,7 +22,7 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 		if (customer == null)
 			super.state(context, false, "*", "acme.validation.NotNull.message");
 		else if (customer.getIdentifier() == null || !customer.getIdentifier().matches("^[A-Z]{2,3}\\d{6}$"))
-			super.state(context, false, "Identifier", "acme.validation.Customer.identifier.message");
+			super.state(context, false, "identifier", "acme.validation.Customer.identifier.message");
 		else {
 			String identifierCustomer = "";
 			int count = 0;
@@ -40,7 +40,7 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 			if (customer.getIdentifier().substring(0, 2).equals(identifierCustomer) || customer.getIdentifier().substring(0, 3).equals(identifierCustomer))
 				result = true;
 			else
-				super.state(context, false, "Identifier", "acme.validation.Customer.identifier.name.message");
+				super.state(context, false, "identifier", "acme.validation.Customer.identifier.name.message");
 		}
 
 		result = !super.hasErrors(context);
