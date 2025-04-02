@@ -20,7 +20,8 @@ import acme.entities.Legs.LegsStatus;
 import acme.realms.AirlineManager;
 
 @GuiService
-public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, Legs> {
+public class ManagerLegsDeleteService extends AbstractGuiService<AirlineManager, Legs> {
+
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -40,24 +41,45 @@ public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, L
 
 	@Override
 	public void authorise() {
-		int id;
-		Legs leg;
-		int managerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+		int userId;
+		int legId;
+		Legs legs;
+		boolean autorhorise;
 
-		id = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegById(id);
-		boolean status = leg.getFlight().getManager().getUserAccount().getId() == managerId;
-		super.getResponse().setAuthorised(status);
+		legId = super.getRequest().getData("id", int.class);
+		userId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+		legs = this.repository.findLegById(legId);
+		autorhorise = legs.getFlight().getManager().getUserAccount().getId() == userId;
+		super.getResponse().setAuthorised(autorhorise);
+
+		boolean draftMode = legs.getDraftMode();
+		super.getResponse().setAuthorised(draftMode);
 	}
 
 	@Override
 	public void load() {
-		int id;
+		int legId;
 		Legs leg;
 
-		id = super.getRequest().getData("id", int.class);
-		leg = this.repository.findLegById(id);
+		legId = super.getRequest().getData("id", int.class);
+		leg = this.repository.findLegById(legId);
+
 		super.getBuffer().addData(leg);
+	}
+
+	@Override
+	public void bind(final Legs leg) {
+		super.bindObject(leg, "departure", "arrival", "status", "departureAirport", "arrivalAirport", "aircraft", "flight", "flightNumber");
+	}
+
+	@Override
+	public void validate(final Legs leg) {
+
+	}
+
+	@Override
+	public void perform(final Legs leg) {
+		this.repository.delete(leg);
 	}
 
 	@Override
@@ -89,8 +111,8 @@ public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, L
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("legId", leg.getId());
-		dataset.put("flightId", leg.getFlight().getId());
 
 		super.getResponse().addData(dataset);
 	}
+
 }
