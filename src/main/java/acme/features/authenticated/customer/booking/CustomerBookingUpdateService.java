@@ -1,5 +1,5 @@
 
-package acme.features.customer.booking;
+package acme.features.authenticated.customer.booking;
 
 import java.util.Collection;
 
@@ -17,7 +17,7 @@ import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerBookingShowService extends AbstractGuiService<Customer, Booking> {
+public class CustomerBookingUpdateService extends AbstractGuiService<Customer, Booking> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -26,7 +26,7 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 	@Autowired
 	private FlightRepository			flightRepository;
 
-	// AbstractGuiService interface -------------------------------------------
+	// AbstractGuiService interfaced ------------------------------------------
 
 
 	@Override
@@ -43,12 +43,39 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 
 	@Override
 	public void load() {
-		int id;
 		Booking booking;
+		int id;
 
 		id = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(id);
+
 		super.getBuffer().addData(booking);
+	}
+
+	@Override
+	public void bind(final Booking booking) {
+
+		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "travelClass", "flight", "draftMode");
+	}
+
+	@Override
+	public void validate(final Booking booking) {
+		if (booking.isDraftMode() == false)
+			super.state(false, "draftMode", "acme.validation.confirmation.message.update");
+		Booking b = this.repository.findBookingByLocatorCode(booking.getLocatorCode());
+		if (b != null && b.getId() != booking.getId())
+			super.state(false, "locatorCode", "acme.validation.confirmation.message.booking.locator-code");
+
+	}
+
+	@Override
+	public void perform(final Booking booking) {
+		Booking b = this.repository.findBookingById(booking.getId());
+		b.setFlight(booking.getFlight());
+		b.setLocatorCode(booking.getLocatorCode());
+		b.setTravelClass(booking.getTravelClass());
+		b.setLastNibble(booking.getLastNibble());
+		this.repository.save(b);
 	}
 
 	@Override
@@ -68,7 +95,6 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		dataset.put("passengers", passengers);
 		dataset.put("flight", flightChoices.getSelected().getKey());
 		dataset.put("flights", flightChoices);
-		dataset.put("bookingId", booking.getId());
 
 		super.getResponse().addData(dataset);
 	}

@@ -1,5 +1,5 @@
 
-package acme.features.customer.booking;
+package acme.features.authenticated.customer.booking;
 
 import javax.annotation.PostConstruct;
 

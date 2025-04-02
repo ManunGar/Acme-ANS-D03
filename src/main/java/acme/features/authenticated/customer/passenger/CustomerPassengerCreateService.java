@@ -1,8 +1,9 @@
 
-package acme.features.customer.passenger;
+package acme.features.authenticated.customer.passenger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.basis.AbstractRealm;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
@@ -10,49 +11,44 @@ import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerPassengerUpdateService extends AbstractGuiService<Customer, Passenger> {
+public class CustomerPassengerCreateService extends AbstractGuiService<Customer, Passenger> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
 	private CustomerPassengerRepository repository;
 
-	// AbstractGuiService interfaced ------------------------------------------
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
 	public void authorise() {
-		int id;
-		Passenger passenger;
-		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
-
-		id = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(id);
-		boolean status = passenger.getCustomer().getUserAccount().getId() == customerId && super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		super.getResponse().setAuthorised(status);
+		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
+		super.getResponse().setAuthorised(isCustomer);
 	}
 
 	@Override
 	public void load() {
 		Passenger passenger;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(id);
+		AbstractRealm principal = super.getRequest().getPrincipal().getActiveRealm();
+		int customerId = principal.getId();
+		Customer customer = this.repository.findCustomerById(customerId);
 
+		passenger = new Passenger();
+		passenger.setCustomer(customer);
+		passenger.setDraftMode(true);
 		super.getBuffer().addData(passenger);
 	}
 
 	@Override
 	public void bind(final Passenger passenger) {
-
 		super.bindObject(passenger, "fullName", "email", "passport", "dateOfBirth", "draftMode", "specialNeeds");
+
 	}
 
 	@Override
 	public void validate(final Passenger passenger) {
-		if (passenger.isDraftMode() == false)
-			super.state(false, "draftMode", "acme.validation.confirmation.message.update");
-
+		;
 	}
 
 	@Override
@@ -68,4 +64,5 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 
 		super.getResponse().addData(dataset);
 	}
+
 }
