@@ -1,5 +1,5 @@
 
-package acme.features.customer2;
+package acme.features.customer2.passenger.copy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

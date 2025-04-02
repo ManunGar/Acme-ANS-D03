@@ -1,5 +1,5 @@
 
-package acme.features.customer2;
+package acme.features.customer2.bookingRecord.copy;
 
 import java.util.Collection;
 
@@ -12,6 +12,8 @@ import acme.client.services.GuiService;
 import acme.entities.Bookings.Booking;
 import acme.entities.Bookings.BookingRecord;
 import acme.entities.Passengers.Passenger;
+import acme.features.customer2.booking.copy.CustomerBookingRepository;
+import acme.features.customer2.passenger.copy.CustomerPassengerRepository;
 import acme.realms.Customer;
 
 @GuiService

@@ -1,5 +1,5 @@
 
-package acme.features.customer2;
+package acme.features.customer2.booking.copy;
 
 import java.util.Collection;
 

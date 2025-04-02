@@ -1,8 +1,9 @@
 
-package acme.features.customer2;
+package acme.features.customer2.passenger.copy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import acme.client.components.basis.AbstractRealm;
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
@@ -10,7 +11,7 @@ import acme.entities.Passengers.Passenger;
 import acme.realms.Customer;
 
 @GuiService
-public class CustomerPassengerPublishService extends AbstractGuiService<Customer, Passenger> {
+public class CustomerPassengerCreateService extends AbstractGuiService<Customer, Passenger> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -21,24 +22,21 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 
 	@Override
 	public void authorise() {
-		int id;
-		Passenger passenger;
-		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
-
-		id = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(id);
-		boolean status = passenger.getCustomer().getUserAccount().getId() == customerId && super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		super.getResponse().setAuthorised(status);
+		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
+		super.getResponse().setAuthorised(isCustomer);
 	}
 
 	@Override
 	public void load() {
 		Passenger passenger;
-		int id;
 
-		id = super.getRequest().getData("id", int.class);
-		passenger = this.repository.findPassengerById(id);
+		AbstractRealm principal = super.getRequest().getPrincipal().getActiveRealm();
+		int customerId = principal.getId();
+		Customer customer = this.repository.findCustomerById(customerId);
 
+		passenger = new Passenger();
+		passenger.setCustomer(customer);
+		passenger.setDraftMode(true);
 		super.getBuffer().addData(passenger);
 	}
 
@@ -55,7 +53,6 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 
 	@Override
 	public void perform(final Passenger passenger) {
-		passenger.setDraftMode(false);
 		this.repository.save(passenger);
 	}
 
@@ -67,4 +64,5 @@ public class CustomerPassengerPublishService extends AbstractGuiService<Customer
 
 		super.getResponse().addData(dataset);
 	}
+
 }
