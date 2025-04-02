@@ -21,6 +21,10 @@ acme.validation.whine.redress.message	 	  = Provide some justification.
 
 acme.validation.NotNull.message = The Entity cannot be null
 
+acme.validation.drafMode.message = The Entity is not in draft mode
+
+acme.validation.FlightDraftMode.message = The flight cannot be published as it does not contain legs or has some unpublished legs 
+
 acme.validation.claim.indicator.message = The Indicator of Claim and its TrackingLog must be the same
 
 acme.validation.claim.leg.message = The Leg associated to the Claim must be in the past

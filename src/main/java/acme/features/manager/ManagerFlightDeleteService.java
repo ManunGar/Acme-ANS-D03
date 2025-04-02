@@ -1,20 +1,28 @@
 
 package acme.features.manager;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.Flight.Flight;
+import acme.entities.Legs.Legs;
+import acme.features.manager.legs.ManagerLegsRepository;
 import acme.realms.AirlineManager;
 
 @GuiService
-public class ManagerFlightUpdateService extends AbstractGuiService<AirlineManager, Flight> {
+public class ManagerFlightDeleteService extends AbstractGuiService<AirlineManager, Flight> {
+
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ManagerFlightRepository repository;
+	private ManagerFlightRepository	repository;
+
+	@Autowired
+	private ManagerLegsRepository	legRepository;
 
 
 	@Override
@@ -50,17 +58,16 @@ public class ManagerFlightUpdateService extends AbstractGuiService<AirlineManage
 	@Override
 	public void validate(final Flight flight) {
 		boolean confirmation;
-
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
-
 		confirmation = flight.getDraftMode();
 		super.state(confirmation, "*", "acme.validation.draftMode.message");
 	}
 
 	@Override
 	public void perform(final Flight flight) {
-		this.repository.save(flight);
+		List<Legs> legs = (List<Legs>) this.legRepository.findAllByFlightId(flight.getId());
+		for (Legs l : legs)
+			this.legRepository.delete(l);
+		this.repository.delete(flight);
 	}
 
 	@Override

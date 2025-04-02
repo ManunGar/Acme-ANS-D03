@@ -1,20 +1,29 @@
 
 package acme.features.manager;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.Flight.Flight;
+import acme.entities.Legs.Legs;
+import acme.features.manager.legs.ManagerLegsRepository;
 import acme.realms.AirlineManager;
 
 @GuiService
-public class ManagerFlightUpdateService extends AbstractGuiService<AirlineManager, Flight> {
+public class ManagerFlightPublishService extends AbstractGuiService<AirlineManager, Flight> {
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private ManagerFlightRepository repository;
+	private ManagerFlightRepository	repository;
+
+	@Autowired
+	private ManagerLegsRepository	legRepository;
+
+	// AbstractGuiService interface -------------------------------------------
 
 
 	@Override
@@ -49,17 +58,19 @@ public class ManagerFlightUpdateService extends AbstractGuiService<AirlineManage
 
 	@Override
 	public void validate(final Flight flight) {
-		boolean confirmation;
-
-		confirmation = super.getRequest().getData("confirmation", boolean.class);
-		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
-
-		confirmation = flight.getDraftMode();
-		super.state(confirmation, "*", "acme.validation.draftMode.message");
+		boolean confirmation = true;
+		List<Legs> legs = (List<Legs>) this.legRepository.findAllByFlightId(flight.getId());
+		if (legs.size() == 0)
+			confirmation = false;
+		for (Legs l : legs)
+			if (l.getDraftMode())
+				confirmation = false;
+		super.state(confirmation, "*", "acme.validation.FlightDraftMode.message");
 	}
 
 	@Override
 	public void perform(final Flight flight) {
+		flight.setDraftMode(false);
 		this.repository.save(flight);
 	}
 
@@ -76,5 +87,4 @@ public class ManagerFlightUpdateService extends AbstractGuiService<AirlineManage
 		dataset.put("flightId", flight.getId());
 		super.getResponse().addData(dataset);
 	}
-
 }
