@@ -23,6 +23,15 @@ public class ManagerLegsController extends AbstractGuiController<AirlineManager,
 	@Autowired
 	private ManagerLegsUpdateService	updateService;
 
+	@Autowired
+	private ManagerLegsCreateService	createService;
+
+	@Autowired
+	private ManagerLegsPublishService	publishService;
+
+	@Autowired
+	private ManagerLegsDeleteService	deleteService;
+
 	// Constructors -----------------------------------------------------------
 
 
@@ -31,6 +40,9 @@ public class ManagerLegsController extends AbstractGuiController<AirlineManager,
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("delete", this.deleteService);
+		super.addCustomCommand("publish", "update", this.publishService);
 	}
 
 }

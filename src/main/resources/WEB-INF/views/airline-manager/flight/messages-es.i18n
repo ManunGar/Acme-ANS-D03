@@ -23,5 +23,6 @@ manager.flight.list.label.cost = Precio
 
 manager.flight.list.button.create = Crear Vuelo
 manager.flight.form.button.update = Guardar Cambios
+manager.flight.form.button.legs = Ver Tramos
 manager.flight.form.label.confirmation.update = ¿Confirmar cambios?
 
