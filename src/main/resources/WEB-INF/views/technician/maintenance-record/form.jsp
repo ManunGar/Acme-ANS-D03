@@ -10,11 +10,11 @@
 			<acme:input-textbox code="technician.maintenance-record.form.label.technician" path="technician.identity.name" readonly="true"/>
 		</jstl:when>		
 	</jstl:choose>	
-	<acme:input-moment code="technician.maintenance-record.form.label.maintenanceDate" path="maintenanceMoment" readonly="true"/>
+	<acme:input-moment code="technician.maintenance-record.form.label.maintenanceDate" path="maintenanceMoment" readonly="${_command != 'create'}"/>
 	<acme:input-select code="technician.maintenance-record.form.label.status" path="status" choices= "${status}"/>
-	<acme:input-money code="technician.maintenance-record.form.label.estimatedCost" path="estimatedCost" readonly="true"/>
+	<acme:input-money code="technician.maintenance-record.form.label.estimatedCost" path="estimatedCost" readonly="${_command != 'create'}"/>
 	<acme:input-moment code="technician.maintenance-record.form.label.nextInspectionDueDate" path="nextInspection"/>
-	<acme:input-textarea code="technician.maintenance-record.form.label.notes" path="notes" readonly="true"/>
+	<acme:input-textarea code="technician.maintenance-record.form.label.notes" path="notes" readonly="${_command != 'create'}"/>
 		
 	<jstl:choose>	
 		<jstl:when test="${_command == 'show' && draftMode == false}">
