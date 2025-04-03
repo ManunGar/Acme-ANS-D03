@@ -52,7 +52,7 @@ public class FlightCrewMemberFlightAssignmentCompletedListService extends Abstra
 	public void unbind(final FlightAssignment flightAssignment) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(flightAssignment, "duty", "moment", "status", "remarks");
+		dataset = super.unbindObject(flightAssignment, "draftMode", "duty", "moment", "status", "remarks");
 		super.getResponse().addData(dataset);
 	}
 

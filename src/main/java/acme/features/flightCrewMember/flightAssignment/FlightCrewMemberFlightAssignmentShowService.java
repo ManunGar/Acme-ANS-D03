@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.FlightAssignments.Duty;
@@ -76,6 +77,8 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		dataset.put("legs", legChoices);
 		dataset.put("flightCrewMember", flightCrewMemberChoices.getSelected().getKey());
 		dataset.put("flightCrewMembers", flightCrewMemberChoices);
+
+		dataset.put("legCompleted", this.repository.legCompletedByFlightAssignmentId(flightAssignment.getId(), MomentHelper.getCurrentMoment()));
 
 		super.getResponse().addData(dataset);
 	}
