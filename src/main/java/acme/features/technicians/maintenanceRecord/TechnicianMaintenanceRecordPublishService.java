@@ -13,6 +13,7 @@ import acme.entities.Aircrafts.Aircraft;
 import acme.entities.MaintenanceRecords.MaintenanceRecord;
 import acme.entities.MaintenanceRecords.MaintenanceStatus;
 import acme.entities.Tasks.Task;
+import acme.entities.Tasks.TaskType;
 import acme.realms.Technician;
 
 @GuiService
@@ -94,12 +95,16 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		aircrafts = this.repository.findAllAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "model", maintenanceRecord.getAircraft());
 
-		Collection<Task> tasksNumber = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
-		Collection<String> tasks = tasksNumber.stream().map(Task::getDescription).toList();
+		Collection<Task> tasks = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
+		Collection<Integer> taskPriority = tasks.stream().map(Task::getPriority).toList();
+		Collection<String> taskDescription = tasks.stream().map(Task::getDescription).toList();
+		Collection<TaskType> taskType = tasks.stream().map(Task::getType).toList();
 
 		dataset = super.unbindObject(maintenanceRecord, "aircraft", "maintenanceMoment", "nextInspection", "status", "estimatedCost", "notes");
 		dataset.put("statuses", choices);
-		dataset.put("tasks", tasks);
+		dataset.put("tasks", taskPriority);
+		dataset.put("tasks", taskType);
+		dataset.put("tasks", taskDescription);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
 
