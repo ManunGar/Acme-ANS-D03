@@ -31,6 +31,8 @@ acme.validation.trackingLog.acceptedPending.message = The attribute accepted mus
 
 acme.validation.trackingLog.numberOfTrackingLogsCompleted.message = A Claim can only have 2 TrackingLog associated with resolutionPercentage = 100.00
 
+acme.validation.trackingLog.resolutionPercentage.message = The resolutionPercentage cannot be lower
+
 acme.validation.trackingLog.draftModeLogical.message = The attribute draftMode of a TrackingLog can only be true if its Claims attribute draftMode is true
 
 acme.validation.legs.message = The leg is not formatted or in the correct order

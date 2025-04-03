@@ -1,6 +1,7 @@
 
 package acme.constraints;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.validation.ConstraintValidatorContext;
@@ -12,12 +13,16 @@ import acme.client.components.validation.Validator;
 import acme.entities.Claims.AcceptedIndicator;
 import acme.entities.Claims.ClaimRepository;
 import acme.entities.TrackingLogs.TrackingLog;
+import acme.entities.TrackingLogs.TrackingLogRepository;
 
 @Validator
 public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, TrackingLog> {
 
 	@Autowired
-	private ClaimRepository claimRepository;
+	private ClaimRepository			claimRepository;
+
+	@Autowired
+	private TrackingLogRepository	trackingLogRepository;
 
 	// ConstraintValidator interface ------------------------------------------
 
@@ -60,21 +65,62 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 			//Validation of the maximum number of trackingLogs with resolutionPercentage == 100.
 			{
-				boolean maximumNumberOfTrackingLogsCompleted;
-				List<TrackingLog> trackingLogs = this.claimRepository.findAllByClaimId(trackingLog.getClaim().getId());
-				trackingLogs = trackingLogs.stream().filter(x -> x.getResolutionPercentage() == 100.00).toList();
-				maximumNumberOfTrackingLogsCompleted = trackingLogs.size() <= 2 ? true : false;
+				if (trackingLog.getClaim() != null) {
+					boolean maximumNumberOfTrackingLogsCompleted;
+					List<TrackingLog> trackingLogs = this.claimRepository.findAllByClaimId(trackingLog.getClaim().getId());
+					trackingLogs = trackingLogs.stream().filter(x -> x.getResolutionPercentage() == 100.00).filter(x -> x.getId() != trackingLog.getId()).toList();
+					maximumNumberOfTrackingLogsCompleted = trackingLog.getResolutionPercentage() != 100.00 ? true : trackingLogs.size() <= 1 ? true : false;
 
-				super.state(context, maximumNumberOfTrackingLogsCompleted, "numberOfTrackingLogsCompleted", "acme.validation.trackingLog.numberOfTrackingLogsCompleted.message");
+					super.state(context, maximumNumberOfTrackingLogsCompleted, "claim", "acme.validation.trackingLog.numberOfTrackingLogsCompleted.message");
+				}
+
 			}
 
 			//Validation of attribute draftMode is logical with its claim
 			{
-				boolean draftModeLogical;
+				if (trackingLog.getClaim() != null) {
+					boolean draftModeLogical;
 
-				draftModeLogical = trackingLog.isDraftMode() || !trackingLog.getClaim().isDraftMode();
+					draftModeLogical = trackingLog.isDraftMode() || !trackingLog.getClaim().isDraftMode();
 
-				super.state(context, draftModeLogical, "draftMode", "acme.validation.trackingLog.draftModeLogical.message");
+					super.state(context, draftModeLogical, "draftMode", "acme.validation.trackingLog.draftModeLogical.message");
+				}
+
+			}
+
+			//Validation of attribute resolutionPercentage is always higher than the last created
+			{
+				if (trackingLog.getClaim() != null) {
+
+					boolean resolutionPercentageHigher;
+
+					TrackingLog existingTrackingLog = this.trackingLogRepository.findTrackingLogById(trackingLog.getId());
+					if (existingTrackingLog == null) {
+
+						Collection<TrackingLog> trackingLogs = this.trackingLogRepository.findTrackingLogsOrderedByLastUpdateMoment(trackingLog.getClaim().getId());
+						TrackingLog lastTrackingLog = trackingLogs.size() > 0 ? trackingLogs.stream().toList().get(0) : null;
+						resolutionPercentageHigher = lastTrackingLog == null ? true : lastTrackingLog.getResolutionPercentage() <= trackingLog.getResolutionPercentage();
+
+					} else {
+
+						Collection<TrackingLog> trackingLogs = this.trackingLogRepository.findTrackingLogsOrderedByLastUpdateMoment(trackingLog.getClaim().getId());
+						List<TrackingLog> listTrackingLogs = trackingLogs.stream().toList();
+						int indexOfLastTrackingLog = listTrackingLogs.indexOf(trackingLog) + 1;
+						if (indexOfLastTrackingLog >= listTrackingLogs.size())
+							resolutionPercentageHigher = true;
+						else {
+							TrackingLog lastTrackingLog = listTrackingLogs.size() > 0 ? listTrackingLogs.get(indexOfLastTrackingLog) : null;
+							boolean resolutionPercentageHigherThanTheLast = lastTrackingLog == null ? true : lastTrackingLog.getResolutionPercentage() <= trackingLog.getResolutionPercentage();
+							TrackingLog thisTrackingLogBeforeUpdate = listTrackingLogs.size() > 0 ? listTrackingLogs.get(indexOfLastTrackingLog - 1) : null;
+							boolean resolutionPercentageHigherThanThisBeforeUpdate = thisTrackingLogBeforeUpdate == null ? true : thisTrackingLogBeforeUpdate.getResolutionPercentage() <= trackingLog.getResolutionPercentage();
+							resolutionPercentageHigher = resolutionPercentageHigherThanTheLast && resolutionPercentageHigherThanThisBeforeUpdate;
+						}
+
+					}
+
+					super.state(context, resolutionPercentageHigher, "resolutionPercentage", "acme.validation.trackingLog.resolutionPercentage.message");
+
+				}
 
 			}
 		}

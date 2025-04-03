@@ -34,6 +34,7 @@
 		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgent')">
 			<acme:button code="assistanceAgent.claim.list.button.list.resolved" action="/assistance-agent/claim/listResolved"/>
 			<acme:button code="assistanceAgent.claim.list.button.list.notResolved" action="/assistance-agent/claim/listNotResolved"/>
+			<acme:button code="assistanceAgent.trackingLog.list.button.list" action="/assistance-agent/tracking-log/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">

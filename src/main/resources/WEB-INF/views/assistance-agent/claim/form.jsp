@@ -16,7 +16,7 @@
 	</jstl:if>
 	
 	<jstl:if test="${_command != 'create' }">
-		<acme:button code="assistanceAgent.Claim.form.button.trackingLogs" action="/assistanceAgent/tracking-log/list?masterId=${id}"/>
+		<acme:button code="assistanceAgent.Claim.form.button.trackingLogs" action="/assistance-agent/tracking-log/listclaim?masterId=${id}"/>
 	</jstl:if>
 	<jstl:choose>	 
 		<jstl:when test="${_command != 'create' && draftMode == true}">
