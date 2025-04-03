@@ -11,9 +11,9 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = CustomerValidator.class)
+@Constraint(validatedBy = BookingValidator.class)
 
-public @interface ValidCustomer {
+public @interface ValidBooking {
 
 	// Standard validation properties -----------------------------------------
 
@@ -21,4 +21,5 @@ public @interface ValidCustomer {
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
+
 }
