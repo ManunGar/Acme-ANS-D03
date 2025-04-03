@@ -60,7 +60,7 @@ public class TechnicianTaskShowService extends AbstractGuiService<Technician, Ta
 		technicians = this.repository.findAllTechnicians();
 		technicianChoices = SelectChoices.from(technicians, "licenseNumber", Task.getTechnician());
 
-		dataset = super.unbindObject(Task, "technician.identity.name", "maintenanceMoment", "nextInspection", "status", "estimatedCost", "notes", "draftMode");
+		dataset = super.unbindObject(Task, "technician.identity.name", "type", "description", "priority", "estimatedDuration", "draftMode");
 		dataset.put("type", choices);
 		dataset.put("technician", technicianChoices.getSelected().getKey());
 		dataset.put("technicians", technicianChoices);

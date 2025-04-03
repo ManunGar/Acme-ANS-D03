@@ -53,7 +53,7 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 	}
 
 	@Override
-	public void validate(final Task Task) {
+	public void validate(final Task task) {
 		;
 	}
 
@@ -82,7 +82,5 @@ public class TechnicianTaskUpdateService extends AbstractGuiService<Technician, 
 		dataset.put("type", choices);
 
 		super.getResponse().addData(dataset);
-
-		//Prueba de pushear rama
 	}
 }

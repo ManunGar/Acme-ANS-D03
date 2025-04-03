@@ -35,7 +35,7 @@
 		<acme:menu-option code="master.menu.technician" access="hasRealm('Technician')" action="/technician/maintenance-record/list">
 		</acme:menu-option>
 		
-		<acme:menu-option code="master.menu.technician" access="hasRealm('Technician')" action="/technician/task/list">
+		<acme:menu-option code="master.menu.task" access="hasRealm('Technician')" action="/technician/task/list">
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgent')">

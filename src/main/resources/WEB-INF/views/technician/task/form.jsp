@@ -5,7 +5,7 @@
 
 <acme:form>
 	<acme:input-textbox code="technician.task.form.label.technician" path="technician.identity.name" readonly="true"/>	
-	<acme:input-select code="technician.task.form.label.type" path="type" choices="${type}"/>
+	<acme:input-select code="technician.task.form.label.type" path="type" choices="${type}" readonly="${_command != 'create'}"/>
 	<acme:input-textarea code="technician.task.form.label.description" path="description"/>
 	<acme:input-integer code="technician.task.form.label.priority" path="priority"/>
 	<acme:input-double code="technician.task.form.label.estimated-duration" path="estimatedDuration"/>
