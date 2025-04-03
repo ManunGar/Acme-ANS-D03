@@ -31,6 +31,8 @@ acme.validation.trackingLog.acceptedPending.message = El atributo accepted debe 
 
 acme.validation.trackingLog.numberOfTrackingLogsCompleted.message = Una claim solo puede tener 2 trackingLogs con resolutionPercentage = 100.00
 
+acme.validation.trackingLog.resolutionPercentage.message = El atributo resolutionPercentage no puede ser mas bajo
+
 acme.validation.trackingLog.draftModeLogical.message = El atributo draftMode de un trackingLog solo puede ser true si el atributo draftMode de su claim asociada es true tambien
 
 acme.validation.legs.message = El trayecto no tiene un formato u orden correcto 
@@ -41,7 +43,9 @@ acme.validation.Customer.identifier.message = El identificador deberá correspon
 
 acme.validation.Customer.identifier.name.message = El identificador no coincide con las iniciales del Cliente
 
-acme.validation.text.identifier = El identificador no es correcto, debe ser de 6 números y 2 o 3 siglas mayúsculas, debe coincidir con las dos o tres iniciales del Cliente
+acme.validation.text.identifier.letters = Debe ser de 6 números y 2 o 3 siglas mayúsculas, debe coincidir con las dos o tres iniciales del Cliente
+
+acme.validation.text.identifier.pattern = El identificador no está bien formado
 
 acme.validation.assistanceAgent.employeeCode.message = El employeeCode debe ser unico
 
@@ -53,4 +57,4 @@ acme.validation.confirmation.message.passenger = La reserva debe tener al menos 
 
 acme.validation.confirmation.message.booking.locator-code.pattern = El código de localización debe coincidir con el patrón	
 
-
+acme.validation.text.identifier.duplicated = Ya existe otro comprador con ese identificador

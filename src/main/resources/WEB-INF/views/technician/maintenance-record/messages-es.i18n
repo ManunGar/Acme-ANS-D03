@@ -1,18 +1,27 @@
-technician.task.form.title = Task details
-technician.task.list.title = Listing of tasks
+technician.maintenance-record.form.title = Detalles del registro de mantenimiento
+technician.maintenance-record.list.title = Listado de registros de mantenimiento
 
-technician.task.form.label.type = Type:
-technician.task.form.label.description = Description:
-technician.task.form.label.priority = Priority:
-technician.task.form.label.estimated-duration = Estimated duration:
-technician.task.form.label.technician = Technician:
+technician.maintenance-record.form.label.maintenanceDate = Fecha de mantenimiento:
+technician.maintenance-record.form.label.nextInspectionDueDate = Próxima inspección:
+technician.maintenance-record.form.label.status = Estado:
+technician.maintenance-record.form.label.estimatedCost = Coste estimado:
+technician.maintenance-record.form.label.notes = Notas: (Opcional)
+technician.maintenance-record.form.label.technician = Técnico:
+technician.maintenance-record.form.label.aircraft = Aeronave:
 
-technician.task.form.button.create = Create
-technician.task.form.button.update = Update
-technician.task.form.button.delete = Delete
-technician.task.form.button.publish = Publish
+technician.maintenance-record.form.button.tasks = Tareas del Registro
+technician.maintenance-record.form.button.create = Crear Registro
+technician.maintenance-record.form.button.update = Actualizar Registro
+technician.maintenance-record.form.button.publish = Publicar Registro
 
-technician.task.list.label.type = Type
-technician.task.list.label.description = Description
-technician.task.list.label.priority = Priority
+technician.maintenance-record.list.label.aircraft-model = Aeronave
+technician.maintenance-record.list.label.maintenanceDate = Fecha de mantenimiento
+technician.maintenance-record.list.label.nextInspectionDueDate = Próxima inspección
+technician.maintenance-record.list.label.status = Estado
 
+technician.maintenance-record.list.button.create = Crear
+
+technician.maintenance-record.create.status = El registro de mantenimiento no puede estar completado al crearse
+
+technician.maintenance-record.publish.status = El registro de mantenimiento debe estar completado
+technician.maintenance-record.publish.publishedTasks = El registro de mantenimiento no tiene tareas publicadas o tiene tareas sin publicar

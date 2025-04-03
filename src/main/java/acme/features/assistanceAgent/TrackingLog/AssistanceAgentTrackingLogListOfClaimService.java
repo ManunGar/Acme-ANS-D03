@@ -1,0 +1,48 @@
+
+package acme.features.assistanceAgent.TrackingLog;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import acme.client.components.models.Dataset;
+import acme.client.services.AbstractGuiService;
+import acme.client.services.GuiService;
+import acme.entities.TrackingLogs.TrackingLog;
+import acme.realms.AssistanceAgent.AssistanceAgent;
+
+@GuiService
+public class AssistanceAgentTrackingLogListOfClaimService extends AbstractGuiService<AssistanceAgent, TrackingLog> {
+
+	@Autowired
+	private AssistanceAgentTrackingLogRepository repository;
+
+
+	@Override
+	public void authorise() {
+		super.getResponse().setAuthorised(true);
+	}
+
+	@Override
+	public void load() {
+		int claimId;
+		Collection<TrackingLog> trackingLogs;
+
+		claimId = this.getRequest().getData("masterId", int.class);
+		trackingLogs = this.repository.findAllTrackingLogsByclaimId(claimId);
+
+		super.getBuffer().addData(trackingLogs);
+
+	}
+
+	@Override
+	public void unbind(final TrackingLog trackingLog) {
+		Dataset dataset;
+
+		dataset = super.unbindObject(trackingLog, "step", "resolutionPercentage", "accepted");
+
+		dataset.put("claim", trackingLog.getClaim());
+		super.getResponse().addData(dataset);
+	}
+
+}

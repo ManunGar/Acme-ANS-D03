@@ -41,6 +41,7 @@
 		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgent')">
 			<acme:button code="assistanceAgent.claim.list.button.list.resolved" action="/assistance-agent/claim/listResolved"/>
 			<acme:button code="assistanceAgent.claim.list.button.list.notResolved" action="/assistance-agent/claim/listNotResolved"/>
+			<acme:button code="assistanceAgent.trackingLog.list.button.list" action="/assistance-agent/tracking-log/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.administrator" access="hasRealm('Administrator')">
@@ -73,7 +74,14 @@
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.flight-crew-member" access="hasRealm('FlightCrewMember')">
+			<acme:menu-suboption code="master.menu.flight-crew-member.flight-assignment.completed-list" action="/flight-crew-member/flight-assignment/completed-list"/>
+			<acme:menu-suboption code="master.menu.flight-crew-member.flight-assignment.not-completed-list" action="/flight-crew-member/flight-assignment/not-completed-list"/>
+		</acme:menu-option>
 	</acme:menu-left>
+	
+	
 
 	<acme:menu-right>		
 		<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">

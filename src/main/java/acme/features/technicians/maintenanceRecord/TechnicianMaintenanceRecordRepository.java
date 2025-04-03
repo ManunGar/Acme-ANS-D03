@@ -10,6 +10,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.Aircrafts.Aircraft;
 import acme.entities.MaintenanceRecords.MaintenanceRecord;
 import acme.entities.MaintenanceRecords.MaintenanceRecordTask;
+import acme.entities.Tasks.Task;
 import acme.realms.Technician;
 
 @Repository
@@ -34,7 +35,10 @@ public interface TechnicianMaintenanceRecordRepository extends AbstractRepositor
 	Collection<MaintenanceRecordTask> findMaintenanceRecordTasksFromMaintenanceRecordId(int id);
 
 	@Query("SELECT count(mrt.task) FROM MaintenanceRecordTask mrt WHERE mrt.maintenanceRecord.id = :id")
-	int findTasksByMaintenanceRecordId(int id);
+	int findNumberOfTasksByMaintenanceRecordId(int id);
+
+	@Query("SELECT mrt.task FROM MaintenanceRecordTask mrt WHERE mrt.maintenanceRecord.id = :id")
+	Collection<Task> findTasksByMaintenanceRecordId(int id);
 
 	@Query("SELECT count(mrt.task) FROM MaintenanceRecordTask mrt WHERE mrt.maintenanceRecord.id = :id AND mrt.task.draftMode = true")
 	int findNotPublishedTasksByMaintenanceRecordId(int id);
