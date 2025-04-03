@@ -20,6 +20,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
 import acme.client.helpers.SpringHelper;
+import acme.constraints.ValidBooking;
 import acme.entities.Flight.Flight;
 import acme.entities.Flight.FlightRepository;
 import acme.entities.Passengers.Passenger;
@@ -30,6 +31,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidBooking
 public class Booking extends AbstractEntity {
 
 	//Serialisation version 

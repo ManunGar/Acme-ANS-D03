@@ -2,11 +2,13 @@
 package acme.entities.Claims;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -14,9 +16,11 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
+import acme.client.helpers.SpringHelper;
 import acme.constraints.ValidClaim;
 import acme.constraints.ValidLongText;
 import acme.entities.Legs.Legs;
+import acme.entities.TrackingLogs.TrackingLog;
 import acme.realms.AssistanceAgent.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,12 +51,7 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@Automapped
-	private ClaimTypes			claimTypes;
-
-	@Mandatory
-	@Valid
-	@Automapped
-	private AcceptedIndicator	accepted;	//Indicator
+	private ClaimTypes			claimType;
 
 	@Mandatory
 	@Automapped
@@ -68,6 +67,20 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne
-	private Legs				legWhichRequestOrComplain;
+	private Legs				leg;
+
+
+	@Transient
+	public AcceptedIndicator accepted() {
+		List<TrackingLog> trackingLogs;
+		AcceptedIndicator accepted;
+
+		ClaimRepository repository = SpringHelper.getBean(ClaimRepository.class);
+
+		trackingLogs = repository.findAllByClaimId(this.getId());
+		accepted = trackingLogs.size() == 0 ? AcceptedIndicator.PENDING : trackingLogs.get(0).getAccepted();
+
+		return accepted;
+	}
 
 }

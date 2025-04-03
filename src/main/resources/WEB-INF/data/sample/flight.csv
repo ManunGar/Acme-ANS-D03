@@ -29,5 +29,5 @@ flight-21,true,L,true,EUR 4.00,لوريم إيبسوم,manager-01
 flight-22,true,L,true,EUR 4.00,洛伦·伊普森,manager-01
 flight-23,true,L,true,EUR 4.00,' or 'A' = 'A,manager-01
 flight-24,true,L,true,EUR 4.00,<marquee>Hacked</marquee>,manager-01
-flight-25,true,L,true,EUR 4.00,<script>alert(‘Hacked!’);</script>,manager-01
+flight-25,false,L,true,EUR 4.00,<script>alert(‘Hacked!’);</script>,manager-01
 

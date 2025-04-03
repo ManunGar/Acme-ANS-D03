@@ -20,12 +20,21 @@ master.menu.anonymous.favourite-student5 = 29519141K: Ruiz Martín, Alejandro
 # master.menu.administrator ###################################################
 
 master.menu.administrator = Administrator
+master.menu.booking = Bookings published
 master.menu.administrator.list-user-accounts = List user accounts
 master.menu.administrator.list-airport = List airports
 master.menu.administrator.list-airlines = List airlines
+master.menu.administrator.list-aircrafts = List aircrafts
 master.menu.administrator.populate-db-initial = Populate DB (initial)
 master.menu.administrator.populate-db-sample = Populate DB (samples)
 master.menu.administrator.shut-system-down = Shut system down
+
+# master.menu.assistanceAgent ########################################################
+
+master.menu.assistanceAgent = assistanceAgent
+assistanceAgent.claim.list.button.list.resolved = List Claims resolved
+assistanceAgent.claim.list.button.list.notResolved = List Claims not resolved
+assistanceAgent.trackingLog.list.button.list = List all my trackingLogs
 
 # master.menu.provider ########################################################
 
@@ -46,6 +55,11 @@ master.menu.manager.list-flight = List flights
 # master.menu.customer ##########################################################
 
 master.menu.customer = Bookings
+master.menu.passenger = Passengers
+
+# master.menu.technician ##########################################################
+
+master.menu.technician = Maintenance records
 
 # master.menu.user-account ####################################################
 
@@ -56,8 +70,12 @@ master.menu.user-account.provider-profile = Provider profile
 master.menu.user-account.become-consumer = Become a consumer
 master.menu.user-account.consumer-profile = Consumer profile
 
+
 # master.menu.flight-crew-member ##########################################################
 
 master.menu.flight-crew-member = Flight Crew Member
 master.menu.flight-crew-member.flight-assignment.completed-list = Flight Assignments with completed Legs
 master.menu.flight-crew-member.flight-assignment.not-completed-list = Flight Assignments with planned Legs
+
+master.menu.user-account.become-customer = Become a customer
+
