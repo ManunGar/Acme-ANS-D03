@@ -9,10 +9,10 @@ technician.maintenance-record.form.label.notes = Notas: (Opcional)
 technician.maintenance-record.form.label.technician = Técnico:
 technician.maintenance-record.form.label.aircraft = Aeronave:
 
-technician.maintenance-record.form.button.tasks = Tareas
-technician.maintenance-record.form.button.create = Crear
-technician.maintenance-record.form.button.update = Actualizar
-technician.maintenance-record.form.button.publish = Publicar
+technician.maintenance-record.form.button.tasks = Tareas del Registro
+technician.maintenance-record.form.button.create = Crear Registro
+technician.maintenance-record.form.button.update = Actualizar Registro
+technician.maintenance-record.form.button.publish = Publicar Registro
 
 technician.maintenance-record.list.label.aircraft-model = Aeronave
 technician.maintenance-record.list.label.maintenanceDate = Fecha de mantenimiento
