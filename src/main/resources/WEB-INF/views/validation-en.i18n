@@ -43,7 +43,9 @@ acme.validation.Manager.identifier.name.message = The manager identification is 
 
 acme.validation.Customer.identifier.name.message = The identifier does not match the Client's initials
 
-acme.validation.text.identifier = The identifier is not correct, it must be 6 numbers and 2 or 3 capital letters, it must match with the two or three Client's initials
+acme.validation.text.identifier.letters = It must be 6 numbers and 2 or 3 capital letters, it must match with the two or three Client's initials
+
+acme.validation.text.identifier.pattern = The pattern is not well-form
 
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must be unique
 
@@ -54,3 +56,5 @@ acme.validation.text.message.phone = The phone must have between 6-15 numbers
 acme.validation.confirmation.message.passenger = The booking must have at least one passenger to be published
 
 acme.validation.confirmation.message.booking.locator-code.pattern = The locator code must match with the pattern
+
+acme.validation.text.identifier.duplicated = There is already another customer with that identifier
