@@ -30,6 +30,10 @@ public class FlightAssignment extends AbstractEntity {
 	// Attributes
 
 	@Mandatory
+	@Automapped
+	private boolean				draftMode;
+
+	@Mandatory
 	@Valid
 	@Automapped
 	private Duty				duty;

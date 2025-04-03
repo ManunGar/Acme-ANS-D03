@@ -70,4 +70,12 @@ master.menu.user-account.become-provider = Hacerse proveedor
 master.menu.user-account.provider-profile = Perfil de proveedor
 master.menu.user-account.become-consumer = Hazte consumidor
 master.menu.user-account.consumer-profile = Perfil de consumidor
+
+# master.menu.flight-crew-member ##########################################################
+
+master.menu.flight-crew-member = Miembro de la tripulación
+master.menu.flight-crew-member.flight-assignment.completed-list = Lista de asignaciones de vuelo con tramos completados
+master.menu.flight-crew-member.flight-assignment.not-completed-list = List de asignaciones de vuelo con tramos planeados
+
 master.menu.user-account.become-customer = Hacerse comprador
+
