@@ -59,6 +59,7 @@ master.menu.passenger = Passengers
 # master.menu.technician ##########################################################
 
 master.menu.technician = Maintenance records
+master.menu.task = Tasks
 
 # master.menu.user-account ####################################################
 

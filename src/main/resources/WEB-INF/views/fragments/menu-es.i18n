@@ -60,6 +60,7 @@ master.menu.passenger = Pasajeros
 # master.menu.technician ##########################################################
 
 master.menu.technnician = Registros de mantenimiento
+master.menu.task = Tareas
 
 # master.menu.user-account ####################################################
 
