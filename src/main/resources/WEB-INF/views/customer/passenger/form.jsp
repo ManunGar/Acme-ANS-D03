@@ -8,7 +8,6 @@
 		<acme:input-email code="customer.passenger.list.label.email" path="email"/>
 		<acme:input-textbox code="customer.passenger.list.label.passport" path="passport"/>
 		<acme:input-moment code="customer.passenger.list.label.dateOfBirth" path="dateOfBirth"/>
-		<acme:input-checkbox	 code="customer.passenger.list.label.draftMode" path="draftMode" readonly="true"/>
 		<acme:input-textbox code="customer.passenger.list.label.specialNeeds" path="specialNeeds"/>
 		
 		<jstl:choose>
