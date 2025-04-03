@@ -57,6 +57,10 @@ master.menu.manager.list-flight = Listado de vuelos
 master.menu.customer = Reservas
 master.menu.passenger = Pasajeros
 
+# master.menu.technician ##########################################################
+
+master.menu.technnician = Registros de mantenimiento
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta
