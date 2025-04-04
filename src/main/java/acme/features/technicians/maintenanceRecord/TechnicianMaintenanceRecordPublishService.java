@@ -98,7 +98,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		Collection<String> tasks = tasksNumber.stream().map(Task::getDescription).toList();
 
 		dataset = super.unbindObject(maintenanceRecord, "aircraft", "maintenanceMoment", "nextInspection", "status", "estimatedCost", "notes");
-		dataset.put("statuses", choices);
+		dataset.put("status", choices);
 		dataset.put("tasks", tasks);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
