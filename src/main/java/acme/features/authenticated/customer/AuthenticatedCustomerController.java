@@ -15,10 +15,10 @@ public class AuthenticatedCustomerController extends AbstractGuiController<Authe
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedCustomerCreateService createService;
+	private AuthenticatedCustomerCreateService	createService;
 
-	//		@Autowired
-	//		private AuthenticatedConsumerUpdateService	updateService;
+	@Autowired
+	private AuthenticatedCustomerUpdateService	updateService;
 
 	// Constructors -----------------------------------------------------------
 
@@ -26,6 +26,6 @@ public class AuthenticatedCustomerController extends AbstractGuiController<Authe
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("create", this.createService);
-		//			super.addBasicCommand("update", this.updateService);
+		super.addBasicCommand("update", this.updateService);
 	}
 }

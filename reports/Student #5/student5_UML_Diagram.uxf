@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
+  <help_text>// Uncomment the following line to change the fontsize and font:
+fontsize=10
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
   <zoom_level>9</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>738</x>
-      <y>486</y>
+      <x>801</x>
+      <y>477</y>
       <w>621</w>
       <h>144</h>
     </coordinates>
@@ -17,7 +41,7 @@ Technician
 + specialisation: String {Mandatory, ValidShortText, Automapped}
 + passedAnualHealthTest: Boolean {Mandatory, Automapped}
 + yearsOfExperience: Integer {Mandatory, ValidNumber(min = 0, max = 120), Automapped}
-+ certifications: String {Optional, ValidString(min = 0, max = 255), Automapped}
++ certifications: String {Optional, ValidString, Automapped}
 
 
 bg=PINK</panel_attributes>
@@ -26,8 +50,8 @@ bg=PINK</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>54</x>
-      <y>495</y>
+      <x>117</x>
+      <y>486</y>
       <w>522</w>
       <h>135</h>
     </coordinates>
@@ -38,7 +62,7 @@ Task
 + description: String {Mandatory, ValidLongText, Automapped}
 + priority: Integer {Mandatory, ValidNumber(min = 0, max = 10), Automapped}
 + estimatedDuration: Integer {Mandatory, ValidNumber(min = 0, max = 1000), Automapped}
-
++ draftMode: boolean {Mandatory, Automapped}
 
 
 bg=GREEN</panel_attributes>
@@ -47,8 +71,8 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>972</x>
-      <y>36</y>
+      <x>1035</x>
+      <y>27</y>
       <w>135</w>
       <h>63</h>
     </coordinates>
@@ -63,8 +87,8 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1179</x>
-      <y>774</y>
+      <x>1242</x>
+      <y>765</y>
       <w>135</w>
       <h>90</h>
     </coordinates>
@@ -83,9 +107,9 @@ bg=GREEN</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1035</x>
-      <y>342</y>
-      <w>99</w>
+      <x>1098</x>
+      <y>333</y>
+      <w>81</w>
       <h>162</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
@@ -97,10 +121,10 @@ m2= 1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>567</x>
-      <y>549</y>
+      <x>630</x>
+      <y>540</y>
       <w>189</w>
-      <h>45</h>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=*
@@ -111,10 +135,10 @@ performed by</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>261</y>
+      <x>423</x>
+      <y>252</y>
       <w>396</w>
-      <h>45</h>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=  *
@@ -125,8 +149,8 @@ involved in</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>234</x>
-      <y>711</y>
+      <x>297</x>
+      <y>702</y>
       <w>603</w>
       <h>216</h>
     </coordinates>
@@ -135,7 +159,7 @@ TechnicianDashboard
 --
 + maintenanceRecordsByStatus: Map&lt;String,Integer&gt;
 + maintenanceRecordWithNearestInspectionDue: Integer
-+ topFiveAircraftsWithMostTasks: List&lt;Integer&gt;
++ topFiveAircraftsWithMostTasks: List&lt;String&gt;
 + averageEstimatedCostLastYear: Double
 + minimumEstimatedCostLastYear: Double
 + maximumEstimatedCostLastYear: Double
@@ -151,8 +175,8 @@ bg=CYAN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>738</x>
-      <y>216</y>
+      <x>801</x>
+      <y>207</y>
       <w>603</w>
       <h>135</h>
     </coordinates>
@@ -164,14 +188,15 @@ MaintenanceRecord
 + nextInspection: Date {Mandatory, ValidMoment, Temporal(TemporalType.TIMESTAMP)}
 + estimatedCost: Money {Mandatory, ValidMoney, Automapped}
 + notes: String {Optional, ValidString(min = 0, max =255), Automapped}
-bg=GREEN</panel_attributes>
+bg=GREEN
++ draftMode: boolean {Mandatory, Automapped}</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>990</x>
-      <y>765</y>
+      <x>1053</x>
+      <y>756</y>
       <w>135</w>
       <h>108</h>
     </coordinates>
@@ -191,8 +216,8 @@ bg=GREEN</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>189</x>
-      <y>243</y>
+      <x>252</x>
+      <y>234</y>
       <w>180</w>
       <h>63</h>
     </coordinates>
@@ -207,9 +232,9 @@ bg=GREEN</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>261</x>
-      <y>297</y>
-      <w>72</w>
+      <x>324</x>
+      <y>288</y>
+      <w>54</w>
       <h>216</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
@@ -221,9 +246,9 @@ involves</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1026</x>
-      <y>90</y>
-      <w>90</w>
+      <x>1089</x>
+      <y>81</y>
+      <w>72</w>
       <h>144</h>
     </coordinates>
     <panel_attributes>lt=-&gt;

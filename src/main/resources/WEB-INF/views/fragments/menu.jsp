@@ -31,6 +31,13 @@
 		
 		<acme:menu-option code="master.menu.passenger" access="hasRealm('Customer')" action="/customer/passenger/list-menu">
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.technician" access="hasRealm('Technician')" action="/technician/maintenance-record/list">
+		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.task" access="hasRealm('Technician')" action="/technician/task/list">
+		</acme:menu-option>
+		
 		<acme:menu-option code="master.menu.assistanceAgent" access="hasRealm('AssistanceAgent')">
 			<acme:button code="assistanceAgent.claim.list.button.list.resolved" action="/assistance-agent/claim/listResolved"/>
 			<acme:button code="assistanceAgent.claim.list.button.list.notResolved" action="/assistance-agent/claim/listNotResolved"/>
@@ -67,7 +74,14 @@
 		<acme:menu-option code="master.menu.consumer" access="hasRealm('Consumer')">
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.flight-crew-member" access="hasRealm('FlightCrewMember')">
+			<acme:menu-suboption code="master.menu.flight-crew-member.flight-assignment.completed-list" action="/flight-crew-member/flight-assignment/completed-list"/>
+			<acme:menu-suboption code="master.menu.flight-crew-member.flight-assignment.not-completed-list" action="/flight-crew-member/flight-assignment/not-completed-list"/>
+		</acme:menu-option>
 	</acme:menu-left>
+	
+	
 
 	<acme:menu-right>		
 		<acme:menu-option code="master.menu.user-account" access="isAuthenticated()">
@@ -77,6 +91,7 @@
 			<acme:menu-suboption code="master.menu.user-account.become-consumer" action="/authenticated/consumer/create" access="!hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-customer" action="/authenticated/customer/create" access="!hasRealm('Customer')"/>
+			<acme:menu-suboption code="master.menu.user-account.customer-profile" action="/authenticated/customer/update" access="hasRealm('Customer')"/>
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>

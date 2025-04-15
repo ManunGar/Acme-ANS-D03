@@ -71,14 +71,14 @@ public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, L
 
 		Collection<Flight> flights = this.flightRepository.findAllFlight();
 		Collection<Airport> airports = this.airportRepository.findAllAirport();
-		Collection<Aircraft> aircrafts = this.aircraftRepository.findAllAircarft();
+		Collection<Aircraft> aircrafts = this.aircraftRepository.findAllAircarftByAirlineId(leg.getFlight().getManager().getAirline().getId());
 		flightChoices = SelectChoices.from(flights, "description", leg.getFlight());
 		departureAirportChoices = SelectChoices.from(airports, "city", leg.getDepartureAirport());
 		arrivalAirportChoices = SelectChoices.from(airports, "city", leg.getArrivalAirport());
 		aircraftChoices = SelectChoices.from(aircrafts, "model", leg.getAircraft());
 		choices = SelectChoices.from(LegsStatus.class, leg.getStatus());
 
-		dataset = super.unbindObject(leg, "departure", "arrival", "draftMode");
+		dataset = super.unbindObject(leg, "departure", "arrival", "draftMode", "flightNumber");
 		dataset.put("status", choices);
 		dataset.put("flight", flightChoices.getSelected().getKey());
 		dataset.put("flights", flightChoices);
@@ -89,6 +89,7 @@ public class ManagerLegsShowService extends AbstractGuiService<AirlineManager, L
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("legId", leg.getId());
+		dataset.put("flightId", leg.getFlight().getId());
 
 		super.getResponse().addData(dataset);
 	}

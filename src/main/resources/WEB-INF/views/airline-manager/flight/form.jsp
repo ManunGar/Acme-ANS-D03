@@ -14,9 +14,11 @@
 		<acme:input-textarea code="manager.flight.list.label.arrival" path="arrival" readonly="true"/>
 		<acme:input-textarea code="manager.flight.list.label.layovers" path="layovers" readonly="true"/>
 		<jstl:choose>
-			<jstl:when test="${acme:anyOf(_command, 'show|update')}">
+			<jstl:when test="${(_command == 'update' || _command == 'show' || _command == 'publish' || _command == 'delete') && draftMode == true}">
 				<acme:input-checkbox code="manager.flight.form.label.confirmation.update" path="confirmation"/>
 				<acme:submit code="manager.flight.form.button.update" action="/airline-manager/flight/update"/>
+				<acme:submit code="manager.flight.form.button.publish" action="/airline-manager/flight/publish"/>
+				<acme:submit code="manager.flight.form.button.delete" action="/airline-manager/flight/delete"/>
 			</jstl:when>
 			<jstl:when test="${_command == 'create'}">
 				<acme:input-checkbox code="manager.flight.form.label.confirmation.create" path="confirmation"/>	

@@ -11,17 +11,30 @@
 airline-manager.flight.list.title = Listado de Vuelos
 airline-manager.flight.form.title = Detalles de Vuelos
 
-manager.flight.list.label.origin = Origen
-manager.flight.list.label.destination = Destino
-manager.flight.list.label.departure = Salida
-manager.flight.list.label.arrival = Llegada
-manager.flight.list.label.highlights = Destacado
-manager.flight.list.label.description = Descripción
-manager.flight.list.label.layovers = Transbordos
-manager.flight.list.label.self-transfer = Autotransferencia
-manager.flight.list.label.cost = Precio
+airline-manager.legs.list.title = Lista de Tramos
+airline-manager.legs.form.title = Detalles del Tramo
+manager.legs.list.label.departure = Salida
+manager.legs.list.label.arrival = Llegada
+manager.legs.list.label.status = Estado
+manager.legs.list.label.departure-airport = Aeropuerto de Salida
+manager.legs.list.label.arrival-airport = Aeropuerto de Llegada
+manager.legs.list.label.aircraft = Avión
+manager.legs.list.label.flight = Vuelo
+manager.legs.list.label.flightNumber = Número del Vuelo
 
-manager.flight.list.button.create = Crear Vuelo
-manager.flight.form.button.update = Guardar Cambios
-manager.flight.form.label.confirmation.update = ¿Confirmar cambios?
+manager.legs.form.label.confirmation.update = ¿Confirmar Cambios?
+manager.legs.form.label.confirmation.create = ¿Confirmar Creacion?
+
+manager.legs.list.button.create = Crear
+manager.legs.form.button.create = Crear
+manager.legs.form.button.update = Cambiar
+manager.legs.form.button.publish = Publicar
+manager.legs.form.button.delete = Eliminar
+
+acme.validation.legs.dates.message = La fecha de llegada es anterior a la fecha de salida
+acme.validation.leg.airport.message = El aeropuerto origen y destino es el mismo
+acme.validation.legs.departure.message = Un tramo tiene una fecha de llegada posterior a la salida de este tramo
+acme.validation.legs.departureAirportmessage = El aeropuerto, origen/destino no coincide con el anterior/siguiente tramo
+
+
 

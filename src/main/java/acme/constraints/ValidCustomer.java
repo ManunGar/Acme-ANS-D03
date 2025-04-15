@@ -17,7 +17,7 @@ public @interface ValidCustomer {
 
 	// Standard validation properties -----------------------------------------
 
-	String message() default "{acme.validation.Customer.identifier.message}";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};

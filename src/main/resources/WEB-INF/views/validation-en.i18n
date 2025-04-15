@@ -21,6 +21,10 @@ acme.validation.whine.redress.message	 	  = Provide some justification.
 
 acme.validation.NotNull.message = The Entity cannot be null
 
+acme.validation.drafMode.message = The Entity is not in draft mode
+
+acme.validation.FlightDraftMode.message = The flight cannot be published as it does not contain legs or has some unpublished legs 
+
 acme.validation.claim.indicator.message = The Indicator of Claim and its TrackingLog must be the same
 
 acme.validation.claim.leg.message = The Leg associated to the Claim must be in the past
@@ -39,11 +43,11 @@ acme.validation.legs.message = The leg is not formatted or in the correct order
 
 acme.validation.Manager.identifier.name.message = The manager identification is not correct
 
-acme.validation.Customer.identifier.message = The identifier must not be null and must match with the two or three Client's initials
-
 acme.validation.Customer.identifier.name.message = The identifier does not match the Client's initials
 
-acme.validation.text.identifier = The identifier is not correct, the identifier must not be null and must match with the two or three Client's initials
+acme.validation.text.identifier.letters = It must be 6 numbers and 2 or 3 capital letters, it must match with the two or three Client's initials
+
+acme.validation.text.identifier.pattern = The pattern is not well-form
 
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must be unique
 
@@ -52,3 +56,7 @@ acme.validation.text.IATAcode = The IATAcode is not correct
 acme.validation.text.message.phone = The phone must have between 6-15 numbers
 
 acme.validation.confirmation.message.passenger = The booking must have at least one passenger to be published
+
+acme.validation.confirmation.message.booking.locator-code.pattern = The locator code must match with the pattern
+
+acme.validation.text.identifier.duplicated = There is already another customer with that identifier

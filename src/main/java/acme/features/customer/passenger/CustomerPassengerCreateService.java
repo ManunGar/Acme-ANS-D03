@@ -42,7 +42,7 @@ public class CustomerPassengerCreateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void bind(final Passenger passenger) {
-		super.bindObject(passenger, "fullName", "email", "passport", "dateOfBirth", "draftMode", "specialNeeds");
+		super.bindObject(passenger, "fullName", "email", "passport", "dateOfBirth", "specialNeeds");
 
 	}
 

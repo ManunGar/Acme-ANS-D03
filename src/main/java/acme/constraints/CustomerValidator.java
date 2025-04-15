@@ -3,10 +3,19 @@ package acme.constraints;
 
 import javax.validation.ConstraintValidatorContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import acme.client.components.validation.AbstractValidator;
+import acme.client.components.validation.Validator;
+import acme.features.authenticated.customer.AuthenticatedCustomerRepository;
 import acme.realms.Customer;
 
+@Validator
 public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer> {
+
+	@Autowired
+	private AuthenticatedCustomerRepository repository;
+
 
 	@Override
 	protected void initialise(final ValidCustomer annotation) {
@@ -22,7 +31,7 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 		if (customer == null)
 			super.state(context, false, "*", "acme.validation.NotNull.message");
 		else if (customer.getIdentifier() == null || !customer.getIdentifier().matches("^[A-Z]{2,3}\\d{6}$"))
-			super.state(context, false, "Identifier", "acme.validation.Customer.identifier.message");
+			super.state(context, false, "identifier", "acme.validation.text.identifier.pattern");
 		else {
 			String identifierCustomer = "";
 			int count = 0;
@@ -40,8 +49,12 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 			if (customer.getIdentifier().substring(0, 2).equals(identifierCustomer) || customer.getIdentifier().substring(0, 3).equals(identifierCustomer))
 				result = true;
 			else
-				super.state(context, false, "Identifier", "acme.validation.Customer.identifier.name.message");
+				super.state(context, false, "identifier", "acme.validation.text.identifier.letters");
 		}
+
+		Customer c = this.repository.findCustomerByIdentifier(customer.getIdentifier());
+		if (c != null && c.getId() != customer.getId())
+			super.state(context, false, "identifier", "acme.validation.text.identifier.duplicated");
 
 		result = !super.hasErrors(context);
 

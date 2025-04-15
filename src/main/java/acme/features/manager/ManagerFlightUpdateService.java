@@ -53,6 +53,9 @@ public class ManagerFlightUpdateService extends AbstractGuiService<AirlineManage
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+
+		confirmation = flight.getDraftMode();
+		super.state(confirmation, "*", "acme.validation.draftMode.message");
 	}
 
 	@Override
@@ -64,12 +67,13 @@ public class ManagerFlightUpdateService extends AbstractGuiService<AirlineManage
 	public void unbind(final Flight flight) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(flight, "description", "highlights", "selfTransfer", "cost");
+		dataset = super.unbindObject(flight, "description", "highlights", "selfTransfer", "cost", "draftMode");
 		dataset.put("departure", flight.getDeparture());
 		dataset.put("arrival", flight.getArrival());
 		dataset.put("origin", flight.getOrigin());
 		dataset.put("destination", flight.getArrival());
 		dataset.put("layovers", flight.getLayovers());
+		dataset.put("flightId", flight.getId());
 		super.getResponse().addData(dataset);
 	}
 
