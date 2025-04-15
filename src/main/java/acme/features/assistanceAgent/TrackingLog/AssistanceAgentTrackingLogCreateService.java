@@ -57,6 +57,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		trackingLog.setAccepted(accepted);
 		trackingLog.setClaim(claim);
 		trackingLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		trackingLog.setCreatedMoment(MomentHelper.getCurrentMoment());
 
 	}
 
@@ -69,6 +70,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	@Override
 	public void perform(final TrackingLog trackingLog) {
 		trackingLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		trackingLog.setCreatedMoment(MomentHelper.getCurrentMoment());
 
 		this.repository.save(trackingLog);
 	}
@@ -87,7 +89,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		statusChoices = SelectChoices.from(AcceptedIndicator.class, trackingLog.getAccepted());
 
-		dataset = super.unbindObject(trackingLog, "step", "resolutionPercentage", "accepted", "resolution", "claim");
+		dataset = super.unbindObject(trackingLog, "step", "resolutionPercentage", "accepted", "resolution", "createdMoment", "claim");
 		dataset.put("status", statusChoices);
 		dataset.put("claims", claimChoices);
 

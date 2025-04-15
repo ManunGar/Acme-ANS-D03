@@ -88,40 +88,35 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 
 			}
 
-			//Validation of attribute resolutionPercentage is always higher than the last created
+			//Validation of attribute resolutionPercentage is always higher than the last created and lower than the next created
 			{
 				if (trackingLog.getClaim() != null) {
 
 					boolean resolutionPercentageHigher;
 
 					TrackingLog existingTrackingLog = this.trackingLogRepository.findTrackingLogById(trackingLog.getId());
-					if (existingTrackingLog == null) {
 
-						Collection<TrackingLog> trackingLogs = this.trackingLogRepository.findTrackingLogsOrderedByLastUpdateMoment(trackingLog.getClaim().getId());
-						TrackingLog lastTrackingLog = trackingLogs.size() > 0 ? trackingLogs.stream().toList().get(0) : null;
-						resolutionPercentageHigher = lastTrackingLog == null ? true : lastTrackingLog.getResolutionPercentage() <= trackingLog.getResolutionPercentage();
+					Collection<TrackingLog> trackingLogs = this.trackingLogRepository.findTrackingLogsOrderedByCreatedMoment(trackingLog.getClaim().getId());
+					List<TrackingLog> listTrackingLogs = trackingLogs.stream().toList();
 
-					} else {
+					if (existingTrackingLog == null) { // Create
+						TrackingLog lastTrackingLog = listTrackingLogs.size() > 0 ? listTrackingLogs.get(0) : null;
+						resolutionPercentageHigher = lastTrackingLog == null || lastTrackingLog.getResolutionPercentage() <= trackingLog.getResolutionPercentage();
 
-						Collection<TrackingLog> trackingLogs = this.trackingLogRepository.findTrackingLogsOrderedByLastUpdateMoment(trackingLog.getClaim().getId());
-						List<TrackingLog> listTrackingLogs = trackingLogs.stream().toList();
-						int indexOfLastTrackingLog = listTrackingLogs.indexOf(trackingLog) + 1;
-						if (indexOfLastTrackingLog >= listTrackingLogs.size())
-							resolutionPercentageHigher = true;
-						else {
-							TrackingLog lastTrackingLog = listTrackingLogs.size() > 0 ? listTrackingLogs.get(indexOfLastTrackingLog) : null;
-							boolean resolutionPercentageHigherThanTheLast = lastTrackingLog == null ? true : lastTrackingLog.getResolutionPercentage() <= trackingLog.getResolutionPercentage();
-							TrackingLog thisTrackingLogBeforeUpdate = listTrackingLogs.size() > 0 ? listTrackingLogs.get(indexOfLastTrackingLog - 1) : null;
-							boolean resolutionPercentageHigherThanThisBeforeUpdate = thisTrackingLogBeforeUpdate == null ? true : thisTrackingLogBeforeUpdate.getResolutionPercentage() <= trackingLog.getResolutionPercentage();
-							resolutionPercentageHigher = resolutionPercentageHigherThanTheLast && resolutionPercentageHigherThanThisBeforeUpdate;
-						}
+					} else { // Update
+						int indexOfCurrentTrackingLog = listTrackingLogs.indexOf(trackingLog);
 
+						TrackingLog previousTrackingLog = indexOfCurrentTrackingLog + 1 < listTrackingLogs.size() ? listTrackingLogs.get(indexOfCurrentTrackingLog + 1) : null;
+						TrackingLog nextTrackingLog = indexOfCurrentTrackingLog - 1 >= 0 ? listTrackingLogs.get(indexOfCurrentTrackingLog - 1) : null;
+
+						boolean higherOrEqualThanPrevious = previousTrackingLog == null || previousTrackingLog.getResolutionPercentage() <= trackingLog.getResolutionPercentage();
+						boolean lowerOrEqualThanNext = nextTrackingLog == null || trackingLog.getResolutionPercentage() <= nextTrackingLog.getResolutionPercentage();
+
+						resolutionPercentageHigher = higherOrEqualThanPrevious && lowerOrEqualThanNext;
 					}
 
 					super.state(context, resolutionPercentageHigher, "resolutionPercentage", "acme.validation.trackingLog.resolutionPercentage.message");
-
 				}
-
 			}
 		}
 

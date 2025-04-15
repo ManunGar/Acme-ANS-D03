@@ -5,6 +5,7 @@
 
 <acme:form>
 	<jstl:if test="${_command != 'create' }">
+		<acme:input-moment code="assistanceAgent.trackingLog.form.label.createdMoment" path="createdMoment" readonly="true"/>
 		<acme:input-moment code="assistanceAgent.trackingLog.form.label.lastUpdateMoment" path="lastUpdateMoment" readonly="true"/>
 	</jstl:if> 
 	<acme:input-textarea code="assistanceAgent.trackingLog.form.label.step" path="step"/>

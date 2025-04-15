@@ -16,6 +16,7 @@ assistanceAgent.TrackingLog.list.label.resolutionPercentage = ResolutionPercenta
 assistanceAgent.TrackingLog.list.label.claim = Claim
 assistanceAgent.TrackingLog.list.label.accepted = Status
 
+assistanceAgent.trackingLog.form.label.createdMoment = Created moment
 assistanceAgent.trackingLog.form.label.lastUpdateMoment = Last update moment
 assistanceAgent.trackingLog.form.label.step = Step
 assistanceAgent.trackingLog.form.label.resolutionPercentage = Percentage of resolution

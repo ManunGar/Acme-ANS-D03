@@ -16,6 +16,7 @@ assistanceAgent.TrackingLog.list.label.resolutionPercentage = Porcentaje de reso
 assistanceAgent.TrackingLog.list.label.claim = Queja
 assistanceAgent.TrackingLog.list.label.accepted = Estado
 
+assistanceAgent.trackingLog.form.label.createdMoment = Fecha de creacion
 assistanceAgent.trackingLog.form.label.lastUpdateMoment = Ultima fecha de actualizacion
 assistanceAgent.trackingLog.form.label.step = Step
 assistanceAgent.trackingLog.form.label.resolutionPercentage = Porcentaje de resolucion
