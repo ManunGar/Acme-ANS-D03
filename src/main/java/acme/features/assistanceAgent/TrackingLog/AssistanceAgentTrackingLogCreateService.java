@@ -35,6 +35,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		trackingLog.setAccepted(AcceptedIndicator.PENDING);
 		trackingLog.setDraftMode(true);
 		trackingLog.setResolutionPercentage(0.);
+		trackingLog.setSecondTrackingLog(false);
 
 		super.getBuffer().addData(trackingLog);
 
@@ -53,10 +54,11 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		accepted = accepted == null ? AcceptedIndicator.PENDING : accepted;
 
-		super.bindObject(trackingLog, "step", "resolutionPercentage", "resolution");
+		super.bindObject(trackingLog, "step", "resolutionPercentage", "resolution", "secondTrackingLog");
 		trackingLog.setAccepted(accepted);
 		trackingLog.setClaim(claim);
 		trackingLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		trackingLog.setCreatedMoment(MomentHelper.getCurrentMoment());
 
 	}
 
@@ -69,6 +71,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	@Override
 	public void perform(final TrackingLog trackingLog) {
 		trackingLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		trackingLog.setCreatedMoment(MomentHelper.getCurrentMoment());
 
 		this.repository.save(trackingLog);
 	}
@@ -87,9 +90,10 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		statusChoices = SelectChoices.from(AcceptedIndicator.class, trackingLog.getAccepted());
 
-		dataset = super.unbindObject(trackingLog, "step", "resolutionPercentage", "accepted", "resolution", "claim");
+		dataset = super.unbindObject(trackingLog, "step", "resolutionPercentage", "accepted", "resolution", "createdMoment", "secondTrackingLog", "claim");
 		dataset.put("status", statusChoices);
 		dataset.put("claims", claimChoices);
+		dataset.put("secondTrackingLogReadOnly", false);
 
 		super.getResponse().addData(dataset);
 

@@ -61,6 +61,23 @@ public class TrackingLog extends AbstractEntity {
 	@Automapped
 	private String				resolution;
 
+	@Mandatory
+	@ValidMoment(past = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date				createdMoment;
+
+	@Mandatory
+	@Automapped
+	private boolean				secondTrackingLog;
+
+	/*
+	 * The `createdMoment` attribute is used to chronologically
+	 * sort the different trackingLogs in the database and
+	 * to perform all checks and validations, whereas
+	 * `lastUpdateMoment` is the attribute that informs the user
+	 * about the last time this trackingLog was modified.
+	 */
+
 	// Derived attributes -----------------------------------------------------
 
 
