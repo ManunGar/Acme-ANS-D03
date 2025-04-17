@@ -50,7 +50,7 @@ public class AssistanceAgentTrackingLogListAllService extends AbstractGuiService
 
 		dataset = super.unbindObject(trackingLog, "step", "resolutionPercentage", "accepted");
 
-		dataset.put("claim", trackingLog.getClaim());
+		dataset.put("claim", trackingLog.getClaim().getDescription());
 		super.getResponse().addData(dataset);
 	}
 

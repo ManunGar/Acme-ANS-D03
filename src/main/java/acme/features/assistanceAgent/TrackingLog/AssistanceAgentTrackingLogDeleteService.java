@@ -57,7 +57,7 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 	@Override
 	public void bind(final TrackingLog trackingLog) {
 
-		super.bindObject(trackingLog, "step", "resolutionPercentage", "accepted", "resolution", "secondTrackingLog");
+		super.bindObject(trackingLog, "step", "resolutionPercentage", "accepted", "resolution");
 
 	}
 
@@ -82,13 +82,14 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		claimsOfThisAssistanceAgent = this.repository.findClaimsByAssistanceAgentId(assistanceAgentId);
-		claimChoices = SelectChoices.from(claimsOfThisAssistanceAgent, "id", trackingLog.getClaim());
+		claimChoices = SelectChoices.from(claimsOfThisAssistanceAgent, "description", trackingLog.getClaim());
 
 		statusChoices = SelectChoices.from(AcceptedIndicator.class, trackingLog.getAccepted());
 
 		claimDraftMode = trackingLog.getClaim().isDraftMode();
 
-		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "step", "resolutionPercentage", "accepted", "draftMode", "resolution", "createdMoment", "secondTrackingLog", "claim");
+		dataset = super.unbindObject(trackingLog, "lastUpdateMoment", "step", "resolutionPercentage", "accepted", "draftMode", "resolution", "createdMoment", "secondTrackingLog");
+		dataset.put("claim", trackingLog.getClaim().getDescription());
 		dataset.put("status", statusChoices);
 		dataset.put("claims", claimChoices);
 		dataset.put("readOnlyClaim", true);

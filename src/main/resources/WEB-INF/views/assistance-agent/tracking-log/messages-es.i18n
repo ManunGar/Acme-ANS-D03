@@ -32,5 +32,6 @@ assistanceAgent.trackingLog.form.button.delete = Eliminar tracking log
 assistanceAgent.trackingLog.form.button.create = Crear
 
 acme.validation.confirmation.message.trackingLog.claim = Selecciona una claim correcta
+acme.validation.confirmation.message.trackingLog.condition = Un cliente no puede expresar disconformidad con la trackingLog resuelta si esta no esta publicada
 
 acme.validation.confirmation.message.lastNibble = Los últimos digitos de la tarjeta de crédito deberán ser rellenados si la reserva es publicada

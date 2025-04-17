@@ -2,6 +2,7 @@
 package acme.features.assistanceAgent.TrackingLog;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -66,6 +67,14 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	public void validate(final TrackingLog trackingLog) {
 		if (this.repository.findClaimById(super.getRequest().getData("claim", int.class)) == null)
 			super.state(false, "claim", "acme.validation.confirmation.message.trackingLog.claim");
+
+		if (trackingLog.getResolutionPercentage() == 100.00 && trackingLog.isSecondTrackingLog()) {
+
+			List<TrackingLog> trackingLogs = this.repository.findAllTrackingLogsByclaimId(super.getRequest().getData("claim", int.class)).stream().filter(x -> x.getResolutionPercentage() == 100.00).filter(x -> x.isDraftMode() == false).toList();
+			if (trackingLogs.isEmpty())
+				super.state(false, "secondTrackingLog", "acme.validation.confirmation.message.trackingLog.condition");
+		}
+
 	}
 
 	@Override
@@ -86,7 +95,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		claimsOfThisAssistanceAgent = this.repository.findClaimsByAssistanceAgentId(assistanceAgentId);
-		claimChoices = SelectChoices.from(claimsOfThisAssistanceAgent, "id", trackingLog.getClaim());
+		claimChoices = SelectChoices.from(claimsOfThisAssistanceAgent, "description", trackingLog.getClaim());
 
 		statusChoices = SelectChoices.from(AcceptedIndicator.class, trackingLog.getAccepted());
 
