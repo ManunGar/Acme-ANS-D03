@@ -10,5 +10,6 @@
 	<acme:list-column code="assistanceAgent.claim.list.label.accepted" path="accepted" width="25%"/>
 	<acme:list-payload path="payload"/>
 </acme:list>
-
-<acme:button code="assistanceAgent.claim.button.create" action="/assistance-agent/claim/create"/>
+<jstl:if test="${_command != 'listResolved'}">
+	<acme:button code="assistanceAgent.claim.button.create" action="/assistance-agent/claim/create"/>
+</jstl:if>

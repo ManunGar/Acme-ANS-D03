@@ -23,6 +23,7 @@ assistanceAgent.trackingLog.form.label.resolutionPercentage = Percentage of reso
 assistanceAgent.trackingLog.form.label.accepted = Status
 assistanceAgent.trackingLog.form.label.resolution = Resolution
 assistanceAgent.trackingLog.form.label.claim = Claim
+assistanceAgent.trackingLog.form.label.secondTrackingLog = This checkbox indicates whether this trackingLog is being created after the customer expresses dissatisfaction.
 
 assistanceAgent.TrackingLog.button.create = Create new tracking log
 assistanceAgent.trackingLog.form.button.update = Update tracking log

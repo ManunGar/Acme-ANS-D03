@@ -13,6 +13,9 @@
 	<acme:input-select code="assistanceAgent.trackingLog.form.label.accepted" path="accepted" choices="${status}"/>
 	<acme:input-textbox code="assistanceAgent.trackingLog.form.label.resolution" path="resolution"/>
 	<acme:input-select code="assistanceAgent.trackingLog.form.label.claim" path="claim" choices="${claims}" readonly="${readOnlyClaim}"/>
+	<jstl:if test="${_command == 'create' || resolutionPercentage == 100.00}">
+		<acme:input-checkbox code="assistanceAgent.trackingLog.form.label.secondTrackingLog" path="secondTrackingLog" readonly="${secondTrackingLogReadOnly}"/>
+	</jstl:if>
 	
 	<jstl:choose>	 
 		<jstl:when test="${_command != 'create' && draftMode == true}">

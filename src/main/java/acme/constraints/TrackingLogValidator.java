@@ -118,6 +118,34 @@ public class TrackingLogValidator extends AbstractValidator<ValidTrackingLog, Tr
 					super.state(context, resolutionPercentageHigher, "resolutionPercentage", "acme.validation.trackingLog.resolutionPercentage.message");
 				}
 			}
+
+			//Validation that if there are 2 trackingLogs with resolutionPercentage = 100.00, one of them has secondTrackingLog = true
+
+			{
+				if (trackingLog.getClaim() != null) {
+					boolean attributeSecondTrackingLog;
+
+					List<TrackingLog> trackingLogs = this.claimRepository.findAllByClaimId(trackingLog.getClaim().getId());
+					trackingLogs = trackingLogs.stream().filter(x -> x.getResolutionPercentage() == 100.00).filter(x -> x.getId() != trackingLog.getId()).toList();
+					attributeSecondTrackingLog = trackingLog.getResolutionPercentage() != 100.00 ? true
+						: trackingLogs.size() != 1 ? !trackingLog.isSecondTrackingLog() : trackingLogs.get(0).isSecondTrackingLog() ^ trackingLog.isSecondTrackingLog() ? true : false;
+
+					super.state(context, attributeSecondTrackingLog, "secondTrackingLog", "acme.validation.trackingLog.secondTrackingLog.numberOfTrackingLogs.message");
+				}
+
+			}
+
+			// Validation: secondTrackingLog can only be true if resolutionPercentage == 100.00
+			{
+				if (trackingLog.getClaim() != null) {
+					boolean secondTrackingLogValid;
+
+					secondTrackingLogValid = !trackingLog.isSecondTrackingLog() || trackingLog.getResolutionPercentage() == 100.00;
+
+					super.state(context, secondTrackingLogValid, "secondTrackingLog", "acme.validation.trackingLog.secondTrackingLog.resolutionPercentage.message");
+				}
+			}
+
 		}
 
 		result = !super.hasErrors(context);

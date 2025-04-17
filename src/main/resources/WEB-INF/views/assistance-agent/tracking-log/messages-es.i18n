@@ -23,6 +23,7 @@ assistanceAgent.trackingLog.form.label.resolutionPercentage = Porcentaje de reso
 assistanceAgent.trackingLog.form.label.accepted = Estado
 assistanceAgent.trackingLog.form.label.resolution = Resolucion
 assistanceAgent.trackingLog.form.label.claim = Queja
+assistanceAgent.trackingLog.form.label.secondTrackingLog = Esta casilla indica que el trackingLog se está creando tras haber manifestado el cliente su insatisfacción.
 
 assistanceAgent.TrackingLog.button.create = Crear nueva tracking log
 assistanceAgent.trackingLog.form.button.update = Actualizar tracking log
