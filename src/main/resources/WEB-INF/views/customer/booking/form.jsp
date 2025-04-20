@@ -12,9 +12,10 @@
 		<acme:input-textbox code="authenticated.booking.list.label.lastNibble" path="lastNibble"/>
 		<acme:input-textarea code="authenticated.booking.list.label.passenger" path="passengers" readonly="true"/>
 	<jstl:choose>
-			<jstl:when test="${(_command == 'update' || _command == 'show' || _command == 'publish') && draftMode == true}">
+			<jstl:when test="${(_command == 'update' || _command == 'show' || _command == 'publish'|| _command == 'delete') && draftMode == true}">
 				<acme:submit code="authenticated.booking.form.button.update" action="/customer/booking/update"/>
 				<acme:submit code="authenticated.booking.form.button.publish" action="/customer/booking/publish"/>
+				<acme:submit code="authenticated.booking.form.button.delete" action="/customer/booking/delete"/>
 				
 			</jstl:when>
 			<jstl:when test="${_command == 'create'}">
