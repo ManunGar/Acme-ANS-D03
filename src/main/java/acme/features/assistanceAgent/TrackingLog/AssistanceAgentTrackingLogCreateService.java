@@ -47,10 +47,9 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void bind(final TrackingLog trackingLog) {
+
 		AcceptedIndicator accepted;
-
 		accepted = super.getRequest().getData("accepted", AcceptedIndicator.class);
-
 		accepted = accepted == null ? AcceptedIndicator.PENDING : accepted;
 
 		super.bindObject(trackingLog, "step", "resolutionPercentage", "resolution", "secondTrackingLog");

@@ -57,7 +57,12 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 	@Override
 	public void bind(final TrackingLog trackingLog) {
 
-		super.bindObject(trackingLog, "step", "resolutionPercentage", "accepted", "resolution");
+		AcceptedIndicator accepted;
+		accepted = super.getRequest().getData("accepted", AcceptedIndicator.class);
+		accepted = accepted == null ? AcceptedIndicator.PENDING : accepted;
+
+		super.bindObject(trackingLog, "step", "resolutionPercentage", "resolution");
+		trackingLog.setAccepted(accepted);
 
 	}
 
