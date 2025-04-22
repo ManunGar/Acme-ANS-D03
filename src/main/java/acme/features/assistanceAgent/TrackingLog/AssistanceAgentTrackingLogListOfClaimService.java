@@ -45,4 +45,14 @@ public class AssistanceAgentTrackingLogListOfClaimService extends AbstractGuiSer
 		super.getResponse().addData(dataset);
 	}
 
+	@Override
+	public void unbind(final Collection<TrackingLog> trackingLogs) {
+		int claimId;
+
+		claimId = super.getRequest().getData("masterId", int.class);
+
+		super.getResponse().addGlobal("masterId", claimId);
+
+	}
+
 }

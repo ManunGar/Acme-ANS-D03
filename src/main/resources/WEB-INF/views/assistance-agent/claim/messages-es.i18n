@@ -32,3 +32,4 @@ assistanceAgent.Claim.form.button.create = Crear queja
 
 acme.validation.confirmation.message.lastNibble = Los últimos digitos de la tarjeta de crédito deberán ser rellenados si la reserva es publicada
 acme.validation.confirmation.message.claim.leg = Debes asociar una Leg existente a la claim
+acme.validation.confirmation.message.claim.draftMode = Estas intentando publicar una claim que ya esta publicada

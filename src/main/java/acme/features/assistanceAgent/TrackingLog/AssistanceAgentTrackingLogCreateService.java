@@ -1,7 +1,6 @@
 
 package acme.features.assistanceAgent.TrackingLog;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +31,15 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 	public void load() {
 		TrackingLog trackingLog;
 
+		Integer claimId = super.getRequest().getData("masterId", int.class);
+		Claim claim = this.repository.findClaimById(claimId);
+
 		trackingLog = new TrackingLog();
 		trackingLog.setAccepted(AcceptedIndicator.PENDING);
 		trackingLog.setDraftMode(true);
 		trackingLog.setResolutionPercentage(0.);
 		trackingLog.setSecondTrackingLog(false);
+		trackingLog.setClaim(claim);
 
 		super.getBuffer().addData(trackingLog);
 
@@ -44,12 +47,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void bind(final TrackingLog trackingLog) {
-		int claimId;
-		Claim claim;
 		AcceptedIndicator accepted;
-
-		claimId = super.getRequest().getData("claim", int.class);
-		claim = this.repository.findClaimById(claimId);
 
 		accepted = super.getRequest().getData("accepted", AcceptedIndicator.class);
 
@@ -57,7 +55,6 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		super.bindObject(trackingLog, "step", "resolutionPercentage", "resolution", "secondTrackingLog");
 		trackingLog.setAccepted(accepted);
-		trackingLog.setClaim(claim);
 		trackingLog.setLastUpdateMoment(MomentHelper.getCurrentMoment());
 		trackingLog.setCreatedMoment(MomentHelper.getCurrentMoment());
 
@@ -65,12 +62,9 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void validate(final TrackingLog trackingLog) {
-		if (this.repository.findClaimById(super.getRequest().getData("claim", int.class)) == null)
-			super.state(false, "claim", "acme.validation.confirmation.message.trackingLog.claim");
-
 		if (trackingLog.getResolutionPercentage() == 100.00 && trackingLog.isSecondTrackingLog()) {
 
-			List<TrackingLog> trackingLogs = this.repository.findAllTrackingLogsByclaimId(super.getRequest().getData("claim", int.class)).stream().filter(x -> x.getResolutionPercentage() == 100.00).filter(x -> x.isDraftMode() == false).toList();
+			List<TrackingLog> trackingLogs = this.repository.findAllTrackingLogsByclaimId(super.getRequest().getData("masterId", int.class)).stream().filter(x -> x.getResolutionPercentage() == 100.00).filter(x -> x.isDraftMode() == false).toList();
 			if (trackingLogs.isEmpty())
 				super.state(false, "secondTrackingLog", "acme.validation.confirmation.message.trackingLog.condition");
 		}
@@ -87,22 +81,16 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 	@Override
 	public void unbind(final TrackingLog trackingLog) {
-		Collection<Claim> claimsOfThisAssistanceAgent;
-		SelectChoices claimChoices;
-		int assistanceAgentId;
 		SelectChoices statusChoices;
 		Dataset dataset;
 
-		assistanceAgentId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		claimsOfThisAssistanceAgent = this.repository.findClaimsByAssistanceAgentId(assistanceAgentId);
-		claimChoices = SelectChoices.from(claimsOfThisAssistanceAgent, "description", trackingLog.getClaim());
-
 		statusChoices = SelectChoices.from(AcceptedIndicator.class, trackingLog.getAccepted());
 
-		dataset = super.unbindObject(trackingLog, "step", "resolutionPercentage", "accepted", "resolution", "createdMoment", "secondTrackingLog", "claim");
+		dataset = super.unbindObject(trackingLog, "step", "resolutionPercentage", "accepted", "resolution", "createdMoment", "secondTrackingLog");
+		dataset.put("claim", trackingLog.getClaim().getDescription());
 		dataset.put("status", statusChoices);
-		dataset.put("claims", claimChoices);
 		dataset.put("secondTrackingLogReadOnly", false);
+		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 
 		super.getResponse().addData(dataset);
 
