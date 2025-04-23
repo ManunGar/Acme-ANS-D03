@@ -62,7 +62,7 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.flightRepository.findFlightById(flightId);
 
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "lastNibble", "price", "travelClass");
+		super.bindObject(booking, "locatorCode", "lastNibble", "price", "travelClass");
 		booking.setFlight(flight);
 
 	}
@@ -74,8 +74,6 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void perform(final Booking booking) {
-		Date today = MomentHelper.getCurrentMoment();
-		booking.setPurchaseMoment(today);
 		this.repository.save(booking);
 	}
 
