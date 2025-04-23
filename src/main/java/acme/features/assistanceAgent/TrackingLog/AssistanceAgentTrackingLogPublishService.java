@@ -58,6 +58,9 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 		if (trackingLog.getClaim().isDraftMode() == true)
 			super.state(false, "draftMode", "acme.validation.confirmation.message.trackingLog.claim.notPublished");
+
+		if (!trackingLog.isDraftMode())
+			super.state(false, "*", "acme.validation.confirmation.message.trackingLog.draftMode");
 	}
 
 	@Override
