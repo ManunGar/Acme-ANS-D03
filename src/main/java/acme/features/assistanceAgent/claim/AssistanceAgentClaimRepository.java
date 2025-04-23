@@ -23,7 +23,7 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 	@Query("select j from Claim j where j.assistanceAgent.id = :assistanceAgentId")
 	Collection<Claim> findClaimsByAssistanceAgentId(int assistanceAgentId);
 
-	@Query("select l from Legs l WHERE l.status <> acme.entities.Legs.LegsStatus.CANCELLED AND l.arrival < :currentMoment")
+	@Query("select l from Legs l WHERE l.arrival < :currentMoment AND l.draftMode = false")
 	Collection<Legs> findAvailableLegs(@Param("currentMoment") Date currentMoment);
 
 	@Query("select l from Legs l where l.id = :legId")

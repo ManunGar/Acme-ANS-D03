@@ -27,7 +27,7 @@ acme.validation.FlightDraftMode.message = The flight cannot be published as it d
 
 acme.validation.claim.indicator.message = The Indicator of Claim and its TrackingLog must be the same
 
-acme.validation.claim.leg.message = The Leg associated to the Claim must be in the past
+acme.validation.claim.leg.message = The Leg associated to the Claim must be in the past and published
 
 acme.validation.trackinLog.resolutionMandatory.message = The resolution of the TrackingLog must be written after resolutionPercentage reaches 100.00
 

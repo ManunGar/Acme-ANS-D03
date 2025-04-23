@@ -24,6 +24,9 @@ assistanceAgent.Claim.form.label.description = Descripcion de la queja
 assistanceAgent.Claim.form.label.claimTypes = Tipo de queja
 assistanceAgent.Claim.form.label.accepted = Estado
 assistanceAgent.Claim.form.label.leg = Trayecto al que esta asociada la queja
+assistanceAgent.Claim.form.leg.label.departure = Fecha de salida del trayecto
+assistanceAgent.Claim.form.leg.label.arrival = Fecha de llegada del trayecto
+assistanceAgent.Claim.form.leg.label.status = Estado del trayecto
 assistanceAgent.Claim.form.button.trackingLogs = Ver tracking logs de esta queja
 assistanceAgent.Claim.form.button.update = Actualizar queja
 assistanceAgent.Claim.form.button.publish = Publicar queja
@@ -32,3 +35,4 @@ assistanceAgent.Claim.form.button.create = Crear queja
 
 acme.validation.confirmation.message.lastNibble = Los últimos digitos de la tarjeta de crédito deberán ser rellenados si la reserva es publicada
 acme.validation.confirmation.message.claim.leg = Debes asociar una Leg existente a la claim
+acme.validation.confirmation.message.claim.draftMode = Estas intentando publicar una queja que ya esta publicada

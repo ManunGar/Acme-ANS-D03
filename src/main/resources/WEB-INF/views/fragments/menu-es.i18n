@@ -35,7 +35,6 @@ master.menu.assistanceAgent = assistanceAgent
 master.menu.booking = Bookings = Reservas publicadas
 assistanceAgent.claim.list.button.list.resolved = Listar quejas resueltas
 assistanceAgent.claim.list.button.list.notResolved = Listar quejas pendientes
-assistanceAgent.trackingLog.list.button.list = Listar todas mis tracking logs
 
 # master.menu.provider ########################################################
 

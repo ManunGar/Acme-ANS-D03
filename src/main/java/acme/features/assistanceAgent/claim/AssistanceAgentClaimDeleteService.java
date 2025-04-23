@@ -10,6 +10,7 @@ import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.Claims.AcceptedIndicator;
 import acme.entities.Claims.Claim;
 import acme.entities.Claims.ClaimTypes;
 import acme.entities.Legs.Legs;
@@ -87,18 +88,27 @@ public class AssistanceAgentClaimDeleteService extends AbstractGuiService<Assist
 		SelectChoices typesChoices;
 		SelectChoices legsChoices;
 		Dataset dataset;
+		boolean undergoing;
+
+		undergoing = claim.accepted().equals(AcceptedIndicator.PENDING);
 
 		legs = this.repository.findAvailableLegs(MomentHelper.getCurrentMoment());
 		legsChoices = SelectChoices.from(legs, "flightNumber", claim.getLeg());
 
 		typesChoices = SelectChoices.from(ClaimTypes.class, claim.getClaimType());
 
-		dataset = super.unbindObject(claim, "passengerEmail", "description", "claimType");
+		dataset = super.unbindObject(claim, "registrationMoment", "passengerEmail", "description", "claimType");
 
 		dataset.put("accepted", claim.accepted());
 		dataset.put("leg", claim.getLeg());
 		dataset.put("legs", legsChoices);
 		dataset.put("claimTypes", typesChoices);
+		dataset.put("draftMode", claim.isDraftMode());
+		dataset.put("undergoing", undergoing);
+		//Related to leg:
+		dataset.put("departure", claim.getLeg().getDeparture());
+		dataset.put("arrival", claim.getLeg().getArrival());
+		dataset.put("status", claim.getLeg().getStatus());
 
 		super.getResponse().addData(dataset);
 	}

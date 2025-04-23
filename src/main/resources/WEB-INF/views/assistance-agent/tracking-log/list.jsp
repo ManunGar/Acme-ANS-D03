@@ -11,4 +11,4 @@
 	<acme:list-payload path="payload"/>
 </acme:list>
 
-<acme:button code="assistanceAgent.TrackingLog.button.create" action="/assistance-agent/tracking-log/create"/>
+<acme:button code="assistanceAgent.TrackingLog.button.create" action="/assistance-agent/tracking-log/create?masterId=${masterId}"/>
