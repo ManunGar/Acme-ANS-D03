@@ -35,7 +35,23 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 	@Override
 	public void authorise() {
 		boolean isCustomer = super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		super.getResponse().setAuthorised(isCustomer);
+
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+		Collection<Booking> bookings = this.bookingRepository.findBookingByCustomer(customerId);
+		Collection<Passenger> passengers = this.passengerRepository.findPassengerByCustomer(customerId).stream().filter(p -> p.isDraftMode() == false).toList();
+		boolean isInBookings = true;
+		boolean isInPassengers = true;
+
+		if (super.getRequest().hasData("id")) {
+			int bookingId = super.getRequest().getData("booking", int.class);
+			Booking booking = this.bookingRepository.findBookingById(bookingId);
+			isInBookings = bookings.contains(booking);
+
+			int passengerId = super.getRequest().getData("passenger", int.class);
+			Passenger passenger = this.passengerRepository.findPassengerById(passengerId);
+			isInPassengers = passengers.contains(passenger);
+		}
+		super.getResponse().setAuthorised(isCustomer && isInPassengers && isInBookings);
 	}
 
 	@Override
@@ -49,21 +65,8 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 
 	@Override
 	public void bind(final BookingRecord bookingRecord) {
-		int BookingId;
-		Booking booking;
 
-		int PassengerId;
-		Passenger passenger;
-
-		BookingId = super.getRequest().getData("booking", int.class);
-		booking = this.bookingRepository.findBookingById(BookingId);
-
-		PassengerId = super.getRequest().getData("passenger", int.class);
-		passenger = this.passengerRepository.findPassengerById(PassengerId);
-
-		super.bindObject(bookingRecord);
-		bookingRecord.setBooking(booking);
-		bookingRecord.setPassenger(passenger);
+		super.bindObject(bookingRecord, "booking", "passenger");
 
 	}
 

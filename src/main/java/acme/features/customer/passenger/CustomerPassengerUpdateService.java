@@ -28,7 +28,7 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 		id = super.getRequest().getData("id", int.class);
 		passenger = this.repository.findPassengerById(id);
 		boolean status = passenger.getCustomer().getUserAccount().getId() == customerId && super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		super.getResponse().setAuthorised(status);
+		super.getResponse().setAuthorised(status && passenger.isDraftMode());
 	}
 
 	@Override
@@ -50,8 +50,7 @@ public class CustomerPassengerUpdateService extends AbstractGuiService<Customer,
 
 	@Override
 	public void validate(final Passenger passenger) {
-		if (passenger.isDraftMode() == false)
-			super.state(false, "draftMode", "acme.validation.confirmation.message.update");
+		;
 
 	}
 

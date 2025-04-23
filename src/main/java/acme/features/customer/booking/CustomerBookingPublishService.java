@@ -45,8 +45,18 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		id = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(id);
 		boolean status = booking.getCustomer().getUserAccount().getId() == customerId && super.getRequest().getPrincipal().hasRealmOfType(Customer.class);
-		status = status && booking.isDraftMode();
-		super.getResponse().setAuthorised(status);
+
+		Date today = MomentHelper.getCurrentMoment();
+		int flightId = super.getRequest().getData("flight", int.class);
+		Collection<Flight> flights = this.flightRepository.findAllFlight().stream().filter(f -> f.getDraftMode() == false && this.flightRepository.findDepartureByFlightId(f.getId()).get(0).after(today)).toList();
+		Flight flight;
+		boolean isFlightInList = true;
+		if (flightId != 0) {
+			flight = this.flightRepository.findFlightById(flightId);
+			isFlightInList = flights.contains(flight);
+		}
+
+		super.getResponse().setAuthorised(status && booking.isDraftMode() && isFlightInList);
 	}
 
 	@Override
@@ -62,8 +72,14 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void bind(final Booking booking) {
-		super.bindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "passengers", "travelClass");
+		int flightId;
+		Flight flight;
 
+		flightId = super.getRequest().getData("flight", int.class);
+		flight = this.flightRepository.findFlightById(flightId);
+
+		super.bindObject(booking, "locatorCode", "lastNibble", "travelClass");
+		booking.setFlight(flight);
 	}
 
 	@Override
@@ -82,15 +98,8 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void perform(final Booking booking) {
-		if (booking.getLastNibble() == null || booking.getLastNibble().isBlank() || booking.getLastNibble().isEmpty())
-			booking.setLastNibble(this.repository.findBookingById(booking.getId()).getLastNibble());
-		Booking b = this.repository.findBookingById(booking.getId());
-		b.setFlight(booking.getFlight());
-		b.setLocatorCode(booking.getLocatorCode());
-		b.setTravelClass(booking.getTravelClass());
-		b.setLastNibble(booking.getLastNibble());
-		b.setDraftMode(false);
-		this.repository.save(b);
+		booking.setDraftMode(false);
+		this.repository.save(booking);
 	}
 
 	@Override
