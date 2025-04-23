@@ -13,6 +13,11 @@
 	<acme:input-textbox code="assistanceAgent.Claim.form.label.accepted" path="accepted" readonly="true"/>
 	<jstl:if test="${undergoing == true || undergoing == null}">
 		<acme:input-select code="assistanceAgent.Claim.form.label.leg" path="leg" choices="${legs}"/>
+		<jstl:if test="${_command != 'create' }">
+			<acme:input-moment code="assistanceAgent.Claim.form.leg.label.departure" path="departure" readonly="true"/>
+			<acme:input-moment code="assistanceAgent.Claim.form.leg.label.arrival" path="arrival" readonly="true"/>
+			<acme:input-textbox code="assistanceAgent.Claim.form.leg.label.status" path="status" readonly="true"/>
+		</jstl:if>
 	</jstl:if>
 	
 	<jstl:if test="${_command != 'create' }">

@@ -121,6 +121,10 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		dataset.put("claimTypes", typesChoices);
 		dataset.put("draftMode", claim.isDraftMode());
 		dataset.put("undergoing", undergoing);
+		//Related to leg:
+		dataset.put("departure", claim.getLeg().getDeparture());
+		dataset.put("arrival", claim.getLeg().getArrival());
+		dataset.put("status", claim.getLeg().getStatus());
 
 		super.getResponse().addData(dataset);
 	}
