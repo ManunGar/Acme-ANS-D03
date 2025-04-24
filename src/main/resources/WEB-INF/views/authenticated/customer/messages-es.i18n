@@ -18,3 +18,5 @@ authenticated.customer.list.label.country = País
 authenticated.customer.list.label.earned-points = Puntos ganados 
 
 authenticated.customer.form.button.create = Crear comprador
+
+master.menu.user-account.customer-profile = Perfil de comprador

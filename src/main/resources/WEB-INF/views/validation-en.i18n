@@ -53,6 +53,8 @@ acme.validation.text.identifier.letters = It must be 6 numbers and 2 or 3 capita
 
 acme.validation.text.identifier.pattern = The pattern is not well-form
 
+acme.validation.text.identifier = The identifier is not correct
+
 acme.validation.assistanceAgent.employeeCode.message = The employeeCode must be unique
 
 acme.validation.text.IATAcode = The IATAcode is not correct

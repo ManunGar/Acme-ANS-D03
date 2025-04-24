@@ -59,7 +59,7 @@ public class AdministratorBookingShowService extends AbstractGuiService<Administ
 		Collection<Passenger> passengersNumber = this.repository.findPassengersByBooking(booking.getId());
 		Collection<String> passengers = passengersNumber.stream().map(x -> x.getFullName()).toList();
 
-		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "price", "lastNibble");
 		dataset.put("travelClass", choices);
 		dataset.put("passengers", passengers);
 		dataset.put("flight", flightChoices.getSelected().getKey());

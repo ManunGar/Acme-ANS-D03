@@ -45,8 +45,8 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 				identifierCustomer += String.valueOf(surnameList[i].charAt(0));
 				count++;
 			}
-
-			if (customer.getIdentifier().substring(0, 2).equals(identifierCustomer) || customer.getIdentifier().substring(0, 3).equals(identifierCustomer))
+			String a = customer.getIdentifier().substring(0, 3);
+			if (customer.getIdentifier().substring(0, 2).equals(identifierCustomer.toUpperCase()) || customer.getIdentifier().substring(0, 3).equals(identifierCustomer.toUpperCase()))
 				result = true;
 			else
 				super.state(context, false, "identifier", "acme.validation.text.identifier.letters");

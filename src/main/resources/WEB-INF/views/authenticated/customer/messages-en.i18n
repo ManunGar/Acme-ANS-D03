@@ -18,3 +18,5 @@ authenticated.customer.list.label.country = Country
 authenticated.customer.list.label.earned-points = Earned points
 
 authenticated.customer.form.button.create = Create customer
+
+master.menu.user-account.customer-profile = Customer profile

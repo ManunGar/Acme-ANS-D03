@@ -48,7 +48,7 @@ public class AuthenticatedCustomerUpdateService extends AbstractGuiService<Authe
 	public void bind(final Customer object) {
 		assert object != null;
 
-		super.bindObject(object, "identifier", "phoneNumber", "physicalAddress", "city", "country", "earnedPoints");
+		super.bindObject(object, "identifier", "phoneNumber", "physicalAddress", "city", "country");
 	}
 
 	@Override
@@ -59,17 +59,8 @@ public class AuthenticatedCustomerUpdateService extends AbstractGuiService<Authe
 	@Override
 	public void perform(final Customer object) {
 		assert object != null;
-		int userAccountId;
-		Customer c;
 
-		userAccountId = super.getRequest().getPrincipal().getAccountId();
-		c = this.repository.findCustomerByUserAccountId(userAccountId);
-		c.setIdentifier(object.getIdentifier());
-		c.setPhoneNumber(object.getPhoneNumber());
-		c.setPhysicalAddress(object.getPhysicalAddress());
-		c.setCity(object.getCity());
-		c.setCountry(object.getCountry());
-		this.repository.save(c);
+		this.repository.save(object);
 	}
 
 	@Override

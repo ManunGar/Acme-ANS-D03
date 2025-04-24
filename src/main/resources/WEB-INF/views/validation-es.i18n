@@ -47,6 +47,8 @@ acme.validation.Customer.identifier.message = El identificador deberá correspon
 
 acme.validation.Customer.identifier.name.message = El identificador no coincide con las iniciales del Cliente
 
+acme.validation.text.identifier = El identificador no es correcto
+
 acme.validation.text.identifier.letters = Debe ser de 6 números y 2 o 3 siglas mayúsculas, debe coincidir con las dos o tres iniciales del Cliente
 
 acme.validation.text.identifier.pattern = El identificador no está bien formado
