@@ -14,16 +14,16 @@ import acme.realms.Technician;
 @Repository
 public interface TechnicianTaskRepository extends AbstractRepository {
 
-	@Query("select t from Task t where t.draftMode = false")
+	@Query("SELECT t FROM Task t WHERE t.draftMode = false")
 	Collection<Task> findPublishedTasks();
 
-	@Query("select t from Task t where t.technician.id = :id")
+	@Query("SELECT t FROM Task t WHERE t.technician.id = :id")
 	Collection<Task> findTasksByTechnicianId(int id);
 
-	@Query("select t from Task t where t.id = :id")
+	@Query("SELECT t FROM Task t WHERE t.id = :id")
 	Task findTaskById(int id);
 
-	@Query("select mrt from MaintenanceRecordTask mrt where mrt.task.id = :id")
+	@Query("SELECT mrt FROM MaintenanceRecordTask mrt WHERE mrt.task.id = :id")
 	Collection<MaintenanceRecordTask> findMaintenanceRecordTasksFromTaskId(int id);
 
 	@Query("SELECT t FROM Technician t")
@@ -31,4 +31,8 @@ public interface TechnicianTaskRepository extends AbstractRepository {
 
 	@Query("SELECT t FROM Technician t WHERE t.id = :id")
 	Technician findTechnicianById(int id);
+
+	@Query("SELECT mrt.task FROM MaintenanceRecordTask mrt WHERE mrt.maintenanceRecord.id = :maintenanceRecordId")
+	Collection<Task> findTasksByMaintenanceRecordId(int maintenanceRecordId);
+
 }

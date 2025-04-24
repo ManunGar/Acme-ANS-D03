@@ -14,7 +14,7 @@ technician.maintenance-record-task.form.title = Crear un registro de mantenimien
 technician.maintenance-record-task.list.label.task = Tarea
 technician.maintenance-record-task.list.label.maintenance-record = Registro de mantenimiento
 
-technician.maintenance-record-task.form.button.create = Crear registro asociado a una tarea
+technician.maintenance-record-task.form.button.create = Asociar una tarea a un registro
 
 acme.validation.confirmation.message.maintenance-record-task.create = Esa relacion ya está creada
 acme.validation.confirmation.message.maintenance-record-task.create.maintenance-record = El registro de mantenimiento no puede ser nula
