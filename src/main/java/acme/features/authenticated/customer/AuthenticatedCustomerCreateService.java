@@ -50,18 +50,17 @@ public class AuthenticatedCustomerCreateService extends AbstractGuiService<Authe
 	public void bind(final Customer object) {
 		assert object != null;
 
-		super.bindObject(object, "identifier", "phoneNumber", "physicalAddress", "city", "country", "earnedPoints");
+		super.bindObject(object, "identifier", "phoneNumber", "physicalAddress", "city", "country");
 	}
 
 	@Override
 	public void validate(final Customer object) {
-		assert object != null;
+		;
 	}
 
 	@Override
 	public void perform(final Customer object) {
 		assert object != null;
-		object.setEarnedPoints(0);
 		this.repository.save(object);
 	}
 

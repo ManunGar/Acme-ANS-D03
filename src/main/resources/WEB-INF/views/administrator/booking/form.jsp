@@ -10,7 +10,6 @@
 		<acme:input-select code="authenticated.booking.list.label.travelClass" path="travelClass" choices="${travelClass}"/>
 		<acme:input-money code="authenticated.booking.list.label.price" path="price" readonly="true"/>
 		<acme:input-textbox code="authenticated.booking.list.label.lastNibble" path="lastNibble"/>
-		<acme:input-checkbox code="authenticated.booking.list.label.draftMode" path="draftMode" readonly="true"/>
 		<acme:input-textarea code="authenticated.booking.list.label.passenger" path="passengers" readonly="true"/>
 		
 </acme:form>
