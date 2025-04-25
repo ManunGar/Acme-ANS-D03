@@ -45,6 +45,12 @@ public class AdministratorAirlineUpdateService extends AbstractGuiService<Admini
 
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+
+		boolean iataCodeUnique;
+		String iataCode = airline.getIATAcode();
+		iataCodeUnique = this.repository.isIATACodeAvailable(iataCode);
+
+		super.state(iataCodeUnique, "IATAcode", "acme.validation.airline.IATACode.message");
 	}
 
 	@Override

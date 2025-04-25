@@ -27,3 +27,4 @@ administrator.airline.form.button.create = Crear Aerolinea
 
 administrator.airline.form.label.confirmation.update = Estas seguro de que quieres actualizar esta aerlinea?
 administrator.airline.form.button.update = Actualizar Aerolinea
+acme.validation.airline.IATACode.message = Este IATACode no es unico

@@ -27,3 +27,5 @@ administrator.airline.form.button.create = Create Airline
 
 administrator.airline.form.label.confirmation.update = Are you sure you want to update the above Airline?
 administrator.airline.form.button.update = Update Airline
+
+acme.validation.airline.IATACode.message = This IATACode is not unique
