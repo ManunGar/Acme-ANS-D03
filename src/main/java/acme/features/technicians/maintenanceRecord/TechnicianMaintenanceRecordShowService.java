@@ -72,6 +72,7 @@ public class TechnicianMaintenanceRecordShowService extends AbstractGuiService<T
 		dataset.put("aircrafts", aircraftChoices);
 		dataset.put("technician", technicianChoices.getSelected().getKey());
 		dataset.put("technicians", technicianChoices);
+		dataset.put("maintenanceRecordId", maintenanceRecord.getId());
 
 		super.getResponse().addData(dataset);
 	}

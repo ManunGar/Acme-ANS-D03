@@ -12,7 +12,6 @@ import acme.client.services.GuiService;
 import acme.entities.Aircrafts.Aircraft;
 import acme.entities.MaintenanceRecords.MaintenanceRecord;
 import acme.entities.MaintenanceRecords.MaintenanceStatus;
-import acme.entities.Tasks.Task;
 import acme.realms.Technician;
 
 @GuiService
@@ -80,22 +79,26 @@ public class TechnicianMaintenanceRecordUpdateService extends AbstractGuiService
 	public void unbind(final MaintenanceRecord maintenanceRecord) {
 		SelectChoices choices;
 		SelectChoices aircraftChoices;
+		SelectChoices technicianChoices;
 		Dataset dataset;
 		Collection<Aircraft> aircrafts;
+		Collection<Technician> technicians;
 
 		choices = SelectChoices.from(MaintenanceStatus.class, maintenanceRecord.getStatus());
 
 		aircrafts = this.repository.findAllAircrafts();
 		aircraftChoices = SelectChoices.from(aircrafts, "model", maintenanceRecord.getAircraft());
 
-		Collection<Task> tasksNumber = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
-		Collection<String> tasks = tasksNumber.stream().map(Task::getDescription).toList();
+		technicians = this.repository.findAllTechnicians();
+		technicianChoices = SelectChoices.from(technicians, "licenseNumber", maintenanceRecord.getTechnician());
 
-		dataset = super.unbindObject(maintenanceRecord, "aircraft", "maintenanceMoment", "nextInspection", "status", "estimatedCost", "notes");
-		dataset.put("statuses", choices);
-		dataset.put("tasks", tasks);
+		dataset = super.unbindObject(maintenanceRecord, "technician.identity.name", "maintenanceMoment", "nextInspection", "status", "estimatedCost", "notes", "draftMode");
+		dataset.put("status", choices);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
 		dataset.put("aircrafts", aircraftChoices);
+		dataset.put("technician", technicianChoices.getSelected().getKey());
+		dataset.put("technicians", technicianChoices);
+		dataset.put("maintenanceRecordId", maintenanceRecord.getId());
 
 		super.getResponse().addData(dataset);
 	}

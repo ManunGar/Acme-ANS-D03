@@ -5,29 +5,35 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.basis.AbstractRealm;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.Aircrafts.Aircraft;
 import acme.entities.MaintenanceRecords.MaintenanceRecord;
+import acme.entities.MaintenanceRecords.MaintenanceRecordTask;
 import acme.entities.MaintenanceRecords.MaintenanceStatus;
+import acme.features.technicians.maintenanceRecordTask.TechnicianMaintenanceRecordTaskRepository;
 import acme.realms.Technician;
 
 @GuiService
-public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService<Technician, MaintenanceRecord> {
+public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService<Technician, MaintenanceRecord> {
 
 	// Internal state ------------------------------------------------------------
 
 	@Autowired
-	private TechnicianMaintenanceRecordRepository repository;
+	private TechnicianMaintenanceRecordRepository		repository;
+
+	@Autowired
+	private TechnicianMaintenanceRecordTaskRepository	mrtRepository;
 
 	// AbstractGuiService interface ----------------------------------------------
 
 
 	@Override
 	public void authorise() {
+		System.out.println(super.getRequest());
+
 		boolean isTechnician = super.getRequest().getPrincipal().hasRealmOfType(Technician.class);
 		super.getResponse().setAuthorised(isTechnician);
 	}
@@ -35,43 +41,32 @@ public class TechnicianMaintenanceRecordCreateService extends AbstractGuiService
 	@Override
 	public void load() {
 		MaintenanceRecord maintenanceRecord;
-		AbstractRealm technicianRealm = super.getRequest().getPrincipal().getActiveRealm();
-		int technicianId = technicianRealm.getId();
-		Technician technician = this.repository.findTechnicianById(technicianId);
+		int id;
 
-		maintenanceRecord = new MaintenanceRecord();
-		maintenanceRecord.setTechnician(technician);
-		maintenanceRecord.setDraftMode(true);
+		id = super.getRequest().getData("id", int.class);
+		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 
 		super.getBuffer().addData(maintenanceRecord);
 	}
 
 	@Override
 	public void bind(final MaintenanceRecord maintenanceRecord) {
-		int aircraftId;
-		Aircraft aircraft;
-
-		aircraftId = super.getRequest().getData("aircraft", int.class);
-		aircraft = this.repository.findAircraftById(aircraftId);
 
 		super.bindObject(maintenanceRecord, "maintenanceMoment", "nextInspection", "status", "estimatedCost", "notes");
-		maintenanceRecord.setAircraft(aircraft);
+
 	}
 
 	@Override
 	public void validate(final MaintenanceRecord maintenanceRecord) {
-		{
-			boolean status;
-			status = maintenanceRecord.getStatus() == null ? true : !maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
-
-			super.state(status, "status", "technician.maintenance-record.create.status");
-		}
+		;
 	}
 
 	@Override
 	public void perform(final MaintenanceRecord maintenanceRecord) {
+		for (MaintenanceRecordTask mrt : this.mrtRepository.findMaintenanceRecordTaskByMaintenanceRecordId(maintenanceRecord.getId()))
+			this.mrtRepository.delete(mrt);
 
-		this.repository.save(maintenanceRecord);
+		this.repository.delete(maintenanceRecord);
 	}
 
 	@Override
