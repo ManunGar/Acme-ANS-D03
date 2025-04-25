@@ -50,21 +50,8 @@ public class TechnicianMaintenanceRecordTaskCreateService extends AbstractGuiSer
 
 	@Override
 	public void bind(final MaintenanceRecordTask maintenanceRecordTask) {
-		int maintenanceRecordId;
-		MaintenanceRecord maintenanceRecord;
 
-		int taskId;
-		Task task;
-
-		maintenanceRecordId = super.getRequest().getData("maintenanceRecord", int.class);
-		maintenanceRecord = this.maintenanceRecordRepository.findMaintenanceRecordById(maintenanceRecordId);
-
-		taskId = super.getRequest().getData("task", int.class);
-		task = this.taskRepository.findTaskById(taskId);
-
-		super.bindObject(maintenanceRecordTask);
-		maintenanceRecordTask.setMaintenanceRecord(maintenanceRecord);
-		maintenanceRecordTask.setTask(task);
+		super.bindObject(maintenanceRecordTask, "task", "maintenanceRecord");
 
 	}
 
@@ -85,10 +72,10 @@ public class TechnicianMaintenanceRecordTaskCreateService extends AbstractGuiSer
 		SelectChoices taskChoices;
 		SelectChoices maintenanceRecordChoices;
 
-		int technicianId = super.getRequest().getPrincipal().getActiveRealm().getUserAccount().getId();
+		int technicianId = super.getRequest().getPrincipal().getActiveRealm().getId();
 		Collection<MaintenanceRecord> maintenanceRecords = this.maintenanceRecordRepository.findMaintenanceRecordsByTechnicianId(technicianId);
-		Collection<Task> tasks = this.taskRepository.findTasksByTechnicianId(technicianId).stream().filter(t -> t.isDraftMode() == false).toList();
-		maintenanceRecordChoices = SelectChoices.from(maintenanceRecords, "status", maintenanceRecordTask.getMaintenanceRecord());
+		Collection<Task> tasks = this.taskRepository.findPublishedTasks();
+		maintenanceRecordChoices = SelectChoices.from(maintenanceRecords, "id", maintenanceRecordTask.getMaintenanceRecord());
 		taskChoices = SelectChoices.from(tasks, "description", maintenanceRecordTask.getTask());
 
 		dataset = super.unbindObject(maintenanceRecordTask);

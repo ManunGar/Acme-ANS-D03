@@ -18,3 +18,4 @@ technician.task.list.label.priority = Prioridad
 
 technician.task.list.button.create = Crear tarea
 
+acme.validation.range = Numero no válido (Prioridad entre 0 y 10, Duración entre 0 y 1000)

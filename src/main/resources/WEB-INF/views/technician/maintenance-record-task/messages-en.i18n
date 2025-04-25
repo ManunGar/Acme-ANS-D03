@@ -14,7 +14,7 @@ technician.maintenance-record-task.form.title = Create a maintenance record rela
 technician.maintenance-record-task.list.label.task = Task
 technician.maintenance-record-task.list.label.maintenance-record = Maintenance Record
 
-technician.maintenance-record-task.form.button.create = Create record related to a task
+technician.maintenance-record-task.form.button.create = Relate task to a record
 
 
 acme.validation.confirmation.message.maintenance-record-task.create = That relation is already created

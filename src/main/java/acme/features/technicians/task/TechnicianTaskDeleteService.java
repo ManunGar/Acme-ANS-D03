@@ -3,13 +3,14 @@ package acme.features.technicians.task;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import acme.client.components.basis.AbstractRealm;
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
+import acme.entities.MaintenanceRecords.MaintenanceRecordTask;
 import acme.entities.Tasks.Task;
 import acme.entities.Tasks.TaskType;
+import acme.features.technicians.maintenanceRecordTask.TechnicianMaintenanceRecordTaskRepository;
 import acme.realms.Technician;
 
 @GuiService
@@ -18,7 +19,10 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 	// Internal state ------------------------------------------------------------
 
 	@Autowired
-	private TechnicianTaskRepository repository;
+	private TechnicianTaskRepository					repository;
+
+	@Autowired
+	private TechnicianMaintenanceRecordTaskRepository	mrtRepository;
 
 	// AbstractGuiService interface ----------------------------------------------
 
@@ -32,15 +36,13 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 	@Override
 	public void load() {
 		Task task;
-		AbstractRealm technicianRealm = super.getRequest().getPrincipal().getActiveRealm();
-		int technicianId = technicianRealm.getId();
-		Technician technician = this.repository.findTechnicianById(technicianId);
+		int id;
 
-		task = new Task();
-		task.setTechnician(technician);
-		task.setDraftMode(true);
+		id = super.getRequest().getData("id", int.class);
+		task = this.repository.findTaskById(id);
 
 		super.getBuffer().addData(task);
+
 	}
 
 	@Override
@@ -56,6 +58,9 @@ public class TechnicianTaskDeleteService extends AbstractGuiService<Technician, 
 
 	@Override
 	public void perform(final Task task) {
+
+		for (MaintenanceRecordTask mrt : this.mrtRepository.findMaintenanceRecordTaskByTaskId(task.getId()))
+			this.mrtRepository.delete(mrt);
 
 		this.repository.delete(task);
 	}
