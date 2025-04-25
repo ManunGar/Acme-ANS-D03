@@ -34,7 +34,7 @@ public class Airline extends AbstractEntity {
 	@Mandatory
 	@ValidShortText
 	@Automapped
-	private String				names;
+	private String				name;
 
 	@Mandatory
 	@ValidIATACode
