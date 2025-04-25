@@ -22,7 +22,21 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
-		super.getResponse().setAuthorised(true);
+		boolean status;
+		Claim claim;
+		int trackingLogId;
+		TrackingLog trackingLog;
+		AssistanceAgent assistanceAgent;
+
+		trackingLogId = super.getRequest().getData("id", int.class);
+		trackingLog = this.repository.findTrackingLogById(trackingLogId);
+
+		claim = this.repository.findClaimByTrackingLogId(trackingLogId);
+
+		assistanceAgent = claim == null ? null : claim.getAssistanceAgent();
+		status = super.getRequest().getPrincipal().hasRealm(assistanceAgent) && claim != null && !claim.isDraftMode() && trackingLog.isDraftMode();
+
+		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
