@@ -32,6 +32,8 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 
 	@Override
 	public void authorise() {
+		System.out.println(super.getRequest());
+
 		boolean isTechnician = super.getRequest().getPrincipal().hasRealmOfType(Technician.class);
 		super.getResponse().setAuthorised(isTechnician);
 	}
@@ -42,7 +44,6 @@ public class TechnicianMaintenanceRecordDeleteService extends AbstractGuiService
 		int id;
 
 		id = super.getRequest().getData("id", int.class);
-		System.out.println("El id escogido es id= " + id);
 		maintenanceRecord = this.repository.findMaintenanceRecordById(id);
 
 		super.getBuffer().addData(maintenanceRecord);

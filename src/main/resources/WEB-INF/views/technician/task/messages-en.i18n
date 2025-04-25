@@ -17,3 +17,5 @@ technician.task.list.label.description = Description
 technician.task.list.label.priority = Priority
 
 technician.task.list.button.create = Create Task
+
+acme.validation.range = Not valid number (Priority between 0 and 10, Duration between 0 and 1000)

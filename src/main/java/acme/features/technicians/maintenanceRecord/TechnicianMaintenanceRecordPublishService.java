@@ -62,7 +62,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 			boolean status;
 			status = maintenanceRecord.getStatus().equals(MaintenanceStatus.COMPLETED);
 
-			super.state(status, "*", "technician.maintenance-record.publish.status");
+			super.state(status, "status", "technician.maintenance-record.publish.status");
 		}
 
 	}
@@ -97,7 +97,7 @@ public class TechnicianMaintenanceRecordPublishService extends AbstractGuiServic
 		Collection<Task> tasksNumber = this.repository.findTasksByMaintenanceRecordId(maintenanceRecord.getId());
 		Collection<String> tasks = tasksNumber.stream().map(Task::getDescription).toList();
 
-		dataset = super.unbindObject(maintenanceRecord, "aircraft", "maintenanceMoment", "nextInspection", "status", "estimatedCost", "notes");
+		dataset = super.unbindObject(maintenanceRecord, "aircraft", "technician.identity.name", "maintenanceMoment", "nextInspection", "status", "estimatedCost", "notes", "draftMode");
 		dataset.put("status", choices);
 		dataset.put("tasks", tasks);
 		dataset.put("aircraft", aircraftChoices.getSelected().getKey());
