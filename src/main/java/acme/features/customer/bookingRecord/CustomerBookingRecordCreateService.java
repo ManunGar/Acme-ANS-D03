@@ -44,12 +44,17 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 
 		if (super.getRequest().hasData("id")) {
 			int bookingId = super.getRequest().getData("booking", int.class);
-			Booking booking = this.bookingRepository.findBookingById(bookingId);
-			isInBookings = bookings.contains(booking);
+			if (bookingId != 0) {
+				Booking booking = this.bookingRepository.findBookingById(bookingId);
+				isInBookings = bookings.contains(booking);
+			}
 
 			int passengerId = super.getRequest().getData("passenger", int.class);
-			Passenger passenger = this.passengerRepository.findPassengerById(passengerId);
-			isInPassengers = passengers.contains(passenger);
+			if (passengerId != 0) {
+				Passenger passenger = this.passengerRepository.findPassengerById(passengerId);
+				isInPassengers = passengers.contains(passenger);
+			}
+
 		}
 		super.getResponse().setAuthorised(isCustomer && isInPassengers && isInBookings);
 	}
