@@ -77,7 +77,7 @@ public class Claim extends AbstractEntity {
 
 		ClaimRepository repository = SpringHelper.getBean(ClaimRepository.class);
 
-		trackingLogs = repository.findAllByClaimId(this.getId());
+		trackingLogs = repository.findAllTrackingLogsPublishedByClaimId(this.getId());
 		accepted = trackingLogs.size() == 0 ? AcceptedIndicator.PENDING : trackingLogs.get(0).getAccepted();
 
 		return accepted;
